@@ -1,0 +1,7 @@
+src/LibD
+src/Makefile
+*.pro.user
+moc_*
+*.o
+*.log
+*swp
