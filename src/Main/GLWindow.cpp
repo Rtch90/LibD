@@ -235,4 +235,5 @@ float GLWindow::GetElapsedSeconds(void) {
 	unsigned int diff = currentTime - _lastTime;
 	_lastTime = currentTime;
 	return float(diff) / 1000.0f);
-}						
+}				
+		
