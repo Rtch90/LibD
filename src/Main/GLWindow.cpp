@@ -142,11 +142,16 @@ bool GLWindow::Create(int width, int height, int bpp, bool fullscreen) {
 													CWBorderPixel | CWColorMap | CWEventMask, &_XSetAttr);
 	string title = "Some GL Demo stuff..";
 	
-	// TODO;
 	if(fullscreen) {
-	  // Some code here..
+	  XWarpPointer(_display, None, _xWindow, 0, 0, 0, 0, 0, 0);
+	  XMapRaised(_display, _xWindow);
+	  XGrabKeyboard(_display, _xWindow, True, GrabModeAsync, GrabModeAsync, CurrentTime);
+	  XGrabPointer(_display, _xWindow, True, ButtonPressMask, GrabModeAsync, GrabModeAsync,
+	  								_xWindow, None, CurrenTime);
 	} else {
-		// Some more code here..
+		Atom wmDelete = XInternAtom(_display, "WM_DELETE_WINDOW", True);
+		XSetWMProtocols(_display, _xWindow, title.c_str(), None, NULL, NULL, 0, NULL);
+		XMapRaised(_display, _xWindow);
 	}
 	
 	XFree(modes);
