@@ -6,6 +6,7 @@
 #endif
 
 #include "GLWindow.h"
+#include "Game.h"
 
 using std::string;
 

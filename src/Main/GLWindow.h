@@ -2,6 +2,9 @@
 #include <GL/glx.h>
 #include <glx/glxext.h>
 
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <X11/extensions/xf86vmode.h>
 #include <X11/keysym.h>
 #include <ctime>
 
