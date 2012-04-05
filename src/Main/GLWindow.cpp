@@ -140,7 +140,7 @@ bool GLWindow::Create(int width, int height, int bpp, bool fullscreen) {
 	_xWindow = XCreateWindow(_display, RootWindow(_display, vi->screen),
 													0, 0, width, height, 0, vi->depth, InputOutput, vi->visual,
 													CWBorderPixel | CWColorMap | CWEventMask, &_XSetAttr);
-	string title = "Some GL Demo stuff..";
+	string title = "LibD";
 	
 	if(fullscreen) {
 	  XWarpPointer(_display, None, _xWindow, 0, 0, 0, 0, 0, 0);
