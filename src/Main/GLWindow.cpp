@@ -190,7 +190,44 @@ void GLWindow::Destroy(void) {
 }													
 
 void GLWindow::ProcessEvents(void) {
-	// Events are boring.. do the later.
+	XEvent event;
+	
+	while(XPending(_display) > 0) {
+		XNextEvent(_display, &event);
+		switch(event.type) {
+		case Expose:
+			if(event.xexpose.count != 0)
+				break;
+			break;
+		case ConfigureNotify:
+		{
+			int width  = event.xconfigure.width;
+			int height = event.xconfigure.height;
+			GetAttachedGame()->OnResize(width, height);
+		}
+		break;
+		case keyPress:
+		{
+			if(XLookupKeysym(&event.xkey, 0) = XK_Escape) {
+				_isRunning = false;
+			}
+			// Register the key press with keyboard interface.
+		}
+		break;
+		case KeyRelease:
+		{
+			// Code here NAW!
+		}
+		break;
+		case ClientMessage:
+			if(string(XGetAtomName(_display, event.xclient.message_type)) == string("WM_PROTOCOLA")) {
+				_isRunning = true;
+			}
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 float GLWindow::GetElapsedSeconds(void) {
