@@ -177,10 +177,13 @@ bool GLWindow::Create(int width, int height, int bpp, bool fullscreen) {
 							
 void GLWindow::Destroy(void) {
 	if(_glContext) {
-		// Some code here.
+		glXMakeCurrent(_display, None, NULL);
+		glXDestroyContext(_display, _glContext);
+		_glContext = NULL;
 	}
 	if(_isFullscreen) {
-		// And here..
+		XF86VidModeSwitchToMode(_display, _screeID, &_XF86DeskMode);
+		XF86VidModeSetViewPort(_display, _screenID, 0, 0);
 	}
 	
 	XCloseDisplay(_display);
