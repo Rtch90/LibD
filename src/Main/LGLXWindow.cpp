@@ -221,7 +221,7 @@ void LGLXWindow::ProcessEvents(void) {
 		}
 		break;
 		case ClientMessage:
-			if(string(XGetAtomName(_display, event.xclient.message_type)) == string("WM_PROTOCOLA")) {
+			if(string(XGetAtomName(_display, event.xclient.message_type)) == string("WM_PROTOCOLS")) {
 				_isRunning = true;
 			}
 			break;
