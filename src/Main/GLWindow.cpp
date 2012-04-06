@@ -30,14 +30,14 @@ bool GLWindow::Create(int width, int height, int bpp, bool fullscreen) {
 	// Fill out the class structure.
 	_windowClass.cbSize					= sizeof(WNDCLASSEX);
 	_windowClass.style					= CS_HREDRAW | CS_VREDRAW;
-	_windowClass.lpfnWndProc		= GLWindow::StaticWNDProc; // Set out static method as the next event.
+	_windowClass.lpfnWndProc		= GLWindow::StaticWNDProc;	// Set out static method as the next event.
 	_windowClass.cbClsExtra			= 0;
 	_windowClass.cbWndExtra			= 0;
 	_windowClass.hInstance			=	_hinstance;
-	_windowClass.hIcon					=	LoadIcon(NULL, IDI_APPLICATION); 	// Default icon.
+	_windowClass.hIcon					=	LoadIcon(NULL, IDI_APPLICATION);	// Default icon.
 	_windowClass.hCursor				= LoadCursor(NULL, IDC_ARROW);			// Default arrow.
-	_windowClass.hbrBackground	= NULL; // Don't need a background.
-	_windowClass.lpszMenuName		= NULL; // No menu.
+	_windowClass.hbrBackground	= NULL;	// Don't need a background.
+	_windowClass.lpszMenuName		= NULL;	// No menu.
 	_windowClass.lpszClassName	= "LibD";
 	_windowClass.hIconSm				=	LoadIcon(NULL, IDI_WINLOGO);			// Windows logo, small icon.
 	
@@ -97,7 +97,7 @@ void GLWindow::Destroy(void) {
 	if(_isFullscreen) {
 		// Change back to the desktop.
 		ChangeDisplaySettings(NULL, 0);
-		ShowCursor(true); 		// Show us the mouse cursor again.
+		ShowCursor(true);			// Show us the mouse cursor again.
 	}
 }
 
@@ -120,7 +120,7 @@ void GLWindow::SetPixelFormat(void) {
 			1,															// Version.
 			PFD_SUPPORT_OPENGL |						// OpenGL window.
 			PFD_DRAW_TO_WINDOW |						// Render to window.
-			PFD_DOUBLEBUFFER,								// support double-buffering.
+			PFD_DOUBLEBUFFER,								// Support double-buffering.
 			PFD_TYPE_RGBA,									// Color type.
 			32,															// Prefered color depth.
 			0, 0, 0, 0, 0, 0,								// Color bits (ignored).
@@ -150,7 +150,7 @@ LRESULT GLWindow::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 		int attribs[] = {
 			WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
 			WGL_CONTEXT_MINOR_VERSION_ARB, 0,
-			0	}; // Zero indicates the end of the array.
+			0	};		// Zero indicates the end of the array.
 			
 			// Create temporary context so we can get a pointer to the function.
 			HGLRC tmpContext = wglCreateContext(_hdc);
