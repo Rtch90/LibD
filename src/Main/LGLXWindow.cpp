@@ -127,10 +127,10 @@ bool LGLXWindow::Create(int width, int height, int bpp, bool fullscreen) {
 																											StructureNotifyMask;
 	_XSetAttr.override_redirect = False;
 	
-	unsigned long windowAttributes = CWBorderPixel | CWColormap | CWEventMask;
+	//unsigned long windowAttributes = CWBorderPixel | CWColormap | CWEventMask;
 	
 	if(fullscreen) {
-		windowAttributes = CWBorderPixel | CWColormap | CWEventMask | CWOverrideRedirect;
+		//windowAttributes = CWBorderPixel | CWColormap | CWEventMask | CWOverrideRedirect;
 		
 		XF86VidModeSwitchToMode(_display, _screenID, modes[bestMode]);
 		XF86VidModeSetViewPort(_display, _screenID, 0, 0);
@@ -151,7 +151,7 @@ bool LGLXWindow::Create(int width, int height, int bpp, bool fullscreen) {
 	} else {
 		Atom wmDelete = XInternAtom(_display, "WM_DELETE_WINDOW", True);
 		XSetWMProtocols(_display, _xWindow, &wmDelete, 1);
-		XSetStandardProperties(_display, _xWindow, title.c_str(), None, NULL, NULL, 0, NULL);
+		XSetStandardProperties(_display, _xWindow, title.c_str(), None, 0, NULL, 0, NULL);
 		XMapRaised(_display, _xWindow);
 	}
 	
