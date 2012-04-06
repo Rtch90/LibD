@@ -1,6 +1,9 @@
 #pragma once
+
+#define GLX_GLXEXT_LEGACY		// Use our local glxext.h rather than the system one.
+
 #include <GL/glx.h>
-#include <glx/glxext.h>
+#include "../glx/glxext.h"
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -10,10 +13,10 @@
 
 class Game;
 
-class GLXWindow {
+class LGLXWindow {
 public:
-	GLXWindow(void);
-	virtual ~GLXWindow(void);
+	LGLXWindow(void);
+	virtual ~LGLXWindow(void);
 	
 	bool Create(int width, int hight, int bpp, bool fullscreen);
 	void Destroy(void);
@@ -22,7 +25,7 @@ public:
 	
 	bool IsRunning(void) { return _isRunning; }
 	
-	void SwapBuffers(void) { glxSwapBuffers(_display, _xWindow); }
+	void SwapBuffers(void) { glXSwapBuffers(_display, _xWindow); }
 	
 	float GetElapsedSeconds(void);
 	
@@ -36,10 +39,10 @@ private:
 	
 	unsigned int _lastTime;
 	
-	Display								_display;
+	Display*							_display;
 	Window								_xWindow;
 	GLXContext						_glContext;
-	XF86VidModeInfo				_XF86DeskMode;
+	XF86VidModeModeInfo		_XF86DeskMode;
 	XSetWindowAttributes 	_XSetAttr;
 	int 									_screenID;
 	
@@ -50,4 +53,4 @@ private:
 	
 	bool _GL3Supported;
 	// I think that's about all I need for now.. FOR NOW!!!
-}
+};

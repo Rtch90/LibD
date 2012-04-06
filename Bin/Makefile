@@ -10,15 +10,15 @@ default: all
 all:
 	$(MAKE) -C ../src/Main
 	
-	$(CC) $(CFLAGS) -o LibD ../src/Main/main.cpp ../src/Main/Main/*.o $(LDADD)
+	$(CC) $(CFLAGS) -o LibD ../src/Main/main.cpp ../src/Main/*.o $(LDADD)
 
 static:
 	@echo -e "\033[1;31mThis is an experimental build, if it does not work, don't complain...\033[0m"
 	@sleep 1
-	$(MAKE) -C ../src/Main/Main
+	$(MAKE) -C ../src/Main/
 
-	$(CC) $(CFLAGS) -o build/LibD-static ../src/Main/main.cpp ../src/Main/Main/*.o $(LDADDSTATIC)
+	$(CC) $(CFLAGS) -o build/LibD-static ../src/Main/main.cpp ../src/Main/*.o $(LDADDSTATIC)
 
 clean:
-	$(MAKE) -C ../src/Main/Main	       clean
+	$(MAKE) -C ../src/Main/	       clean
 	rm -f LibD
