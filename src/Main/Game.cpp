@@ -6,6 +6,8 @@
 #include <GL/glu.h>
 
 #include "Game.h"
+#include "../Sprite/Sprite.h"
+#include "../Texture/Texture.h"
 
 Game::Game(void) {
 	_rotationAngle = 0.0f;
@@ -19,6 +21,12 @@ bool Game::Init(void) {
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 	
+  Texture* testTexture = new Texture();
+  testTexture->Load("../../Data/Img/test.png");
+  
+  _testSprite = new Sprite();
+  _testSprite->SetTexture(testTexture);
+
 	// Return success.
 	return true;
 }
@@ -33,22 +41,20 @@ void Game::Prepare(float dt) {
 
 void Game::Render(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity();
 	
-	glRotatef(_rotationAngle, 0, 0, 1);
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  glOrtho(0.0, 800.0, 600.0, 0.0, 0.0, 1.0);
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
 	
-	glBegin(GL_TRIANGLES);
-	  glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
-		glVertex3f(-1.0f, -0.5f, -4.0f);
-		glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
-		glVertex3f(1.0f, -0.5f, -4.0f);
-		glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
-		glVertex3f(0.0f, 0.5f, -4.0f);
-	glEnd();
+	_testSprite->Draw();
 }
 
 void Game::Shutdown(void) {
-	
+	delete _testSprite->GetTexture();
+  delete _testSprite;
 }
 
 void Game::OnResize(int width, int height) {

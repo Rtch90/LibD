@@ -2,11 +2,24 @@
 #include <iostream>
 using namespace std;
 
+static GLuint boundTexture = 0;
+
+static bool IsBGR(SDL_Surface* surf) {
+#if SDL_BYTEORDER == SDL_LIL_ENDIAN
+  return (surf->format->Rmask & 0x00FF0000) &&
+         (surf->format->Bmask & 0x000000FF);
+#else
+  return (surf->format->Bmask & 0xFF000000) &&
+         (surf->format->Rmask & 0x0000FF00);
+#endif
+}
+
 int BuildTexture(const char* filename, GLuint* texID, GLint param, bool genMips) {
   // Create a storage space for the texture.
   SDL_Surface* textureImage;
   // Format to pass to texture generation method.
-  GLint textureFormat;
+  GLint format;
+  GLint internalFormat;
 
   // Load the image, check for errors, if it isn't found, quit.
   textureImage = IMG_Load(filename);
@@ -15,12 +28,43 @@ int BuildTexture(const char* filename, GLuint* texID, GLint param, bool genMips)
     std::cerr << "Warning: could not load " << filename << std::endl;
     return false;
   }
+
+  switch(textureImage->format->BitsPerPixel) {
+  case 8:
+    internalFormat = format = GL_ALPHA;
+    break;
+  case 16:
+    internalFormat = format = GL_LUMINANCE_ALPHA;
+    break;
+  case 24:
+    internalFormat = GL_RGB;
+    if (IsBGR(textureImage))
+      format = GL_BGR_EXT;
+    else
+      format = GL_RGB;
+    break;
+  case 32:
+    internalFormat = GL_RGBA;
+    if (IsBGR(textureImage))
+      format = GL_BGR_EXT;
+    else
+      format = GL_RGBA;
+    break;
+  default:
+    format = internalFormat = GL_NONE;
+  }
+
+  if(internalFormat == GL_NONE || format == GL_NONE) {
+    std::cerr << "Warning: invalid texture format for " << filename << std::endl;
+    SDL_FreeSurface(textureImage);
+    return false;
+  }
   
   // Create the texture.
   glGenTextures(1, texID);
   
   // Typical texture generation using data from the bitmap.
-  glBindTexture(GL_TEXTURE_2D, *texID);
+  BindTexture(*texID);
   
   // Setup filtering.
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, param);
@@ -30,13 +74,13 @@ int BuildTexture(const char* filename, GLuint* texID, GLint param, bool genMips)
   if(genMips) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     // Generate the textures and mipmaps.
-    gluBuild2DMipmaps(GL_TEXTURE_2D, textureFormat, textureImage->w,
-                      textureImage->h, GL_RGB, GL_UNSIGNED_BYTE,
+    gluBuild2DMipmaps(GL_TEXTURE_2D, internalFormat, textureImage->w,
+                      textureImage->h, format, GL_UNSIGNED_BYTE,
                       textureImage->pixels);
   } else {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, textureFormat, textureImage->w,
-                      textureImage->h, 0, GL_RGB, GL_UNSIGNED_BYTE,
+    glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, textureImage->w,
+                      textureImage->h, 0, format, GL_UNSIGNED_BYTE,
                       textureImage->pixels);
   }
   // Free up the memory we used.
@@ -172,4 +216,33 @@ int WriteTGAFile(const char* filename, short int width, short int height, unsign
   fclose(filePtr);
   
   return 1;
+}
+
+void BindTexture(GLuint texID) {
+  if(boundTexture != texID){
+    glBindTexture(GL_TEXTURE_2D, texID);
+    boundTexture = texID;
+  }
+}
+
+Texture::Texture() {
+  texID = 0;
+  width = 0;
+  height = 0;
+}
+
+Texture::~Texture() {
+  if(texID != 0) {
+    glDeleteTextures(1, &texID);
+    texID = 0;
+  }
+}
+
+bool Texture::Load(const char* filename) {
+  if(BuildTexture(filename, &texID, GL_CLAMP, false)) {
+    glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
+    glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
+    return true;
+  }
+  return false;
 }
