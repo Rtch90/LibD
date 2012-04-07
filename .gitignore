@@ -1,5 +1,4 @@
-src/LibD
-src/Makefile
+LibD
 *.pro.user
 moc_*
 *.o
