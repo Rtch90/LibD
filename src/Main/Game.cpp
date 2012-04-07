@@ -5,6 +5,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
+#include "../System/Debug.h"
 #include "Game.h"
 
 Game::Game(void) {
@@ -48,7 +49,7 @@ void Game::Render(void) {
 }
 
 void Game::Shutdown(void) {
-	
+
 }
 
 void Game::OnResize(int width, int height) {
