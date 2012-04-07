@@ -11,7 +11,7 @@
 using std::string;
 
 //typedef GLXContext (*PFNGLXCREATECONTEXTATTRIBSARBPROC)(Display* dpy, GLXFBConfig config,
-//																		GLXContext share_context, bool direct, const int* attrib_list);
+//                        GLXContext share_context, bool direct, const int* attrib_list);
 
 unsigned int GetTickCount(void) {
   struct timeval t;
@@ -23,18 +23,18 @@ unsigned int GetTickCount(void) {
 }
 
 LGLXWindow::LGLXWindow(void) : 
-		_game(NULL),
-		_isRunning(true),
-		_lastTime(0),
-		_display(NULL),
-		_xWindow(0),
-		_glContext(0),
-		_screenID(0),
-		_isFullscreen(false),
-		_width(0),
-		_height(0),
-		_bpp(0),
-		_GL3Supported(false)  {}
+    _game(NULL),
+    _isRunning(true),
+    _lastTime(0),
+    _display(NULL),
+    _xWindow(0),
+    _glContext(0),
+    _screenID(0),
+    _isFullscreen(false),
+    _width(0),
+    _height(0),
+    _bpp(0),
+    _GL3Supported(false)  {}
 		
 LGLXWindow::~LGLXWindow(void) {
 
@@ -57,61 +57,61 @@ bool LGLXWindow::Create(int width, int height, int bpp, bool fullscreen) {
 	
 	XF86VidModeModeInfo **modes;
 	if(!XF86VidModeGetAllModeLines(_display, _screenID, &modeNum, &modes)) {
-		std::cerr << "Could not query the video modes." << std::endl;
-		return false;
+    std::cerr << "Could not query the video modes." << std::endl;
+    return false;
 	}
 	
 	_XF86DeskMode = *modes[0];
 	
 	int bestMode = -1;
 	for(int i = 0; i < modeNum; i++) {
-		if((modes[i]->hdisplay == width) && (modes[i]->vdisplay == height)) {
-			bestMode = i;
+    if((modes[i]->hdisplay == width) && (modes[i]->vdisplay == height)) {
+      bestMode = i;
 		}
 	}
 	
 	if(bestMode == -1) {
-		std::cerr << "Could not find a suitable graphics mode." << std::endl;
-		return false;
+    std::cerr << "Could not find a suitable graphics mode." << std::endl;
+    return false;
 	}
 	
 	int doubleBufferedAttribList[] = {
-		GLX_RGBA,				GLX_DOUBLEBUFFER,
-		GLX_RED_SIZE,		4,
-		GLX_GREEN_SIZE,	4,
-		GLX_BLUE_SIZE, 	4,
-		GLX_DEPTH_SIZE, 16,
-		None
+    GLX_RGBA,       GLX_DOUBLEBUFFER,
+    GLX_RED_SIZE,   4,
+    GLX_GREEN_SIZE, 4,
+    GLX_BLUE_SIZE,  4,
+    GLX_DEPTH_SIZE, 16,
+    None
 	};
 	
 	XVisualInfo* vi = NULL;
 	// Attempt to create a double buffered window.
 	vi = glXChooseVisual(_display, _screenID, doubleBufferedAttribList);
 	if(!vi) {
-		std::cerr << "Could not create a double buffere window.. Sux.." <<std::endl;
+    std::cerr << "Could not create a double buffere window.. Sux.." <<std::endl;
 	}
 	
 	// Time to create a GL 2.1 context.
 	GLXContext gl2Context = glXCreateContext(_display, vi, 0, GL_TRUE);
 	if(!gl2Context) {
-		std::cerr << "Could Not create a GL 2.1 context, check your darn graphics drivers" << std::endl;
-		return false;
+    std::cerr << "Could Not create a GL 2.1 context, check your darn graphics drivers" << std::endl;
+    return false;
 	}
 	
 	// Get a pointer to the GL 3.0 context creation.
 	PFNGLXCREATECONTEXTATTRIBSARBPROC glXCreateContextAttribs 
-				= (PFNGLXCREATECONTEXTATTRIBSARBPROC) glXGetProcAddress((GLubyte*)"glXCreateContextAttribsARB");
+        = (PFNGLXCREATECONTEXTATTRIBSARBPROC) glXGetProcAddress((GLubyte*)"glXCreateContextAttribsARB");
 	if(glXCreateContextAttribs == NULL) {
-		std::cerr << "OpenGL 3.0 is not supported, falling back to 2.1" << std::endl;
-		_glContext = gl2Context;
-		_GL3Supported = false;
+    std::cerr << "OpenGL 3.0 is not supported, falling back to 2.1" << std::endl;
+    _glContext = gl2Context;
+    _GL3Supported = false;
 	} else {
 		// We create a GL 3.0 context..
 		
-		int attribs[] = {
-			GLX_CONTEXT_MAJOR_VERSION_ARB, 3, // We want a 3.0 context.
-			GLX_CONTEXT_MINOR_VERSION_ARB, 0, 
-			0 // Zero indicates the end of the array.		
+    int attribs[] = {
+      GLX_CONTEXT_MAJOR_VERSION_ARB, 3, // We want a 3.0 context.
+      GLX_CONTEXT_MINOR_VERSION_ARB, 0, 
+      0 // Zero indicates the end of the array.		
 		};
 		
 		_glContext = glXCreateContextAttribs(_display, framebufferConfig, 0, true, &attribs[0]);
@@ -121,10 +121,10 @@ bool LGLXWindow::Create(int width, int height, int bpp, bool fullscreen) {
 	}
 	
 	Colormap cmap = XCreateColormap(_display, RootWindow(_display, vi->screen), vi->visual, AllocNone);
-	_XSetAttr.colormap = cmap;
-	_XSetAttr.border_pixel = 0;
-	_XSetAttr.event_mask = ExposureMask | KeyPressMask | KeyReleaseMask | ButtonPressMask | 
-																											StructureNotifyMask;
+	_XSetAttr.colormap      = cmap;
+	_XSetAttr.border_pixel  = 0;
+	_XSetAttr.event_mask    = ExposureMask | KeyPressMask | KeyReleaseMask | ButtonPressMask | 
+                                        StructureNotifyMask;
 	_XSetAttr.override_redirect = False;
 	
 	//unsigned long windowAttributes = CWBorderPixel | CWColormap | CWEventMask;
@@ -138,8 +138,8 @@ bool LGLXWindow::Create(int width, int height, int bpp, bool fullscreen) {
 	}																		
 	
 	_xWindow = XCreateWindow(_display, RootWindow(_display, vi->screen),
-													0, 0, width, height, 0, vi->depth, InputOutput, vi->visual,
-													CWBorderPixel | CWColormap | CWEventMask, &_XSetAttr);
+                          0, 0, width, height, 0, vi->depth, InputOutput, vi->visual,
+                          CWBorderPixel | CWColormap | CWEventMask, &_XSetAttr);
 	string title = "LibD";
 	
 	if(fullscreen) {
@@ -147,7 +147,7 @@ bool LGLXWindow::Create(int width, int height, int bpp, bool fullscreen) {
 	  XMapRaised(_display, _xWindow);
 	  XGrabKeyboard(_display, _xWindow, True, GrabModeAsync, GrabModeAsync, CurrentTime);
 	  XGrabPointer(_display, _xWindow, True, ButtonPressMask, GrabModeAsync, GrabModeAsync,
-	  								_xWindow, None, CurrentTime);
+                       _xWindow, None, CurrentTime);
 	} else {
 		Atom wmDelete = XInternAtom(_display, "WM_DELETE_WINDOW", True);
 		XSetWMProtocols(_display, _xWindow, &wmDelete, 1);
@@ -159,17 +159,17 @@ bool LGLXWindow::Create(int width, int height, int bpp, bool fullscreen) {
 	
 	glXMakeCurrent(_display, _xWindow, _glContext);
 	
-	int posX = 0;
-	int posY = 0;
+	int posX  = 0;
+	int posY  = 0;
 	Window winDummy;
 	unsigned int borderDummy;	
 	
-	_width 	= (unsigned) width;
+	_width  = (unsigned) width;
 	_height = (unsigned) height;
-	_bpp		= (unsigned) bpp;
+	_bpp    = (unsigned) bpp;
 	
 	XGetGeometry(_display, _xWindow, &winDummy, &posX, &posY, 
-								&_width, &_height, &borderDummy, &_bpp);
+                &_width, &_height, &borderDummy, &_bpp);
 
 	// Init the time.
 	_lastTime = GetTickCount();
@@ -202,17 +202,17 @@ void LGLXWindow::ProcessEvents(void) {
 			break;
 		case ConfigureNotify:
 		{
-			int width  = event.xconfigure.width;
-			int height = event.xconfigure.height;
+			int width   = event.xconfigure.width;
+			int height  = event.xconfigure.height;
 			GetAttachedGame()->OnResize(width, height);
 		}
 		break;
 		case KeyPress:
 		{
 			if(XLookupKeysym(&event.xkey, 0) == XK_Escape) {
-				_isRunning = false;
+        _isRunning = false;
 			}
-			// Register the key press with keyboard interface.
+      // Register the key press with keyboard interface.
 		}
 		break;
 		case KeyRelease:

@@ -27,7 +27,7 @@ void Game::Prepare(float dt) {
 	const float SPEED = 15.0f;
 	_rotationAngle += SPEED*dt;
 	if(_rotationAngle > 360.0f) {
-		_rotationAngle -= 360.0f;
+    _rotationAngle -= 360.0f;
 	}
 }
 

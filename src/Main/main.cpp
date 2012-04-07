@@ -18,10 +18,10 @@ int WINAPI winMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR cmdLine, 
 int main(int argc, char** argv) {
 #endif
 	// Get our window settings.
-	const int windowWidth					= 800;
-	const int windowHeight				= 600;
-	const int windowBPP						= 16;
-	const int windowFullscreen		= false;
+	const int windowWidth         = 800;
+	const int windowHeight        = 600;
+	const int windowBPP           = 16;
+	const int windowFullscreen    = false;
 	
 #ifdef _WIN32_
 	// This is our window.
@@ -41,29 +41,29 @@ int main(int argc, char** argv) {
 #ifdef _WIN32_
 		MessageBox(NULL, "Unable to create the OpenGL Window", "An error occured", MB_ICONERROR | MB_OK);
 #endif
-		programWindow.Destroy();		// Reset the display and exit.
+		programWindow.Destroy();    // Reset the display and exit.
 		return 1;
 	}
-	if(!game.Init()) {		// Initialize our game.
+	if(!game.Init()) {            // Initialize our game.
 #ifdef _WIN32_
 		MessageBox(NULL, "Could not initialize the application", "An error occured", MB_ICONERROR | MB_OK);
 #endif
-		programWindow.Destroy();		// Reset the display and exit.
+		programWindow.Destroy();    // Reset the display and exit.
 		return 1;
 	}
 	// This is the main loop, we render frames until IsRunning returns false.
 	while(programWindow.IsRunning()) {
-		programWindow.ProcessEvents();		// Process any window events.
+		programWindow.ProcessEvents();    // Process any window events.
 		// We get the time that passed since the last frame.
 		float elapsedTime = programWindow.GetElapsedSeconds();
 		
-		game.Prepare(elapsedTime);		// Do any pre-rendering logic.
-		game.Render();								// Render the scene.
+		game.Prepare(elapsedTime);    // Do any pre-rendering logic.
+		game.Render();                // Render the scene.
 		
 		programWindow.SwapBuffers();
 	}
-	game.Shutdown();						// Free any resouces.
-	programWindow.Destroy();		// Destroy the program window.
+	game.Shutdown();            // Free any resouces.
+	programWindow.Destroy();    // Destroy the program window.
 	
 	return 0;
 }
