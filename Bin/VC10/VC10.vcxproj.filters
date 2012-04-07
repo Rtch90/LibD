@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Actor">
+      <UniqueIdentifier>{aeb7d0e5-87e7-4fe0-b774-6c1644e89859}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="glx">
+      <UniqueIdentifier>{d5113903-aa2a-427f-ac9a-f800ac088ee0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{44e6d6e3-c84d-4a53-a5e3-1424a6e4327e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture">
+      <UniqueIdentifier>{93e01b38-0451-468e-9283-d8533feac24f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Main\GLWindow.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Main\Game.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\glx\wglext.h">
+      <Filter>glx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\glx\glext.h">
+      <Filter>glx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Texture\Texture.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Actor\Player.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Main\main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Main\Game.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Main\GLWindow.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Texture\Texture.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Actor\Player.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

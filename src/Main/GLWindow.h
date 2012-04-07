@@ -10,14 +10,14 @@ public:
 	~GLWindow(void);
 	
 	bool Create(int width, int height, int bpp, bool fullscreen);
-	void Destroy(bool);
+	void Destroy(void);
 	void ProcessEvents(void);
 	void AttachGame(Game* game)   { _game = game; }
 	
 	bool IsRunning(void)          { return _isRunning; }
-	void SwapBuffers(void)        { SwapBuffers(_hdc); }
+	void SwapBuffers(void)        { ::SwapBuffers(_hdc); }
 	
-	static LRESULT CALLBACK StaticWndProc(HWND wnd, UINT msg, WPARAP wParam, LPARAM lParam);
+	static LRESULT CALLBACK StaticWndProc(HWND wnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	LRESULT CALLBACK WndProc(HWND wnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	
 	float GetElapsedSeconds(void);
@@ -37,5 +37,5 @@ private:
 	HDC         _hdc;           // Device context.
 	RECT        _windowRect;    // Window bound.
 	HINSTANCE   _hinstance;     // Application instance.
-	WNDCLASSEX  _windowClass;
-}
+	WNDCLASSEX	_windowClass;
+};

@@ -1,4 +1,5 @@
 #include "Texture.h"
+#include <iostream>
 using namespace std;
 
 int BuildTexture(const char* filename, GLuint* texID, GLint param, bool genMips) {
@@ -24,12 +25,12 @@ int BuildTexture(const char* filename, GLuint* texID, GLint param, bool genMips)
   // Setup filtering.
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, param);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, param);
-  glTexParameteti(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
   
   if(genMips) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     // Generate the textures and mipmaps.
-    gluBuildMipmaps(GL_TEXTURE_2D, textureFormat, textureImage->w,
+    gluBuild2DMipmaps(GL_TEXTURE_2D, textureFormat, textureImage->w,
                       textureImage->h, GL_RGB, GL_UNSIGNED_BYTE,
                       textureImage->pixels);
   } else {
@@ -43,7 +44,7 @@ int BuildTexture(const char* filename, GLuint* texID, GLint param, bool genMips)
   return true;
 }
 
-int LoadTGAFile(const char* filename, TGAFILE* tgafile) {
+int LoadTGAFile(const char* filename, TGAFILE* tgaFile) {
   FILE*           filePtr;      // Pointer to our texture.
   unsigned char   ucharBad;     // Garbage unsigned char data.
   short int       sintBad;      // Garbage short int data.
@@ -62,7 +63,7 @@ int LoadTGAFile(const char* filename, TGAFILE* tgafile) {
   fread(&ucharBad, sizeof(unsigned char), 1, filePtr);
   
   // Read in the image type.
-  fread(*tgaFile->textureTypeCode, sizeof(unsigned char), 1, filePtr);
+  fread(&tgaFile->textureTypeCode, sizeof(unsigned char), 1, filePtr);
   
   // The texture type should be either 2(color) or 3(greyscale).
   if((tgaFile->textureTypeCode != 2) && (tgaFile->textureTypeCode != 3)) {
@@ -89,10 +90,10 @@ int LoadTGAFile(const char* filename, TGAFILE* tgafile) {
   
   // colorMode -> 3 = BGR, 4 = BGRA
   colorMode = tgaFile->bitCount / 8;
-  imageSize = tgaFile->imageWidth * tgaFile->imageHeight * colorMode;
+  imageSize = tgaFile->textureWidth * tgaFile->textureHeight * colorMode;
   
   // Allocate memory for image data.
-  tgaFile->imageData = (unsigned char*)malloc(sizeof(unsigned char)*imageSize);
+  tgaFile->textureData = (unsigned char*)malloc(sizeof(unsigned char)*imageSize);
   
   // Read in the image data.
   fread(tgaFile->textureData, sizeof(unsigned char), imageSize, filePtr);
@@ -100,8 +101,8 @@ int LoadTGAFile(const char* filename, TGAFILE* tgafile) {
   // Change BGR to RGB so OpenGL can read the data.
   for(imgIndex = 0; imgIndex < imageSize; imgIndex += colorMode) {
     colorSwap = tgaFile->textureData[imgIndex];
-    tgaFile->textureData[imageIndex]  tgaFile->textureData[imageIndex + 2];
-    tgaFile->textureData[imageIndex + 2] = colorSwap;
+    tgaFile->textureData[imgIndex] = tgaFile->textureData[imgIndex + 2];
+    tgaFile->textureData[imgIndex + 2] = colorSwap;
   }
   // Close the file.
   fclose(filePtr);
@@ -109,7 +110,7 @@ int LoadTGAFile(const char* filename, TGAFILE* tgafile) {
 }
 
 int WriteTGAFile(const char* filename, short int width, short int height, unsigned char* imageData) {
-  unsigned char   byteskip;     // Use to fill in the data fields that we don't care about.
+  unsigned char   byteSkip;     // Use to fill in the data fields that we don't care about.
   short int       shortSkip;
   unsigned char   imageType;    // Image type that we are writing to file.
   int             colorMode;

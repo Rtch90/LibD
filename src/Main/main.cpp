@@ -3,7 +3,7 @@
 
 #define GLX_GLXEXT_LEGACY		//  Use our local glxext.h rather than the system one.
 
-#ifdef _WIN32_
+#ifdef _WIN32
 #include <windows.h>
 #include "GLWindow.h"
 #else
@@ -12,8 +12,8 @@
 
 #include "Game.h"
 
-#ifdef _WIN32_
-int WINAPI winMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR cmdLine, int cmdShow) {
+#ifdef _WIN32
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR cmdLine, int cmdShow) {
 #else
 int main(int argc, char** argv) {
 #endif
@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
 	const int windowBPP           = 16;
 	const int windowFullscreen    = false;
 	
-#ifdef _WIN32_
+#ifdef _WIN32
 	// This is our window.
 	GLWindow programWindow(hInstance);
 #else
@@ -38,15 +38,15 @@ int main(int argc, char** argv) {
 	// Attempt to create the window.
 	if(!programWindow.Create(windowWidth, windowHeight, windowBPP, windowFullscreen)) {
 		// If it fails.
-#ifdef _WIN32_
-		MessageBox(NULL, "Unable to create the OpenGL Window", "An error occured", MB_ICONERROR | MB_OK);
+#ifdef _WIN32
+		MessageBox(NULL, TEXT("Unable to create the OpenGL Window"), TEXT("An error occured"), MB_ICONERROR | MB_OK);
 #endif
 		programWindow.Destroy();    // Reset the display and exit.
 		return 1;
 	}
 	if(!game.Init()) {            // Initialize our game.
-#ifdef _WIN32_
-		MessageBox(NULL, "Could not initialize the application", "An error occured", MB_ICONERROR | MB_OK);
+#ifdef _WIN32
+		MessageBox(NULL, TEXT("Could not initialize the application"), TEXT("An error occured"), MB_ICONERROR | MB_OK);
 #endif
 		programWindow.Destroy();    // Reset the display and exit.
 		return 1;

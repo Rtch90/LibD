@@ -1,5 +1,6 @@
 #include <ctime>
 #include <iostream>
+#include <Windows.h>
 #include <GL/gl.h>
 
 #include "../glx/wglext.h"
@@ -10,17 +11,22 @@ typedef HGLRC(APIENTRYP PFNWGLCREATECONTEXTATTRIBSARBPROC)(HDC, HGLRC, const int
 PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
 
 GLWindow::GLWindow(HINSTANCE hInstance) :
-  _isRunning(false),
+  _isRunning(true),
   _game(NULL),
   _hinstance(hInstance),
   _lastTime(0)
   {}
+
+GLWindow::~GLWindow() {
+
+}
+
 	
 bool GLWindow::Create(int width, int height, int bpp, bool fullscreen) {
   DWORD   dwExStyle;		// Window extended style.
   DWORD   dwStyle;			// Window style.
 	
-  _isFullscreen       = fullscreen;     // Store the fullscreen flag.
+  _isFullScreen       = fullscreen;     // Store the fullscreen flag.
 	
   _windowRect.left    = (long)0;        // Set left value to zero.
   _windowRect.right   = (long)width;    // Set right value to the requested width.
@@ -28,43 +34,44 @@ bool GLWindow::Create(int width, int height, int bpp, bool fullscreen) {
   _windowRect.bottom  = (long)height;   // Set bottom value to the requested height.
 	
   // Fill out the class structure.
+  ZeroMemory(&_windowClass, sizeof(_windowClass));
   _windowClass.cbSize         = sizeof(WNDCLASSEX);
   _windowClass.style          = CS_HREDRAW | CS_VREDRAW;
-  _windowClass.lpfnWndProc    = GLWindow::StaticWNDProc;    // Set out static method as the next event.
+  _windowClass.lpfnWndProc    = GLWindow::StaticWndProc;    // Set out static method as the next event.
   _windowClass.cbClsExtra	    = 0;
   _windowClass.cbWndExtra	    = 0;
   _windowClass.hInstance      =	_hinstance;
   _windowClass.hIcon          =	LoadIcon(NULL, IDI_APPLICATION);  // Default icon.
   _windowClass.hCursor        = LoadCursor(NULL, IDC_ARROW);      // Default arrow.
-  _windowClass.hbrBackgroun   = NULL;                             // Don't need a background.
+  _windowClass.hbrBackground  = NULL;                             // Don't need a background.
   _windowClass.lpszMenuName   = NULL;                             // No menu.
-  _windowClass.lpszClassName  = "LibD";
+  _windowClass.lpszClassName  = TEXT("GLClass");
   _windowClass.hIconSm        =	LoadIcon(NULL, IDI_WINLOGO);      // Windows logo, small icon.
 	
   // Register the window class.
   if(!RegisterClassEx(&_windowClass)) {
   	return false;
   }
-  if(_isFullscreen) {
+  if(_isFullScreen) {
     // Then we need to change the display mode.
     DEVMODE dmScreenSettings; // Device mode.
 		
 	  memset(&dmScreenSettings, 0, sizeof(dmScreenSettings));
 	  dmScreenSettings.dmSize = sizeof(dmScreenSettings);
 	
-	  dmScreenSettings.dmPellsWidth   = width;    // Screen width.
-	  dmScreenSettings.dmPellsHeight  = height;   // Screen height.
+	  dmScreenSettings.dmPelsWidth    = width;    // Screen width.
+	  dmScreenSettings.dmPelsHeight   = height;   // Screen height.
 	  dmScreenSettings.dmBitsPerPel   =	bpp;      // Bits per pixel.
 	  dmScreenSettings.dmFields       = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
 	
   	if(ChangeDisplaySettings(&dmScreenSettings, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL) {
       // Setting the display mode failed, so switch to windowed mode.
-      MessageBox(NULL, "Display mode failed", NULL, MB_OK);
-      _isFullscreen = false;
+      MessageBox(NULL, TEXT("Display mode failed"), NULL, MB_OK);
+      _isFullScreen = false;
 	  }
 	}
 	// Are we still in fullscreen mode?
-	if(_isFullscreen) {
+	if(_isFullScreen) {
 		dwExStyle   = WS_EX_APPWINDOW;    // Window extended style.
 		dwStyle     = WS_POPUP;           // Windows style.
 		ShowCursor(false);                // Might as well hide the mouse cursor.
@@ -76,7 +83,7 @@ bool GLWindow::Create(int width, int height, int bpp, bool fullscreen) {
 	AdjustWindowRectEx(&_windowRect, dwStyle, false, dwExStyle);    // Adjust window to true requested size.
 	
 	// The class is registered, so now we can create our window.
-	_hwnd = CreateWindowEx(NULL, "GLClass", "LibD", dwStyle, | WS_CLIPCHILDREN | WS_CLIPSIBLINGS,
+	_hwnd = CreateWindowEx(dwExStyle, TEXT("GLClass"), TEXT("LibD"), dwStyle,
                             0, 0, _windowRect.right - _windowRect.left,
                             _windowRect.bottom - _windowRect.top, NULL, NULL, _hinstance, this);
 														
@@ -94,7 +101,7 @@ bool GLWindow::Create(int width, int height, int bpp, bool fullscreen) {
 }
 
 void GLWindow::Destroy(void) {
-	if(_isFullscreen) {
+	if(_isFullScreen) {
 		// Change back to the desktop.
 		ChangeDisplaySettings(NULL, 0);
 		ShowCursor(true);     // Show us the mouse cursor again.
@@ -112,10 +119,10 @@ void GLWindow::ProcessEvents(void) {
 	}
 }
 
-void GLWindow::SetPixelFormat(void) {
+void GLWindow::SetupPixelFormat(void) {
 	int pixelFormat;
 	
-	PIXELFORMATDESCRIPTOR fpd = {
+	PIXELFORMATDESCRIPTOR pfd = {
 		sizeof(PIXELFORMATDESCRIPTOR),    // Size.
 			1,                              // Version.
 			PFD_SUPPORT_OPENGL |            // OpenGL window.
@@ -136,12 +143,12 @@ void GLWindow::SetPixelFormat(void) {
 			0, 0, 0,                        // No layer, visibility, damage masks.
 	};
 	
-	pixelFormat = ChoosePixelFormat(&_hdc, pixelFormat, &pfd);
+	pixelFormat = ChoosePixelFormat(_hdc, &pfd);
 	SetPixelFormat(_hdc, pixelFormat, &pfd);
 }
 
 LRESULT GLWindow::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-	switch uMsg) {
+	switch (uMsg) {
 	case WM_CREATE:	{         // Window creation.
 		_hdc = GetDC(hWnd);
 		SetupPixelFormat();
@@ -173,7 +180,7 @@ LRESULT GLWindow::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 			// Make the GL3 context current.
 			wglMakeCurrent(_hdc, _hglrc);
 			_isRunning = true;    // Mark our window as running now.
-	}
+		}
 	break;
 	case WM_DESTROY:    // Destroy window.
 	case WM_CLOSE:      // Windows is closing.
@@ -201,7 +208,7 @@ LRESULT GLWindow::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }
 
-LResult CALLBACK GLWindow::StaticWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+LRESULT CALLBACK GLWindow::StaticWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	GLWindow* window = NULL;
 	
 	// If this is the create message:
@@ -213,10 +220,7 @@ LResult CALLBACK GLWindow::StaticWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LP
 		SetWindowLongPtr(hWnd, GWL_USERDATA, (LONG_PTR)window);
 	} else {
 		// If this is not a creation event, then we should have stored a pointer to the window.
-		window = (GLWindow*) GetWindowLongPtr(hWnd, GML_USERDATA);
-		if(!window) {
-			return DefWindowProc(hWnd, uMsg, wParam, lParam);
-		}
+		window = (GLWindow*) GetWindowLongPtr(hWnd, GWL_USERDATA);
 	}
 	// Call our window's member WndProc - Allows us to create access member variables)
 	return window->WndProc(hWnd, uMsg, wParam, lParam);

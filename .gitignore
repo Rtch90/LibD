@@ -4,3 +4,14 @@ moc_*
 *.o
 *.log
 *swp
+*.ilk
+*.pdb
+*.suo
+*.sdf
+*.opensdf
+*.user
+Bin/VC10/Debug
+Bin/VC10/Release
+Bin/VC10/ipch
+Bin/*.exe
+
