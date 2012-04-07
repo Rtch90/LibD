@@ -1,5 +1,7 @@
 #pragma once
 
+class Sprite;
+
 class Game {
 public:
 	Game(void);
@@ -11,7 +13,8 @@ public:
 	void Shutdown(void);
 	
 	void OnResize(int width, int height);
-	
+
 private:
 	float _rotationAngle;
+  Sprite* _testSprite;
 };

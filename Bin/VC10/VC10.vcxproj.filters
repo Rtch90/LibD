@@ -13,6 +13,12 @@
     <Filter Include="Texture">
       <UniqueIdentifier>{93e01b38-0451-468e-9283-d8533feac24f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sprite">
+      <UniqueIdentifier>{97b8d845-3714-4ef7-94b4-8ac3033675a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{cea04fae-e026-4f1f-b2be-1accb582d0a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Main\GLWindow.h">
@@ -33,6 +39,21 @@
     <ClInclude Include="..\..\src\Actor\Player.h">
       <Filter>Actor</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Sprite\Sprite.h">
+      <Filter>Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Math\Timer.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Math\Vec2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Math\FPS.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Math\MathBox.h">
+      <Filter>Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\main.cpp">
@@ -49,6 +70,18 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Actor\Player.cpp">
       <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Math\Timer.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Math\Vec2.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Math\FPS.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sprite\Sprite.cpp">
+      <Filter>Sprite</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

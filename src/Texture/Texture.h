@@ -23,3 +23,21 @@ typedef struct {
 int BuildTexture(const char* filename, GLuint* texID, GLint param, bool genMips);
 int LoadTGAFile(const char* filename, TGAFILE* tgaFile);
 int WriteTGAFile(const char* filename, short int width, short int height, unsigned char* textureData);
+void BindTexture(GLuint texID);
+
+class Texture {
+public:
+  Texture();
+  ~Texture();
+
+  bool Load(const char* filename);
+
+  GLuint  GetTexID() const { return texID; }
+  int     GetWidth() const { return width; }
+  int     GetHeight() const { return height; }
+
+private:
+  GLuint texID;
+  int width;
+  int height;
+};
