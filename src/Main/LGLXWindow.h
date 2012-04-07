@@ -1,6 +1,6 @@
 #pragma once
 
-#define GLX_GLXEXT_LEGACY		// Use our local glxext.h rather than the system one.
+#define GLX_GLXEXT_LEGACY   // Use our local glxext.h rather than the system one.
 
 #include <GL/glx.h>
 #include "../glx/glxext.h"
@@ -21,11 +21,10 @@ public:
 	bool Create(int width, int hight, int bpp, bool fullscreen);
 	void Destroy(void);
 	void ProcessEvents(void);
-	void AttachGame(Game* game) { _game = game; }
+	void AttachGame(Game* game)   { _game = game; }
 	
-	bool IsRunning(void) { return _isRunning; }
-	
-	void SwapBuffers(void) { glXSwapBuffers(_display, _xWindow); }
+	bool IsRunning(void)          { return _isRunning; }
+	void SwapBuffers(void)        { glXSwapBuffers(_display, _xWindow); }
 	
 	float GetElapsedSeconds(void);
 	
@@ -39,17 +38,17 @@ private:
 	
 	unsigned int _lastTime;
 	
-	Display*							_display;
-	Window								_xWindow;
-	GLXContext						_glContext;
-	XF86VidModeModeInfo		_XF86DeskMode;
-	XSetWindowAttributes 	_XSetAttr;
-	int 									_screenID;
+	Display*              _display;
+	Window                _xWindow;
+	GLXContext            _glContext;
+	XF86VidModeModeInfo   _XF86DeskMode;
+	XSetWindowAttributes  _XSetAttr;
+	int                   _screenID;
 	
-	bool 						_isFullscreen;
-	unsigned int 		_width;
-	unsigned int 		_height;
-	unsigned int 		_bpp;
+	bool            _isFullscreen;
+	unsigned int    _width;
+	unsigned int    _height;
+	unsigned int    _bpp;
 	
 	bool _GL3Supported;
 	// I think that's about all I need for now.. FOR NOW!!!
