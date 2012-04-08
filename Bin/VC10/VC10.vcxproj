@@ -93,6 +93,7 @@
     <ClInclude Include="..\..\src\Math\Timer.h" />
     <ClInclude Include="..\..\src\Math\Vec2.h" />
     <ClInclude Include="..\..\src\Sprite\Sprite.h" />
+    <ClInclude Include="..\..\src\System\Debug.h" />
     <ClInclude Include="..\..\src\Texture\Texture.h" />
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +105,7 @@
     <ClCompile Include="..\..\src\Math\Timer.cpp" />
     <ClCompile Include="..\..\src\Math\Vec2.cpp" />
     <ClCompile Include="..\..\src\Sprite\Sprite.cpp" />
+    <ClCompile Include="..\..\src\System\Debug.cpp" />
     <ClCompile Include="..\..\src\Texture\Texture.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

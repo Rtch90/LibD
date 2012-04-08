@@ -19,6 +19,9 @@
     <Filter Include="Math">
       <UniqueIdentifier>{cea04fae-e026-4f1f-b2be-1accb582d0a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{1354dd04-f0db-4c12-bbfa-ef24daeb2293}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Main\GLWindow.h">
@@ -54,6 +57,9 @@
     <ClInclude Include="..\..\src\Math\MathBox.h">
       <Filter>Math</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\System\Debug.h">
+      <Filter>System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\main.cpp">
@@ -82,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Sprite\Sprite.cpp">
       <Filter>Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\System\Debug.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
