@@ -20,7 +20,7 @@ Debug *Debug::logger = NULL;
 Debug::Debug(bool logToFile) {
 	time_t timestamp;
 	if(logToFile) {
-		_logFile.open("../../Bin/Debug.log", ios::out);
+		_logFile.open("../Bin/Debug.log", ios::out);
 		if(!_logFile.is_open()) {
 			// We can not open our log.
 			cerr << "Warning: Can not open Debug.log to write, continueing without logging\n";
