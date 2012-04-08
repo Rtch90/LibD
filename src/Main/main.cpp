@@ -69,8 +69,7 @@ int main(int argc, char** argv) {
 		programWindow.SwapBuffers();
 	}
 	game.Shutdown();            // Free any resouces.
-	Debug::closeLog();
 	programWindow.Destroy();    // Destroy the program window.
-
+	Debug::closeLog();
 	return 0;
 }
