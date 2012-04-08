@@ -22,6 +22,9 @@
     <Filter Include="System">
       <UniqueIdentifier>{1354dd04-f0db-4c12-bbfa-ef24daeb2293}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{5b78104c-8316-4d75-8ad0-3f9a6bfbfde8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Main\GLWindow.h">
@@ -60,6 +63,9 @@
     <ClInclude Include="..\..\src\System\Debug.h">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\IO\Input.h">
+      <Filter>IO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\main.cpp">
@@ -91,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\System\Debug.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\IO\Input.cpp">
+      <Filter>IO</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

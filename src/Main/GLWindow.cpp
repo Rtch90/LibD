@@ -1,4 +1,4 @@
-#ifdef _WIN32_
+#ifdef _WIN32
 #include <ctime>
 #include <iostream>
 #include <Windows.h>
@@ -7,12 +7,13 @@
 #include "../glx/wglext.h"
 #include "GLWindow.h"
 #include "Game.h"
+#include "../IO/Input.h"
 
 typedef HGLRC(APIENTRYP PFNWGLCREATECONTEXTATTRIBSARBPROC)(HDC, HGLRC, const int*);
 PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
 
 GLWindow::GLWindow(HINSTANCE hInstance) :
-  _isRunning(true),
+  _isRunning(false),
   _game(NULL),
   _hinstance(hInstance),
   _lastTime(0)
@@ -181,6 +182,8 @@ LRESULT GLWindow::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 			// Make the GL3 context current.
 			wglMakeCurrent(_hdc, _hglrc);
 			_isRunning = true;    // Mark our window as running now.
+
+      CreateInput();
 		}
 	break;
 	case WM_DESTROY:    // Destroy window.

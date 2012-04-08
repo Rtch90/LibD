@@ -67,8 +67,7 @@ void Game::OnResize(int width, int height) {
 
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-
-  gluPerspective(45.0f, float(width) / float(height), 1.0f, 100.0f);
+  glOrtho(0.0, 800.0, 0.0, 600.0, 0.0, 1.0);
 
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();

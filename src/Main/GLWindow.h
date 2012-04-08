@@ -1,5 +1,5 @@
 #pragma once
-#ifdef _WIN32_ // Stop makefiles from complaining.
+#ifdef _WIN32 // Stop makefiles from complaining.
 #include <windows.h>
 #include <ctime>
 
