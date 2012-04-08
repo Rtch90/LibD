@@ -35,7 +35,8 @@ LGLXWindow::LGLXWindow(void) :
     _width(0),
     _height(0),
     _bpp(0),
-    _GL3Supported(false)  {}
+    _GL3Supported(false) 
+    {}
 		
 LGLXWindow::~LGLXWindow(void) {
 

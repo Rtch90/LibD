@@ -1,3 +1,4 @@
+#ifdef _WIN32_
 #include <ctime>
 #include <iostream>
 #include <Windows.h>
@@ -232,3 +233,5 @@ float GLWindow::GetElapsedSeconds(void) {
 	_lastTime = currentTime;
 	return seconds;
 }
+
+#endif

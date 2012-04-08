@@ -1,4 +1,5 @@
 #pragma once
+#ifdef _WIN32_ // Stop makefiles from complaining.
 #include <windows.h>
 #include <ctime>
 
@@ -39,3 +40,5 @@ private:
 	HINSTANCE   _hinstance;     // Application instance.
 	WNDCLASSEX	_windowClass;
 };
+
+#endif

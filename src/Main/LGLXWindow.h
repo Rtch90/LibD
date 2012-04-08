@@ -4,6 +4,7 @@
 
 #include <GL/glx.h>
 #include "../glx/glxext.h"
+#include "../IO/Input.h"
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>

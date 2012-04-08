@@ -2,7 +2,7 @@ CC	= g++
 CFLAGS	= -ansi -Wall -g
 LDADD	= -lGL -lGLU -lSDL -lSDL_image
 
-objects = Timer.o FPS.o Vec2.o \
+objects = FPS.o Timer.o Vec2.o \
 
 
 .PHONY: default all clean

@@ -28,7 +28,7 @@ bool Game::Init(void) {
   _testSprite = new Sprite();
   _testSprite->SetTexture(testTexture);
   _testSprite->SetHandle(Vec2(800/2, 600/2));
-  _testSprite->SetScale(Vec2(1.0f, 1.0f));
+  _testSprite->SetScale(Vec2(5.0f, 5.0f));
 
 	// Return success.
 	return true;

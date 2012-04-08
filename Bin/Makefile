@@ -14,19 +14,25 @@ all:
 	$(MAKE) -C ../src/Math
 	$(MAKE) -C ../src/System
 	$(MAKE) -C ../src/Sprite
+	$(MAKE) -C ../src/IO
+	$(MAKE) -C ../src/Global
 	
 	$(CC) $(CFLAGS) -o LibD ../src/Main/main.cpp ../src/Main/*.o ../src/Texture/*.o \
-	                ../src/Actor/*.o  ../src/Math/*.o ../src/System/*.o ../src/Sprite/*.o  $(LDADD)
+	                ../src/Actor/*.o  ../src/Math/*.o ../src/System/*.o ../src/Sprite/*.o \
+	                ../src/IO/*.o ../src/Global/*.o $(LDADD)
 
 static:
 	@echo -e "\033[1;31mThis is an experimental build, if it does not work, don't complain...\033[0m"
 	@sleep 1
 	$(MAKE) -C ../src/Main/ ../src/Main/*.o ../src/Texture/*.o \
-                  ../src/Actor/*.o ../src/Math/*.o ../src/System/*.o ../src/Sprite/*.o
+                  ../src/Actor/*.o ../src/Math/*.o ../src/System/*.o ../src/Sprite/*.o \
+                  ../src/IO/*.o ../src/Global/*.o
 
 	$(CC) $(CFLAGS) -o build/LibD-static ../src/Main/main.cpp ../src/Main/*.o  \
 	                  ../src/Texture/*.o ../src/Actor/*.o ../src/Math/*.o  \
-	                  ../src/System/*.o ../src/Sprite/*.o $(LDADDSTATIC)
+	                  ../src/System/*.o ../src/Sprite/*.o ../src/IO/*.o 
+	                  ../src/Global/*.o \
+	                   $(LDADDSTATIC)
 
 clean:
 	$(MAKE) -C ../src/Main/	        clean
@@ -35,4 +41,6 @@ clean:
 	$(MAKE) -C ../src/Math/         clean
 	$(MAKE) -C ../src/System/       clean
 	$(MAKE) -C ../src/Sprite/       clean
+	$(MAKE) -C ../src/IO/           clean
+	$(MAKE) -C ../src/Global/       clean
 	rm -f LibD

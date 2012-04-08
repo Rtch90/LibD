@@ -2,7 +2,7 @@ CC	= g++
 CFLAGS	= -ansi -Wall -g
 LDADD	= -lGL -lGLU -lSDL -lSDL_image
 
-objects = Debug.o \
+objects = *.o \
 
 
 .PHONY: default all clean
