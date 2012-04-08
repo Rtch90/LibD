@@ -43,4 +43,5 @@ clean:
 	$(MAKE) -C ../src/Sprite/       clean
 	$(MAKE) -C ../src/IO/           clean
 	$(MAKE) -C ../src/Global/       clean
+	rm -f *.log
 	rm -f LibD

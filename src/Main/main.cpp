@@ -18,15 +18,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR cmdLine, 
 #else
 int main(int argc, char** argv) {
 #endif
-  // Start by opening a debug log.
-  Debug::openLog(true);
-  Debug::logger->message("\n ----- Engine Loading ------");
+	// Start by opening a debug log.
+	Debug::openLog(true);
+	Debug::logger->message("\n ----- Engine Loading ------");
 	// Get our window settings.
 	const int windowWidth         = 800;
 	const int windowHeight        = 600;
 	const int windowBPP           = 16;
 	const int windowFullscreen    = false;
-	
+
 #ifdef _WIN32
 	// This is our window.
 	GLWindow programWindow(hInstance);
@@ -35,14 +35,15 @@ int main(int argc, char** argv) {
 #endif
 	// Our game code.
 	Game game;
-	
+
 	// Attach our game to the window.
 	programWindow.AttachGame(&game);
-	
+
 	// Attempt to create the window.
 	if(!programWindow.Create(windowWidth, windowHeight, windowBPP, windowFullscreen)) {
 		// If it fails.
 #ifdef _WIN32
+		Debug::logger->message("Unable to create the OpenGL Window");
 		MessageBox(NULL, TEXT("Unable to create the OpenGL Window"), TEXT("An error occured"), MB_ICONERROR | MB_OK);
 #endif
 		programWindow.Destroy();    // Reset the display and exit.
@@ -50,6 +51,7 @@ int main(int argc, char** argv) {
 	}
 	if(!game.Init()) {            // Initialize our game.
 #ifdef _WIN32
+		Debug::logger->message("Could not initialize the application");
 		MessageBox(NULL, TEXT("Could not initialize the application"), TEXT("An error occured"), MB_ICONERROR | MB_OK);
 #endif
 		programWindow.Destroy();    // Reset the display and exit.
@@ -60,15 +62,15 @@ int main(int argc, char** argv) {
 		programWindow.ProcessEvents();    // Process any window events.
 		// We get the time that passed since the last frame.
 		float elapsedTime = programWindow.GetElapsedSeconds();
-		
+
 		game.Prepare(elapsedTime);    // Do any pre-rendering logic.
 		game.Render();                // Render the scene.
-		
+
 		programWindow.SwapBuffers();
 	}
 	game.Shutdown();            // Free any resouces.
 	Debug::closeLog();
 	programWindow.Destroy();    // Destroy the program window.
-	
+
 	return 0;
 }

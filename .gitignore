@@ -1,3 +1,5 @@
+LibDQt/LibDQt
+LibDQt/Makefile
 LibD
 *.pro.user
 moc_*
