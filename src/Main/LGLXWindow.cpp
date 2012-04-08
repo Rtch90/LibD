@@ -214,20 +214,18 @@ void LGLXWindow::ProcessEvents(void) {
       if(XLookupKeysym(&event.xkey, 0) == XK_Escape) {
         _isRunning = false;
       }
+      UpdateInput();
       // Register the key press with keyboard interface.
     }
     break;
     case KeyRelease:
     {
-      if(KeyStillUp(SDLK_SPACE)) {
-        Debug::logger->message("Testing Input!");
-      }
       // Code here NAW!
     }
     break;
     case ClientMessage:
       if(string(XGetAtomName(_display, event.xclient.message_type)) == string("WM_PROTOCOLS")) {
-        _isRunning = true;
+        _isRunning = false;
       }
       break;
     default:
