@@ -5,6 +5,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
+#include "../System/Debug.h"
 #include "Game.h"
 #include "../Sprite/Sprite.h"
 #include "../Texture/Texture.h"

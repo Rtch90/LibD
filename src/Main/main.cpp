@@ -11,12 +11,16 @@
 #endif
 
 #include "Game.h"
+#include "../System/Debug.h"
 
 #ifdef _WIN32
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR cmdLine, int cmdShow) {
 #else
 int main(int argc, char** argv) {
 #endif
+  // Start by opening a debug log.
+  Debug::openLog(true);
+  Debug::logger->message("\n ----- Engine Loading ------");
 	// Get our window settings.
 	const int windowWidth         = 800;
 	const int windowHeight        = 600;
@@ -63,6 +67,7 @@ int main(int argc, char** argv) {
 		programWindow.SwapBuffers();
 	}
 	game.Shutdown();            // Free any resouces.
+	Debug::closeLog();
 	programWindow.Destroy();    // Destroy the program window.
 	
 	return 0;

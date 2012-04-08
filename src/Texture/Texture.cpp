@@ -1,3 +1,4 @@
+#include "../System/Debug.h"
 #include "Texture.h"
 #include <iostream>
 using namespace std;
@@ -25,7 +26,7 @@ int BuildTexture(const char* filename, GLuint* texID, GLint param, bool genMips)
   textureImage = IMG_Load(filename);
   
   if(!textureImage) {
-    std::cerr << "Warning: could not load " << filename << std::endl;
+     Debug::logger->message("Warning: could not load %s", filename);
     return false;
   }
 
@@ -55,7 +56,7 @@ int BuildTexture(const char* filename, GLuint* texID, GLint param, bool genMips)
   }
 
   if(internalFormat == GL_NONE || format == GL_NONE) {
-    std::cerr << "Warning: invalid texture format for " << filename << std::endl;
+    Debug::logger->message("Warning: invalid texture format for %s", filename);
     SDL_FreeSurface(textureImage);
     return false;
   }

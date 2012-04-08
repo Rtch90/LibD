@@ -5,6 +5,7 @@
 #include <sys/time.h>
 #endif
 
+#include "../System/Debug.h"
 #include "LGLXWindow.h"
 #include "Game.h"
 
@@ -44,7 +45,7 @@ bool LGLXWindow::Create(int width, int height, int bpp, bool fullscreen) {
 	// Open the default display.
 	_display = XOpenDisplay(0);
 	if(!_display) {
-		std::cerr << "Could not open the display." << std::endl;
+		Debug::logger->message("Could not open the display.");
 		return false;
 	}
 	
@@ -57,7 +58,7 @@ bool LGLXWindow::Create(int width, int height, int bpp, bool fullscreen) {
 	
 	XF86VidModeModeInfo **modes;
 	if(!XF86VidModeGetAllModeLines(_display, _screenID, &modeNum, &modes)) {
-    std::cerr << "Could not query the video modes." << std::endl;
+    Debug::logger->message("Could not query the video modes.");
     return false;
 	}
 	
@@ -71,7 +72,7 @@ bool LGLXWindow::Create(int width, int height, int bpp, bool fullscreen) {
 	}
 	
 	if(bestMode == -1) {
-    std::cerr << "Could not find a suitable graphics mode." << std::endl;
+    Debug::logger->message("Could not find a suitable graphics mode.");
     return false;
 	}
 	
@@ -88,13 +89,13 @@ bool LGLXWindow::Create(int width, int height, int bpp, bool fullscreen) {
 	// Attempt to create a double buffered window.
 	vi = glXChooseVisual(_display, _screenID, doubleBufferedAttribList);
 	if(!vi) {
-    std::cerr << "Could not create a double buffere window.. Sux.." <<std::endl;
+    Debug::logger->message("Could not create a double buffere window.. Sux..");
 	}
 	
 	// Time to create a GL 2.1 context.
 	GLXContext gl2Context = glXCreateContext(_display, vi, 0, GL_TRUE);
 	if(!gl2Context) {
-    std::cerr << "Could Not create a GL 2.1 context, check your darn graphics drivers" << std::endl;
+    Debug::logger->message("Could Not create a GL 2.1 context, check your darn graphics drivers");
     return false;
 	}
 	
@@ -102,7 +103,7 @@ bool LGLXWindow::Create(int width, int height, int bpp, bool fullscreen) {
 	PFNGLXCREATECONTEXTATTRIBSARBPROC glXCreateContextAttribs 
         = (PFNGLXCREATECONTEXTATTRIBSARBPROC) glXGetProcAddress((GLubyte*)"glXCreateContextAttribsARB");
 	if(glXCreateContextAttribs == NULL) {
-    std::cerr << "OpenGL 3.0 is not supported, falling back to 2.1" << std::endl;
+    Debug::logger->message("OpenGL 3.0 is not supported, falling back to 2.1");
     _glContext = gl2Context;
     _GL3Supported = false;
 	} else {
