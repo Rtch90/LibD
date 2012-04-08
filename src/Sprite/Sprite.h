@@ -24,7 +24,7 @@ public:
   void SetRotation(float rotation) { this->rotation = rotation; }
   void SetTexture(Texture* texture);
 
-private:
+protected:
   Vec2 handle;
   Vec2 size;
   Vec2 scale;

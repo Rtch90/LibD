@@ -22,10 +22,12 @@ bool Game::Init(void) {
 	glDepthFunc(GL_LEQUAL);
 	
   Texture* testTexture = new Texture();
-  testTexture->Load("../../Data/Img/test.png");
+  testTexture->Load("../Data/Img/test.png");
   
   _testSprite = new Sprite();
   _testSprite->SetTexture(testTexture);
+  _testSprite->SetHandle(Vec2(800/2, 600/2));
+  _testSprite->SetScale(Vec2(1.0f, 1.0f));
 
 	// Return success.
 	return true;
@@ -49,6 +51,7 @@ void Game::Render(void) {
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 	
+  _testSprite->SetRotation(_rotationAngle);
 	_testSprite->Draw();
 }
 

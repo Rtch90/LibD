@@ -22,11 +22,13 @@ void Sprite::Draw() const {
   // .         .
   // 3---------2
 
+  Vec2 scaledSize(size.x*scale.x, size.y*scale.y);
+
   Vec2 vertices[4] = {
-    Vec2(handle.x, handle.y),
-    Vec2(handle.x + size.x, handle.y),
-    Vec2(handle.x + size.x, handle.y + size.y),
-    Vec2(handle.x, handle.y + size.y),
+    Vec2(0.0f, 0.0f),
+    Vec2(scaledSize.x, 0.0f),
+    Vec2(scaledSize.x, scaledSize.y),
+    Vec2(0.0f, scaledSize.y),
   };
 
   Vec2 texCoords[4] = {
@@ -36,13 +38,17 @@ void Sprite::Draw() const {
     Vec2(0.0f, 1.0f),
   };
 
-  for(int i = 0; i < 4; i++){
-    vertices[i].x *= scale.x;
-    vertices[i].y *= scale.y;
-  }
-
   glEnable(GL_TEXTURE_2D);
   BindTexture(texture->GetTexID());
+
+  glMatrixMode(GL_MODELVIEW);
+  glPushMatrix();
+
+  // Temporary solution.
+  Vec2 halfScaledSize = scaledSize / 2.0f;
+  glTranslatef(handle.x + halfScaledSize.x, handle.y + halfScaledSize.y, 0.0f);
+  glRotatef(rotation, 0.0f, 0.0f, 1.0f);
+  glTranslatef(-halfScaledSize.x, -halfScaledSize.y, 0.0f);
 
   glBegin(GL_QUADS);
   glTexCoord2fv((const GLfloat*)&texCoords[0]);
@@ -54,9 +60,11 @@ void Sprite::Draw() const {
   glTexCoord2fv((const GLfloat*)&texCoords[3]);
   glVertex2fv((const GLfloat*)&vertices[3]);
   glEnd();
+
+  glPopMatrix();
 }
 
 void Sprite::SetTexture(Texture* texture) {
   this->texture = texture;
-  this->size = Vec2(texture->GetWidth(), texture->GetHeight());
+  this->size = Vec2((float)texture->GetWidth(), (float)texture->GetHeight());
 }
