@@ -5,7 +5,7 @@ Sprite::Sprite() {
   texture = NULL;
   size = Vec2(0.0f, 0.0f);
   scale = Vec2(1.0f, 1.0f);
-  handle = Vec2(0.0f, 0.0f);
+  position = Vec2(0.0f, 0.0f);
 }
 
 Sprite::~Sprite() {
@@ -46,7 +46,7 @@ void Sprite::Draw() const {
 
   // Temporary solution.
   Vec2 halfScaledSize = scaledSize / 2.0f;
-  glTranslatef(handle.x + halfScaledSize.x, handle.y + halfScaledSize.y, 0.0f);
+  glTranslatef(position.x + halfScaledSize.x, position.y + halfScaledSize.y, 0.0f);
   glRotatef(rotation, 0.0f, 0.0f, 1.0f);
   glTranslatef(-halfScaledSize.x, -halfScaledSize.y, 0.0f);
 

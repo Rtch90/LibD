@@ -1,5 +1,6 @@
 #pragma once
 #include "../IO/Input.h"
+#include "../Actor/Player.h"
 
 class Sprite;
 
@@ -16,6 +17,5 @@ public:
 	void OnResize(int width, int height);
 
 private:
-	float _rotationAngle;
-	Sprite* _testSprite;
+	Player* _player;
 };

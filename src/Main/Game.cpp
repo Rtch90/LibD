@@ -11,7 +11,8 @@
 #include "Game.h"
 
 Game::Game(void) {
-  _rotationAngle = 0.0f;
+  _player = new Player();
+  //_rotationAngle = 0.0f;
 }
 
 Game::~Game(void) {
@@ -22,24 +23,13 @@ bool Game::Init(void) {
   glEnable(GL_DEPTH_TEST);
   glDepthFunc(GL_LEQUAL);
 
-  Texture* testTexture = new Texture();
-  testTexture->Load("../Data/Img/test.png");
-
-  _testSprite = new Sprite();
-  _testSprite->SetTexture(testTexture);
-  _testSprite->SetHandle(Vec2(800/2, 600/2));
-  _testSprite->SetScale(Vec2(5.0f, 5.0f));
-
+  _player->Prepare();
   // Return success.
   return true;
 }
 
 void Game::Prepare(float dt) {
-  const float SPEED = 15.0f;
-  _rotationAngle += SPEED*dt;
-  if(_rotationAngle > 360.0f) {
-    _rotationAngle -= 360.0f;
-  }
+
 }
 
 void Game::Render(void) {
@@ -52,14 +42,13 @@ void Game::Render(void) {
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
-  _testSprite->SetRotation(_rotationAngle);
-  _testSprite->Draw();
+  // Render our shit..
+  _player->Render();
 }
 
 void Game::Shutdown(void) {
   Debug::logger->message("\n ----- Cleaning Engine -----");
-  delete _testSprite->GetTexture();
-  delete _testSprite;
+  delete _player;
 }
 
 void Game::OnResize(int width, int height) {
