@@ -22,6 +22,14 @@ void Destroy(void) {
   SDL_Quit();
 }
 
+static void ResizeWindow(int w, int h) {
+  SDL_SetVideoMode(w, h, 32, SDL_OPENGL | SDL_RESIZABLE);
+  glViewport(0,0,w,h);
+  glLoadIdentity();
+  glOrtho(0.0, 800.0, 600.0, 0.0, 0.0, 1.0);
+  SDL_GL_SwapBuffers();
+}
+
 #ifdef _WIN32
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR cmdLine, int cmdShow) {
 #else
@@ -72,20 +80,22 @@ int main(int argc, char** argv) {
 
   bool isRunning = true;
   while(isRunning) {
-    SDL_Event ev;
-    while(SDL_PollEvent(&ev)){
-      if(ev.type == SDL_QUIT) {
+
+    while(SDL_PollEvent(&event)){
+      if(event.type == SDL_QUIT) {
         isRunning = false;
         break;
       }
       if(event.type == SDL_VIDEORESIZE) {
-        // Resize the window.
-        screen = SDL_SetVideoMode(event.resize.w, event.resize.h, 32, flags);
-        // Error?
-        if(!screen) {
-          Debug::logger->message("Window resize is screwed");
-          Destroy();
-        }
+//        // Resize the window.
+//        screen = SDL_SetVideoMode(event.resize.w, event.resize.h, 32, flags);
+//        // Error?
+//        if(!screen) {
+//          Debug::logger->message("Window resize is screwed");
+//          Destroy();
+//        }
+        ResizeWindow(event.resize.w, event.resize.h);
+        break;
       }
     }
 
