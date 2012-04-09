@@ -87,13 +87,7 @@ int main(int argc, char** argv) {
         break;
       }
       if(event.type == SDL_VIDEORESIZE) {
-//        // Resize the window.
-//        screen = SDL_SetVideoMode(event.resize.w, event.resize.h, 32, flags);
-//        // Error?
-//        if(!screen) {
-//          Debug::logger->message("Window resize is screwed");
-//          Destroy();
-//        }
+        // Resize the window.
         ResizeWindow(event.resize.w, event.resize.h);
         break;
       }
