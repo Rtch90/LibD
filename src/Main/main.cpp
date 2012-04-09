@@ -9,6 +9,8 @@
 #include <windows.h>
 #endif
 
+#include <SDL/SDL.h>
+#include <GL/gl.h>
 #include "Game.h"
 #include "../Global/Globals.h"
 #include "../Global/Constants.h"
@@ -30,13 +32,30 @@ int main(int argc, char** argv) {
   // Our game code.
   Game game;
 
-  if(SDL_Init(SDL_INIT_VIDEO == -1)) {
+  // Setup OpenGL.
+  SDL_GL_SetAttribute(SDL_GL_RED_SIZE,            5);
+  SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE,          5);
+  SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,           5);
+  SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,          16);
+  SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER,        1);
+
+  if(SDL_Init(SDL_INIT_VIDEO) < 0) {
     Debug::logger->message("Error: Could not load SDL");
   } else {
+    Destroy();
     Debug::logger->message("SDL loaded..");
   }
 
-  screen = SDL_SetVideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32, SDL_HWSURFACE);
+  info = SDL_GetVideoInfo();
+  if(!info) {
+    // This should never accur.
+    Debug::logger->message("Video query failed!");
+    Destroy();
+  }
+
+  flags = SDL_OPENGL | SDL_HWSURFACE;
+
+  screen = SDL_SetVideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32, flags);
   Debug::logger->message("Video mode set..");
 
   SDL_WM_SetCaption("LibD", NULL);
