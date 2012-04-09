@@ -25,6 +25,9 @@
     <Filter Include="IO">
       <UniqueIdentifier>{5b78104c-8316-4d75-8ad0-3f9a6bfbfde8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Global">
+      <UniqueIdentifier>{cd864d04-89ef-4529-bce8-f693b304b504}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Main\GLWindow.h">
@@ -66,6 +69,12 @@
     <ClInclude Include="..\..\src\IO\Input.h">
       <Filter>IO</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Global\Globals.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Global\Constants.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\main.cpp">
@@ -100,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\IO\Input.cpp">
       <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Global\Globals.cpp">
+      <Filter>Global</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

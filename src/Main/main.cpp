@@ -11,6 +11,7 @@
 
 #include <SDL/SDL.h>
 #include <GL/gl.h>
+#include <time.h>
 #include "Game.h"
 #include "../Global/Globals.h"
 #include "../Global/Constants.h"
@@ -32,6 +33,14 @@ int main(int argc, char** argv) {
   // Our game code.
   Game game;
 
+  if(SDL_Init(SDL_INIT_VIDEO) < 0) {
+    Debug::logger->message("Error: Could not load SDL");
+    Destroy();
+    return 1;
+  } else {
+    Debug::logger->message("SDL loaded..");
+  }
+
   // Setup OpenGL.
   SDL_GL_SetAttribute(SDL_GL_RED_SIZE,            5);
   SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE,          5);
@@ -39,24 +48,18 @@ int main(int argc, char** argv) {
   SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,          16);
   SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER,        1);
 
-  if(SDL_Init(SDL_INIT_VIDEO) < 0) {
-    Debug::logger->message("Error: Could not load SDL");
-  } else {
-    Destroy();
-    Debug::logger->message("SDL loaded..");
-  }
+  flags = SDL_OPENGL | SDL_HWSURFACE;
+
+  screen = SDL_SetVideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32, flags);
+  Debug::logger->message("Video mode set..");
 
   info = SDL_GetVideoInfo();
   if(!info) {
     // This should never accur.
     Debug::logger->message("Video query failed!");
     Destroy();
+    return 1;
   }
-
-  flags = SDL_OPENGL | SDL_HWSURFACE;
-
-  screen = SDL_SetVideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32, flags);
-  Debug::logger->message("Video mode set..");
 
   SDL_WM_SetCaption("LibD", NULL);
 
@@ -65,10 +68,23 @@ int main(int argc, char** argv) {
   Debug::logger->message("\n ----- Engine Initialization Complete -----");
   Debug::logger->message("\n ----- Logic -----");
 
+  game.Init();
+
   bool isRunning = true;
   while(isRunning) {
-    break;
+    SDL_Event ev;
+    while(SDL_PollEvent(&ev)){
+      if(ev.type == SDL_QUIT) {
+        isRunning = false;
+        break;
+      }
+    }
+
+    game.Render();
+    SDL_GL_SwapBuffers();
   }
+  
+  game.Shutdown();
 
   Destroy();
 
