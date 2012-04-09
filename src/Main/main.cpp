@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
   SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,          16);
   SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER,        1);
 
-  flags = SDL_OPENGL | SDL_HWSURFACE;
+  flags = SDL_OPENGL | SDL_HWSURFACE | SDL_RESIZABLE;
 
   screen = SDL_SetVideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32, flags);
   Debug::logger->message("Video mode set..");
@@ -78,12 +78,21 @@ int main(int argc, char** argv) {
         isRunning = false;
         break;
       }
+      if(event.type == SDL_VIDEORESIZE) {
+        // Resize the window.
+        screen = SDL_SetVideoMode(event.resize.w, event.resize.h, 32, flags);
+        // Error?
+        if(!screen) {
+          Debug::logger->message("Window resize is screwed");
+          Destroy();
+        }
+      }
     }
 
     game.Render();
     SDL_GL_SwapBuffers();
   }
-  
+
   game.Shutdown();
 
   Destroy();
