@@ -13,8 +13,8 @@ public:
   virtual void Draw() const;
 
   const Vec2&     GetPosition() const     { return position; }
-  float GetX(void)                        { return position.x; }
-  float GetY(void)                        { return position.y; }
+  float           GetX(void)              { return position.x; }
+  float           GetY(void)              { return position.y; }
   const Vec2&     GetSize() const         { return size; }
   const Vec2&     GetScale() const        { return scale; }
   float           GetRotation() const     { return rotation; }
@@ -24,8 +24,8 @@ public:
   void SetPosition(const Vec2& position)  { this->position = position; }
   void SetX(float xArg)                   { this->position.x = xArg; }
   void SetY(float yArg)                   { this->position.y = yArg; }
-  void SetScale(const Vec2& scale) { this->scale = scale; }
-  void SetRotation(float rotation) { this->rotation = rotation; }
+  void SetScale(const Vec2& scale)        { this->scale = scale; }
+  void SetRotation(float rotation)        { this->rotation = rotation; }
   void SetTexture(Texture* texture);
 
 protected:
