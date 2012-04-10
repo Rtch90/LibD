@@ -6,16 +6,18 @@ class Sprite;
 
 class Game {
 public:
-	Game(void);
-	~Game(void);
+  Game(void);
+  ~Game(void);
 
-	bool Init(void);
-	void Prepare(float dt);
-	void Render(void);
-	void Shutdown(void);
+  bool Init(void);
+  void Prepare(float dt);
+  void Render(void);
+  void Shutdown(void);
 
-	void OnResize(int width, int height);
+  void ProcessEvents(void);
+
+  void OnResize(int width, int height);
 
 private:
-	Player* _player;
+  Player* _player;
 };

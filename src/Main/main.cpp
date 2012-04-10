@@ -13,11 +13,13 @@
 #include <GL/gl.h>
 #include <time.h>
 #include "Game.h"
+#include "../IO/Input.h"
 #include "../Global/Globals.h"
 #include "../Global/Constants.h"
 #include "../System/Debug.h"
 
 void Destroy(void) {
+  DestroyInput();
   SDL_FreeSurface(screen);
   SDL_Quit();
 }
@@ -77,12 +79,13 @@ int main(int argc, char** argv) {
   Debug::logger->message("\n ----- Logic -----");
 
   game.Init();
+  CreateInput();
 
   bool isRunning = true;
   while(isRunning) {
 
-    while(SDL_PollEvent(&event)){
-      if(event.type == SDL_QUIT) {
+    while(SDL_PollEvent(&event)) {
+      if((event.type == SDL_QUIT) || KeyStillDown(SDLK_ESCAPE)) {
         isRunning = false;
         break;
       }
@@ -93,6 +96,8 @@ int main(int argc, char** argv) {
       }
     }
 
+    UpdateInput();
+    game.ProcessEvents();
     game.Render();
     SDL_GL_SwapBuffers();
   }

@@ -52,6 +52,10 @@ void Game::Shutdown(void) {
   delete _player;
 }
 
+void Game::ProcessEvents(void) {
+  _player->ProcessEvents();
+}
+
 void Game::OnResize(int width, int height) {
   glViewport(0, 0, width, height);
 

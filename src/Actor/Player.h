@@ -17,6 +17,7 @@ public:
   void ProcessEvents(void);
 
 private:
+  float PLAYER_SPEED;
   Sprite*   _player;
   Texture*  _playerTexture;
   float     _rotationAngle;
