@@ -28,6 +28,9 @@
     <Filter Include="Global">
       <UniqueIdentifier>{cd864d04-89ef-4529-bce8-f693b304b504}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TMXParser">
+      <UniqueIdentifier>{5bd696ec-579f-4271-9d4b-0f1fdd8b651c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Main\GLWindow.h">
@@ -75,6 +78,57 @@
     <ClInclude Include="..\..\src\Global\Constants.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Math\Rect.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TMXParser\TmxObjectGroup.h">
+      <Filter>TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TMXParser\TmxPoint.h">
+      <Filter>TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TMXParser\TmxPolygon.h">
+      <Filter>TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TMXParser\TmxPolyline.h">
+      <Filter>TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TMXParser\TmxPropertySet.h">
+      <Filter>TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TMXParser\TmxTile.h">
+      <Filter>TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TMXParser\TmxTileset.h">
+      <Filter>TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TMXParser\TmxUtil.h">
+      <Filter>TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TMXParser\base64.h">
+      <Filter>TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TMXParser\Tmx.h">
+      <Filter>TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TMXParser\TmxImage.h">
+      <Filter>TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TMXParser\TmxLayer.h">
+      <Filter>TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TMXParser\TmxMap.h">
+      <Filter>TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TMXParser\TmxMapTile.h">
+      <Filter>TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TMXParser\TmxObject.h">
+      <Filter>TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\System\ResourceManager.h">
+      <Filter>System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\main.cpp">
@@ -112,6 +166,42 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Global\Globals.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TMXParser\TmxObjectGroup.cpp">
+      <Filter>TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TMXParser\TmxPolygon.cpp">
+      <Filter>TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TMXParser\TmxPolyline.cpp">
+      <Filter>TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TMXParser\TmxPropertySet.cpp">
+      <Filter>TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TMXParser\TmxTile.cpp">
+      <Filter>TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TMXParser\TmxTileset.cpp">
+      <Filter>TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TMXParser\TmxUtil.cpp">
+      <Filter>TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TMXParser\base64.cpp">
+      <Filter>TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TMXParser\TmxImage.cpp">
+      <Filter>TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TMXParser\TmxLayer.cpp">
+      <Filter>TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TMXParser\TmxMap.cpp">
+      <Filter>TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TMXParser\TmxObject.cpp">
+      <Filter>TMXParser</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

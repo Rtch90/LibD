@@ -1,4 +1,4 @@
-#include "../Texture/Texture.h"
+#pragma once
 #include "../Sprite/Sprite.h"
 #include "../Global/Globals.h"
 #include "../System/Debug.h"
@@ -21,6 +21,5 @@ private:
   float y;
   float PLAYER_SPEED;
   Sprite*   _player;
-  Texture*  _playerTexture;
   float     _rotationAngle;
 };
