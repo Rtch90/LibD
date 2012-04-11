@@ -8,7 +8,7 @@ AABB::AABB(void) {
   // _max represents the top left.
   _max = Vec2(0,0);
   // _min is the bottom left.
-  _min = Vec2D(0,0);
+  _min = Vec2(0,0);
 }
 
 AABB::AABB(Vec2 &min, Vec2 &max) {
@@ -51,11 +51,10 @@ bool AABB::InCollision(AABB* otherAABB) {
 }
 
 void AABB::CreateAABBFromSprite(const char* filename) {
-  string tempName;
-  tempName = filename;
-  tempName.conatenate(".png");
+  std::string tempName(filename);
+  tempName += ".png";
   _sprite = new Sprite();
-  _sprite->LoadSprite(" ", tempName);
+  _sprite->LoadSprite(tempName);
 
   // I have no methods here, hopefully KonoM will have it
   // implemented real soon...
@@ -66,7 +65,7 @@ void AABB::CreateAABBFromSprite(const char* filename) {
   bool found = false;
   int color = 0;
   for(int width = 0; width < _sprite->GetWidth(); width++) {
-    for(int height = 0; height < _sprite->GetHeight; height++) {
+    for(int height = 0; height < _sprite->GetHeight(); height++) {
       DWORD offset;
     }
   }

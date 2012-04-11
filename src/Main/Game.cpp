@@ -9,6 +9,7 @@
 #include "../System/Debug.h"
 #include "../Sprite/Sprite.h"
 #include "../Texture/Texture.h"
+#include "../Level/Level.h"
 #include "Game.h"
 
 Game::Game(void) {

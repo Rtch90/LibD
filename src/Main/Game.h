@@ -3,6 +3,7 @@
 #include "../Actor/Player.h"
 
 class Sprite;
+class Level;
 
 class Game {
 public:
@@ -20,4 +21,5 @@ public:
 
 private:
   Player* _player;
+  Level* _level;
 };

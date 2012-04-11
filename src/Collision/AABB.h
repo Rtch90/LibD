@@ -26,7 +26,7 @@ public:
   void SetMin(Vec2 &min)                { SetMin(min.x, min.y); }
   void SetMin(float minX, float minY)   { _min.x = minX; _min.y = minY; _staticMin = _min; }
 
-  void SetRelitivePosition(float x, float y);
+  void SetRelativePosition(float x, float y);
   void SetPositionOffset(float x, float y);
   bool InCollision(AABB* otherAABB);
   void CreateAABBFromSprite(const char* filename);

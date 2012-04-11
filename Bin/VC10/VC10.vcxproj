@@ -84,11 +84,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Actor\Player.h" />
+    <ClInclude Include="..\..\src\Collision\AABB.h" />
     <ClInclude Include="..\..\src\Global\Constants.h" />
     <ClInclude Include="..\..\src\Global\Globals.h" />
     <ClInclude Include="..\..\src\glx\glext.h" />
     <ClInclude Include="..\..\src\glx\wglext.h" />
     <ClInclude Include="..\..\src\IO\Input.h" />
+    <ClInclude Include="..\..\src\Level\Level.h" />
     <ClInclude Include="..\..\src\Main\Game.h" />
     <ClInclude Include="..\..\src\Main\GLWindow.h" />
     <ClInclude Include="..\..\src\Math\FPS.h" />
@@ -118,8 +120,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Actor\Player.cpp" />
+    <ClCompile Include="..\..\src\Collision\AABB.cpp" />
     <ClCompile Include="..\..\src\Global\Globals.cpp" />
     <ClCompile Include="..\..\src\IO\Input.cpp" />
+    <ClCompile Include="..\..\src\Level\Level.cpp" />
     <ClCompile Include="..\..\src\Main\Game.cpp" />
     <ClCompile Include="..\..\src\Main\GLWindow.cpp" />
     <ClCompile Include="..\..\src\Main\main.cpp" />

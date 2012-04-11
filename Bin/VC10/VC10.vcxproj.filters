@@ -31,6 +31,12 @@
     <Filter Include="TMXParser">
       <UniqueIdentifier>{5bd696ec-579f-4271-9d4b-0f1fdd8b651c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level">
+      <UniqueIdentifier>{9cc417fe-d5fd-47c3-8442-d545c358b7c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{27a35a1b-7725-467a-aeb8-d169c437676e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Main\GLWindow.h">
@@ -129,6 +135,12 @@
     <ClInclude Include="..\..\src\System\ResourceManager.h">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Level\Level.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Collision\AABB.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\main.cpp">
@@ -202,6 +214,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\TMXParser\TmxObject.cpp">
       <Filter>TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Level\Level.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Collision\AABB.cpp">
+      <Filter>Collision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
