@@ -25,12 +25,16 @@ int LoadTGAFile(const char* filename, TGAFILE* tgaFile);
 int WriteTGAFile(const char* filename, short int width, short int height, unsigned char* textureData);
 void BindTexture(GLuint texID);
 
-class Texture {
+#include "../System/ResourceManager.h"
+
+class Texture : public Resource {
+  template<class T> friend class ResourceManager;
+
 public:
   Texture();
   ~Texture();
 
-  bool Load(const char* filename);
+  bool Load(const std::string& filename);
 
   GLuint  GetTexID() const { return texID; }
   int     GetWidth() const { return width; }
@@ -41,3 +45,5 @@ private:
   int width;
   int height;
 };
+
+extern ResourceManager<Texture> textureManager;

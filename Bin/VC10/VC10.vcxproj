@@ -98,6 +98,7 @@
     <ClInclude Include="..\..\src\Math\Vec2.h" />
     <ClInclude Include="..\..\src\Sprite\Sprite.h" />
     <ClInclude Include="..\..\src\System\Debug.h" />
+    <ClInclude Include="..\..\src\System\ResourceManager.h" />
     <ClInclude Include="..\..\src\Texture\Texture.h" />
     <ClInclude Include="..\..\src\TMXParser\base64.h" />
     <ClInclude Include="..\..\src\TMXParser\Tmx.h" />

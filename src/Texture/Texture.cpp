@@ -3,6 +3,8 @@
 #include <iostream>
 using namespace std;
 
+ResourceManager<Texture> textureManager;
+
 static GLuint boundTexture = 0;
 
 static bool IsBGR(SDL_Surface* surf) {
@@ -239,8 +241,8 @@ Texture::~Texture() {
   }
 }
 
-bool Texture::Load(const char* filename) {
-  if(BuildTexture(filename, &texID, GL_CLAMP, false)) {
+bool Texture::Load(const std::string& filename) {
+  if(BuildTexture(filename.c_str(), &texID, GL_CLAMP, false)) {
     glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
     glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
     return true;

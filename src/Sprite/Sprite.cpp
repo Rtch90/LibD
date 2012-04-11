@@ -10,6 +10,10 @@ Sprite::Sprite() {
 }
 
 Sprite::~Sprite() {
+  if(texture) {
+    textureManager.Destroy(texture);
+    texture = NULL;
+  }
 }
 
 void Sprite::Update(float dt) {
@@ -20,10 +24,10 @@ void Sprite::Draw() const {
 }
 
 void Sprite::DrawRegion(const Rect& src) const {
-	const float uvX = src.x / (float)texture->GetWidth();
-	const float uvY = src.y / (float)texture->GetHeight();
-	const float uvW = src.w / (float)texture->GetWidth();
-	const float uvH = src.h / (float)texture->GetHeight();
+  const float uvX = src.x / (float)texture->GetWidth();
+  const float uvY = src.y / (float)texture->GetHeight();
+  const float uvW = src.w / (float)texture->GetWidth();
+  const float uvH = src.h / (float)texture->GetHeight();
 
   // Awesome artwork to describe this:
   // 0---------1
@@ -72,6 +76,20 @@ void Sprite::DrawRegion(const Rect& src) const {
   glEnd();
 
   glPopMatrix();
+}
+
+bool Sprite::LoadSprite(const std::string& filename) {
+  Texture* newTexture = textureManager.Load(filename);
+  if(newTexture) {
+    if(texture) {
+      textureManager.Destroy(texture);
+    }
+    size.x = (float)newTexture->GetWidth();
+    size.y = (float)newTexture->GetHeight();
+    texture = newTexture;
+    return true;
+  }
+  return false;
 }
 
 void Sprite::SetTexture(Texture* texture) {

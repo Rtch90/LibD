@@ -14,10 +14,14 @@ public:
   virtual void Draw() const;
   virtual void DrawRegion(const Rect& src) const;
 
+  virtual bool LoadSprite(const std::string& filename);
+
   const Vec2&     GetPosition() const     { return position; }
   float           GetX(void)              { return position.x; }
   float           GetY(void)              { return position.y; }
   const Vec2&     GetSize() const         { return size; }
+  float           GetWidth() const        { return size.x; }
+  float           GetHeight() const       { return size.y; }
   const Vec2&     GetScale() const        { return scale; }
   float           GetRotation() const     { return rotation; }
   Texture*        GetTexture()            { return texture; }

@@ -6,17 +6,12 @@ Player::Player(void) {
 }
 
 Player::~Player(void) {
-  delete _player->GetTexture();
   delete _player;
 }
 
 void Player::Prepare(void) {
   _player = new Sprite();
-  _playerTexture = new Texture();
-  _playerTexture->Load("../Data/Img/Player.png");
-  _player->SetTexture(_playerTexture);
-  _player->SetPosition(Vec2(800/2, 600/2));
-  _player->SetScale(Vec2(4.5f, 4.5f));
+  _player->LoadSprite("../Data/Img/Player.png");
 }
 
 void Player::Render(void) {
