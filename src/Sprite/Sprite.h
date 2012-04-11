@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Math/Vec2.h"
+#include "../Math/Rect.h"
 
 class Texture;
 
@@ -11,6 +12,7 @@ public:
 
   virtual void Update(float dt);
   virtual void Draw() const;
+  virtual void DrawRegion(const Rect& src) const;
 
   const Vec2&     GetPosition() const     { return position; }
   float           GetX(void)              { return position.x; }

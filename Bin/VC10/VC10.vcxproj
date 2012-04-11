@@ -93,6 +93,7 @@
     <ClInclude Include="..\..\src\Main\GLWindow.h" />
     <ClInclude Include="..\..\src\Math\FPS.h" />
     <ClInclude Include="..\..\src\Math\MathBox.h" />
+    <ClInclude Include="..\..\src\Math\Rect.h" />
     <ClInclude Include="..\..\src\Math\Timer.h" />
     <ClInclude Include="..\..\src\Math\Vec2.h" />
     <ClInclude Include="..\..\src\Sprite\Sprite.h" />

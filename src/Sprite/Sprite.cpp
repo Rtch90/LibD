@@ -6,6 +6,7 @@ Sprite::Sprite() {
   size = Vec2(0.0f, 0.0f);
   scale = Vec2(1.0f, 1.0f);
   position = Vec2(0.0f, 0.0f);
+  rotation = 0.0f;
 }
 
 Sprite::~Sprite() {
@@ -15,6 +16,15 @@ void Sprite::Update(float dt) {
 }
 
 void Sprite::Draw() const {
+  DrawRegion(Rect(0.0f, 0.0f, (float)texture->GetWidth(), (float)texture->GetHeight()));
+}
+
+void Sprite::DrawRegion(const Rect& src) const {
+	const float uvX = src.x / (float)texture->GetWidth();
+	const float uvY = src.y / (float)texture->GetHeight();
+	const float uvW = src.w / (float)texture->GetWidth();
+	const float uvH = src.h / (float)texture->GetHeight();
+
   // Awesome artwork to describe this:
   // 0---------1
   // .         .
@@ -22,7 +32,7 @@ void Sprite::Draw() const {
   // .         .
   // 3---------2
 
-  Vec2 scaledSize(size.x*scale.x, size.y*scale.y);
+	Vec2 scaledSize(size.x*scale.x, size.y*scale.y);
 
   Vec2 vertices[4] = {
     Vec2(0.0f, 0.0f),
@@ -32,10 +42,10 @@ void Sprite::Draw() const {
   };
 
   Vec2 texCoords[4] = {
-    Vec2(0.0f, 0.0f),
-    Vec2(1.0f, 0.0f),
-    Vec2(1.0f, 1.0f),
-    Vec2(0.0f, 1.0f),
+    Vec2(uvX, uvY),
+    Vec2(uvX + uvW, uvY),
+    Vec2(uvX + uvW, uvY + uvH),
+    Vec2(uvX, uvY + uvH),
   };
 
   glEnable(GL_TEXTURE_2D);
@@ -68,3 +78,4 @@ void Sprite::SetTexture(Texture* texture) {
   this->texture = texture;
   this->size = Vec2((float)texture->GetWidth(), (float)texture->GetHeight());
 }
+

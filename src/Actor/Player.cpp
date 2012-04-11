@@ -2,6 +2,7 @@
 
 Player::Player(void) {
   PLAYER_SPEED = 15;
+  _rotationAngle = 0.0f;
 }
 
 Player::~Player(void) {
