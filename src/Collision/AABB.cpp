@@ -64,9 +64,23 @@ void AABB::CreateAABBFromSprite(const char* filename) {
   // Find the min, look through until we find a first instance of a white color.
   bool found = false;
   int color = 0;
+  DWORD* pixels = (DWORD*)screen->pixels;
+
   for(int width = 0; width < _sprite->GetWidth(); width++) {
     for(int height = 0; height < _sprite->GetHeight(); height++) {
-      DWORD offset;
+      // FUCKING PAIN IN THE ASS MOTHERFUCKER!!!!
+      DWORD offset = height * screen->pitch + width;
+      if(((DWORD)pixels[offset]) != 0 && !found) {
+       _min = Vec2((float)width, (float)height);
+       found = true;
+       color = ((DWORD)pixels[offset]);
+       // Break out of these god forsaken loops.
+       width  = _sprite->GetWidth();
+       height = _sprite->GetHeight();
+      }
     }
   }
+
+  // Let's try to find the max.x now..
+  _max.x = (float)_sprite->GetWidth();
 }
