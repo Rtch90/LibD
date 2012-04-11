@@ -5,11 +5,11 @@
 
 class Resource {
 public:
-	virtual bool Load(const std::string& filename) = 0;
+  virtual bool Load(const std::string& filename) = 0;
 
 protected:
-	Resource() : refs(0) {}
-	int refs;
+  Resource() : refs(0) {}
+  int refs;
 };
 
 template<class T>
@@ -18,24 +18,24 @@ class ResourceManager
 public:
   ResourceManager() { }
 
-  typedef std::map<std::string, typename T*> ResourceMap;
+  typedef std::map<std::string, T*> ResourceMap;
 
   T* Load(const std::string& name) {
-    ResourceManager<T>::ResourceMap::iterator i = m_resources.find(name);
+    typename ResourceManager<T>::ResourceMap::iterator i = m_resources.find(name);
     if(i == m_resources.end()) {
       T* resource = new T();
-			
-	  if(!resource->Load(name)) {
+
+    if(!resource->Load(name)) {
         delete resource;
         return NULL;
-	  }
-			
+    }
+
       resource->refs = 1;
-			
+
       m_resources.insert(std::pair<std::string, T*>(name, resource));
 
       return resource;
-	}
+  }
 
     i->second->refs++;
 
@@ -43,7 +43,7 @@ public:
   }
 
   T* Find(const std::string& name) {
-    ResourceManager<T>::ResourceMap::iterator i = m_resources.find(name);
+    typename ResourceManager<T>::ResourceMap::iterator i = m_resources.find(name);
     if(i != m_resources.end()) {
       return i->second;
     }
@@ -51,7 +51,7 @@ public:
   }
 
   void Add(const std::string& name, T* resource) {
-    ResourceManager<T>::ResourceMap::iterator i = m_resources.find(name);
+    typename ResourceManager<T>::ResourceMap::iterator i = m_resources.find(name);
     if(i == m_resources.end()) {
       resource->refs++;
       m_resources.insert(std::pair<std::string, T*>(name, resource));
@@ -64,7 +64,7 @@ public:
     if(name.empty())
       return;
 
-    ResourceManager<T>::ResourceMap::iterator i = m_resources.find(name);
+    typename ResourceManager<T>::ResourceMap::iterator i = m_resources.find(name);
     if(i != m_resources.end()) {
       T* resource = i->second;
 
@@ -78,7 +78,7 @@ public:
   }
 
   void Destroy(T* resource) {
-    ResourceManager<T>::ResourceMap::iterator i;
+    typename ResourceManager<T>::ResourceMap::iterator i;
     for(i = m_resources.begin(); i != m_resources.end(); ++i) {
       if(i->second == resource){
         resource->refs--;
