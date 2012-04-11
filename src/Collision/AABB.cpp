@@ -83,4 +83,28 @@ void AABB::CreateAABBFromSprite(const char* filename) {
 
   // Let's try to find the max.x now..
   _max.x = (float)_sprite->GetWidth();
+  found = false;
+  for(int width = (int)_min.x; width < _sprite->GetWidth(); width++) {
+    DWORD offset = _min.y * screen->pitch + width;
+    if(((DWORD)pixels[offset] != color && !found)) {
+      found = true;
+      _max.x = (float)width;
+    }
+  }
+
+  // Now for the max.y
+  _max.y = (float)_sprite->GetHeight();
+  found = false;
+  for(int height = (int)_min.y; height < _sprite->GetWidth(); height++) {
+    DWORD offset = (DWORD)(height * screen->pitch + _min.x);
+    if(((DWORD)pixels[offset]) != color && !found) {
+      found = true;
+      _max.y = (float)height;
+      break;
+    }
+  }
+  _staticMax = _max;
+  _staticMin = _min;
+  delete _sprite;
+  _sprite = 0;
 }
