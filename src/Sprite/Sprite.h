@@ -1,5 +1,5 @@
 #pragma once
-
+#include <string>
 #include "../Math/Vec2.h"
 #include "../Math/Rect.h"
 
