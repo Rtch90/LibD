@@ -18,10 +18,10 @@ class ResourceManager
 public:
   ResourceManager() { }
 
-  typedef std::map<std::string, T*> ResourceMap;
+  typedef std::map<std::string, typename T*> ResourceMap;
 
   T* Load(const std::string& name) {
-    ResourceMap::iterator i = m_resources.find(name);
+    ResourceManager<T>::ResourceMap::iterator i = m_resources.find(name);
     if(i == m_resources.end()) {
       T* resource = new T();
 			
@@ -43,7 +43,7 @@ public:
   }
 
   T* Find(const std::string& name) {
-    ResourceMap::iterator i = m_resources.find(name);
+    ResourceManager<T>::ResourceMap::iterator i = m_resources.find(name);
     if(i != m_resources.end()) {
       return i->second;
     }
@@ -51,7 +51,7 @@ public:
   }
 
   void Add(const std::string& name, T* resource) {
-    ResourceMap::iterator i = m_resources.find(name);
+    ResourceManager<T>::ResourceMap::iterator i = m_resources.find(name);
     if(i == m_resources.end()) {
       resource->refs++;
       m_resources.insert(std::pair<std::string, T*>(name, resource));
@@ -64,7 +64,7 @@ public:
     if(name.empty())
       return;
 
-    ResourceMap::iterator i = m_resources.find(name);
+    ResourceManager<T>::ResourceMap::iterator i = m_resources.find(name);
     if(i != m_resources.end()) {
       T* resource = i->second;
 
@@ -78,7 +78,7 @@ public:
   }
 
   void Destroy(T* resource) {
-    ResourceMap::iterator i;
+    ResourceManager<T>::ResourceMap::iterator i;
     for(i = m_resources.begin(); i != m_resources.end(); ++i) {
       if(i->second == resource){
         resource->refs--;

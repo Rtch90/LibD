@@ -132,14 +132,20 @@
     <ClInclude Include="..\..\src\TMXParser\TmxObject.h">
       <Filter>TMXParser</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\System\ResourceManager.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Level\Level.h">
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Collision\AABB.h">
       <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Level\Layer.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Level\MapTile.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\System\ResourceManager.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +226,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Collision\AABB.cpp">
       <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Level\Layer.cpp">
+      <Filter>Level</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
