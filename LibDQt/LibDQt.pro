@@ -18,7 +18,8 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Sprite/Sprite.h \
     ../src/System/Debug.h \
     ../src/Texture/Texture.h \
-    ../src/Global/Constants.h
+    ../src/Global/Constants.h \
+    ../src/Collision/AABB.h
 SOURCES += ../src/Actor/Player.cpp \
     ../src/Global/Globals.cpp \
     ../src/IO/Input.cpp \
@@ -30,5 +31,6 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/Math/FPS.cpp \
     ../src/Sprite/Sprite.cpp \
     ../src/System/Debug.cpp \
-    ../src/Texture/Texture.cpp
+    ../src/Texture/Texture.cpp \
+    ../src/Collision/AABB.cpp
 OTHER_FILES += 

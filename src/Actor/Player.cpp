@@ -15,7 +15,7 @@ void Player::Prepare(void) {
   _playerTexture->Load("../Data/Img/Player.png");
   _player->SetTexture(_playerTexture);
   _player->SetPosition(Vec2(800/2, 600/2));
-  _player->SetScale(Vec2(4.5f, 4.5f));
+  _player->SetScale(Vec2(3.0f, 3.0f));
 }
 
 void Player::Render(void) {
@@ -24,8 +24,8 @@ void Player::Render(void) {
 }
 
 void Player::ProcessEvents(void) {
-  float x = _player->GetX();
-  float y = _player->GetY();
+  x = _player->GetX();
+  y = _player->GetY();
   if(KeyStillDown(SDLK_w)) {
     y -= PLAYER_SPEED;
     _player->SetY(y);
