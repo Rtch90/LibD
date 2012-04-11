@@ -17,6 +17,7 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Math/Vec2.h \
     ../src/Sprite/Sprite.h \
     ../src/System/Debug.h \
+    ../src/System/ResourceManager.h \
     ../src/Texture/Texture.h \
     ../src/Global/Constants.h \
     ../src/Collision/AABB.h
