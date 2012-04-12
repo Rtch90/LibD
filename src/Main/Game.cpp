@@ -17,7 +17,8 @@
 
 Game::Game(void) {
   _player = new Player();
-  _level = new Level();
+  //_NPC    = new NPC();
+  _level  = new Level();
   //_rotationAngle = 0.0f;
 }
 
@@ -74,11 +75,13 @@ void Game::Render(void) {
   // Render our shit..
   _level->Draw(xOffset, yOffset);
   _player->Render();
+  //_NPC->Render();
 }
 
 void Game::Shutdown(void) {
   Debug::logger->message("\n ----- Cleaning Engine -----");
   delete _player;
+  delete _NPC;
   delete _level;
 }
 

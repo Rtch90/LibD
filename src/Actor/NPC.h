@@ -1,5 +1,5 @@
 #pragma once
-#include "../Collision/AABB.h"
+#include "../Sprite/Sprite.h"
 
 class NPC {
 public:
@@ -10,5 +10,5 @@ public:
   void Render(void);
 
 private:
-  AABB* _NPC;
+  Sprite* _NPC;
 };

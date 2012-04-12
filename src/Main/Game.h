@@ -1,5 +1,6 @@
 #pragma once
 #include "../IO/Input.h"
+#include "../Actor/NPC.h"
 #include "../Actor/Player.h"
 
 class Sprite;
@@ -21,5 +22,6 @@ public:
 
 private:
   Player* _player;
-  Level* _level;
+  NPC*    _NPC;
+  Level*  _level;
 };

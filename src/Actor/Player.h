@@ -1,6 +1,5 @@
 #pragma once
 #include "../Sprite/Sprite.h"
-#include "../Collision/AABB.h"
 #include "../Global/Globals.h"
 #include "../System/Debug.h"
 #include "../IO/Input.h"
@@ -34,16 +33,6 @@ public:
 
   // --- Collision stuff.
 
-  // Process the collisions and reactions.
-  void ProcessCollisions(void);
-  // Entity collision test.
-  void EntityCollisionTest(void);
-  // Actor(NPCS).
-  void ActorCollisionTest(void);
-  AABB* GetAABB(void);
-
-  bool GetInBlueCollision(void);
-
   void ProcessEvents(void);
 
   int GetX(void) { return x; }
@@ -58,15 +47,7 @@ private:
   Sprite*   _player;
   float     _rotationAngle;
 
-  // --- Collisions.
-  bool _allowCollision;
-  bool _notColliding;
-  bool _blueCollision;
-
   Facing _preventMovement;
-
-  AABB* _collisionBound;
-  AABB* _environmentCollisionBound;
 
   SoundEffect* _stepSFX[4];
   int _lastStepSFXPlayed;

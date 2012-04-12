@@ -1,7 +1,7 @@
 #include "NPC.h"
 
 NPC::NPC(void) {
-  _NPC->CreateAABBFromSprite("../Data/Img/Player");
+  _NPC = new Sprite();
 }
 
 NPC::~NPC(void) {
@@ -13,5 +13,5 @@ void NPC::Update(void) {
 }
 
 void NPC::Render(void) {
-  //_NPC->
+  _NPC->Draw();
 }
