@@ -1,4 +1,5 @@
 #pragma once
+#include "../Sprite/Sprite.h"
 
 class Actor {
 public:
@@ -18,6 +19,10 @@ public:
   Actor(void);
   ~Actor(void);
 
+  void LoadSprite(const char* filename, float w, float h);
+  void Update(void);
+  void Render(void);
+
   float GetX(void)                      { return x; }
   float GetY(void)                      { return y; }
   float GetWidth(void)                  { return w; }
@@ -25,10 +30,24 @@ public:
 
   void SetXY(float xArg, float yArg)    { x = xArg; y = yArg; }
 
-private:
+  int GetDirection(void)                { return _direction; }
+  void SetDirection(int direction)      { _direction = direction; }
+
+protected:
   const float VELOCITY;
+
+  int _direction;
+
+  static const int ANIM_LEFT_FOOT    = 0;
+  static const int ANIM_NO_FOOT      = 1;
+  static const int ANIM_RIGHT_FOOT   = 2;
+  static const int ANIM_ATTACK       = 3;
+
+private:
   float x;
   float y;
   float w;
   float h;
+
+  Sprite* _actor;
 };

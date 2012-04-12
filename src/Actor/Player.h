@@ -10,21 +10,6 @@ class SoundEffect;
 // We will derive from an Actor class at some point.
 class Player {
 public:
-  // Facing enum controls which spritr to render.
-  enum Facing {
-    LEFT,
-    RIGHT,
-    NONE
-  };
-
-  // Control the current state the character is in.
-  enum Status {
-    STANDING = 0,
-    WALKING,
-    HURT,
-    DEAD,
-  };
-
   Player(void);
   ~Player(void);
 
@@ -46,8 +31,6 @@ private:
   float PLAYER_SPEED;
   Sprite*   _player;
   float     _rotationAngle;
-
-  Facing _preventMovement;
 
   SoundEffect* _stepSFX[4];
   int _lastStepSFXPlayed;
