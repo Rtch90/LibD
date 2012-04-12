@@ -6,8 +6,8 @@ LIBS += -lGL \
     -lSDL_gfx \
     -ltinyxml \
     -lGLU \
-	-lz \
-	-ltinyxml
+    -lz \
+    -ltinyxml
 HEADERS += ../src/Actor/Player.h \
     ../src/Global/Globals.h \
     ../src/IO/Input.h \
@@ -28,22 +28,22 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Level/Map.h \
     ../src/Level/Layer.h \
     ../src/Level/Tileset.h \
-    ../src/Level/Layer.h \
     ../src/TMXParser/base64.h \
-	../src/TMXParser/Tmx.h \
+    ../src/TMXParser/Tmx.h \
     ../src/TMXParser/TmxImage.h \
     ../src/TMXParser/TmxLayer.h \
     ../src/TMXParser/TmxMap.h \
-	../src/TMXParser/TmxMapTile.h \
+    ../src/TMXParser/TmxMapTile.h \
     ../src/TMXParser/TmxObject.h \
     ../src/TMXParser/TmxObjectGroup.h \
-	../src/TMXParser/TmxPoint.h \
+    ../src/TMXParser/TmxPoint.h \
     ../src/TMXParser/TmxPolygon.h \
     ../src/TMXParser/TmxPolyline.h \
     ../src/TMXParser/TmxPropertySet.h \
     ../src/TMXParser/TmxTile.h \
     ../src/TMXParser/TmxTileset.h \
-    ../src/TMXParser/TmxUtil.h
+    ../src/TMXParser/TmxUtil.h \
+    ../src/Level/Layer.h \
 SOURCES += ../src/Actor/Player.cpp \
     ../src/Global/Globals.cpp \
     ../src/Global/Constants.cpp \
@@ -63,7 +63,6 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/Level/Map.h \
     ../src/Level/Layer.h \
     ../src/Level/Tileset.h \
-    ../src/Level/Layer.h \
     ../src/TMXParser/base64.cpp \
     ../src/TMXParser/TmxImage.cpp \
     ../src/TMXParser/TmxLayer.cpp \
@@ -75,5 +74,6 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/TMXParser/TmxPropertySet.cpp \
     ../src/TMXParser/TmxTile.cpp \
     ../src/TMXParser/TmxTileset.cpp \
-    ../src/TMXParser/TmxUtil.cpp
-OTHER_FILES += 
+    ../src/TMXParser/TmxUtil.cpp \
+    ../src/Level/Layer.cpp
+OTHER_FILES +=
