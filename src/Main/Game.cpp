@@ -52,9 +52,13 @@ void Game::Render(void) {
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
+  glTranslatef(-(_player->GetX() - 256), -(_player->GetY() - 128), 0.0f);
+
   // Render our shit..
-  _level->Draw();
+  _level->Draw(_player->GetX() - 256, _player->GetY() - 128);
   _player->Render();
+
+  glPopMatrix();
 }
 
 void Game::Shutdown(void) {

@@ -1,4 +1,5 @@
 #include <map>
+#include <algorithm>
 #include "Level.h"
 #include "Layer.h"
 #include "Tileset.h"
@@ -78,8 +79,8 @@ bool Level::Load(const std::string& filename) {
   return true;
 }
 
-void Level::Draw() {
+void Level::Draw(int xOffset, int yOffset) {
   for(std::list<Layer*>::iterator i = _layers.begin(); i != _layers.end(); ++i) {
-    (*i)->Draw();
+    (*i)->Draw(xOffset, yOffset);
   }
 }

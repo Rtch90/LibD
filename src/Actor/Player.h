@@ -16,6 +16,9 @@ public:
   void Render(void);
   void ProcessEvents(void);
 
+  int GetX() { return x; }
+  int GetY() { return y; }
+
 private:
   float x;
   float y;
