@@ -6,9 +6,14 @@ LIBS += -lGL \
     -lGLU \
     -lz \
     -ltinyxml
-win32: {
-LIBS -= -lGL -lGLU
-LIBS += -lkernel32 -luser32 -lgdi32 -lopengl32 -lglu32
+win32: { 
+    LIBS -= -lGL \
+        -lGLU
+    LIBS += -lkernel32 \
+        -luser32 \
+        -lgdi32 \
+        -lopengl32 \
+        -lglu32
 }
 HEADERS += ../src/Actor/Player.h \
     ../src/Collision/AABB.h \
@@ -19,7 +24,6 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Level/Level.h \
     ../src/Level/Layer.h \
     ../src/Level/Tileset.h \
-    ../src/Main/GLWindow.h \
     ../src/Main/Game.h \
     ../src/Math/Timer.h \
     ../src/Math/Rect.h \
@@ -53,7 +57,6 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/Level/Tileset.cpp \
     ../src/Level/Level.cpp \
     ../src/Level/Layer.cpp \
-    ../src/Main/GLWindow.cpp \
     ../src/Main/Game.cpp \
     ../src/Main/main.cpp \
     ../src/Math/Vec2.cpp \
