@@ -81,7 +81,6 @@ void Game::Render(void) {
 void Game::Shutdown(void) {
   Debug::logger->message("\n ----- Cleaning Engine -----");
   delete _player;
-  delete _NPC;
   delete _level;
 }
 
