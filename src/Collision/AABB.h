@@ -3,6 +3,7 @@
 
 #include "../Math/Vec2.h"
 #include "../Sprite/Sprite.h"
+#include "../Global/Globals.h"
 
 /*
  * The axis aligned bounding box contains
