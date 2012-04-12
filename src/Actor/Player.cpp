@@ -9,11 +9,11 @@ Player::Player(void) {
 
   // Loading of sprites and collision details.
   // This should be directed to a collision sheet.
-  _collisionBound = new AABB();
-  _collisionBound->CreateAABBFromSprite("../Data/Img/Player");
+  //_collisionBound = new AABB();
+  //_collisionBound->CreateAABBFromSprite("../Data/Img/Player");
 
-  _environmentCollisionBound = new AABB();
-  _environmentCollisionBound->SetMin(_collisionBound->GetMin().x, _collisionBound->GetMax().y - 50.0f);
+  //_environmentCollisionBound = new AABB();
+  //_environmentCollisionBound->SetMin(_collisionBound->GetMin().x, _collisionBound->GetMax().y - 50.0f);
   //_environmentCollisionBound->SetMax(_collisionBound->GetMax());
 }
 
@@ -23,13 +23,15 @@ Player::~Player(void) {
 }
 
 void Player::Update(void) {
-  _player->LoadSprite("../Data/Img/Player.png");
+  if(!_player) {
+    _player->LoadSprite("../Data/Img/Player.png");
+  }
   // Position and collision bound with the player.
-  _collisionBound->SetPositionOffset(_player->GetX(), _player->GetY());
+  //_collisionBound->SetPositionOffset(_player->GetX(), _player->GetY());
   //_environmentCollisionBound->SetPositionOffset(_player->GetX, _player->GetY());
 
   // Time to process the collisions.
-  ProcessCollisions();
+  //ProcessCollisions();
 
   // Process events here.
   ProcessEvents();
@@ -43,8 +45,8 @@ void Player::Render(void) {
 void Player::ProcessCollisions(void) {
   // Process collisions with entities and actors.
   // We should ensure we are not dead.
-  EntityCollisionTest();
-  ActorCollisionTest();
+  //EntityCollisionTest();
+  //ActorCollisionTest();
 
   // Set all collision flags to false conditions
   // then they will need to be proven in the test.

@@ -71,14 +71,14 @@ void AABB::CreateAABBFromSprite(const char* filename) {
     for(int height = 0; height < _sprite->GetHeight(); height++) {
       // FUCKING PAIN IN THE ASS MOTHERFUCKER!!!!
       DWORD offset = height * screen->pitch + width;
-      if(((DWORD)pixels[offset]) != 0 && !found) {
-       _min = Vec2((float)width, (float)height);
-       found = true;
-       color = ((DWORD)pixels[offset]);
-       // Break out of these god forsaken loops.
-       width  = _sprite->GetWidth();
-       height = _sprite->GetHeight();
-      }
+//      if(((DWORD)pixels[offset]) != 0 && !found) {
+//       _min = Vec2((float)width, (float)height);
+//       found = true;
+//       color = ((DWORD)pixels[offset]);
+//       // Break out of these god forsaken loops.
+//       width  = _sprite->GetWidth();
+//       height = _sprite->GetHeight();
+//      }
     }
   }
 
@@ -87,10 +87,10 @@ void AABB::CreateAABBFromSprite(const char* filename) {
   found = false;
   for(int width = (int)_min.x; width < _sprite->GetWidth(); width++) {
     DWORD offset = _min.y * screen->pitch + width;
-    if(((DWORD)pixels[offset] != color && !found)) {
-      found = true;
-      _max.x = (float)width;
-    }
+//    if(((DWORD)pixels[offset] != color && !found)) {
+//      found = true;
+//      _max.x = (float)width;
+//    }
   }
 
   // Now for the max.y
@@ -98,11 +98,11 @@ void AABB::CreateAABBFromSprite(const char* filename) {
   found = false;
   for(int height = (int)_min.y; height < _sprite->GetWidth(); height++) {
     DWORD offset = (DWORD)(height * screen->pitch + _min.x);
-    if(((DWORD)pixels[offset]) != color && !found) {
-      found = true;
-      _max.y = (float)height;
-      break;
-    }
+//    if(((DWORD)pixels[offset]) != color && !found) {
+//      found = true;
+//      _max.y = (float)height;
+//      break;
+//    }
   }
   _staticMax = _max;
   _staticMin = _min;

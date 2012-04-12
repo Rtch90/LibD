@@ -34,100 +34,100 @@
 
 class TiXmlNode;
 
-namespace Tmx 
+namespace Tmx
 {
-	//-------------------------------------------------------------------------
-	// Type used for the encoding of the layer data.
-	//-------------------------------------------------------------------------
-	enum LayerEncodingType 
-	{
-		TMX_ENCODING_XML,
-		TMX_ENCODING_BASE64,
-		TMX_ENCODING_CSV
-	};
+  //-------------------------------------------------------------------------
+  // Type used for the encoding of the layer data.
+  //-------------------------------------------------------------------------
+  enum LayerEncodingType
+  {
+    TMX_ENCODING_XML,
+    TMX_ENCODING_BASE64,
+    TMX_ENCODING_CSV
+  };
 
-	//-------------------------------------------------------------------------
-	// Type used for the compression of the layer data.
-	//-------------------------------------------------------------------------
-	enum LayerCompressionType 
-	{
-		TMX_COMPRESSION_NONE,
-		TMX_COMPRESSION_ZLIB,
-		TMX_COMPRESSION_GZIP
-	};
+  //-------------------------------------------------------------------------
+  // Type used for the compression of the layer data.
+  //-------------------------------------------------------------------------
+  enum LayerCompressionType
+  {
+    TMX_COMPRESSION_NONE,
+    TMX_COMPRESSION_ZLIB,
+    TMX_COMPRESSION_GZIP
+  };
 
-	//-------------------------------------------------------------------------
-	// Used for storing information about the tile ids for every layer.
-	// This class also have a property set.
-	//-------------------------------------------------------------------------
-	class Layer 
-	{
-	public:
-		Layer();
-		~Layer();
+  //-------------------------------------------------------------------------
+  // Used for storing information about the tile ids for every layer.
+  // This class also have a property set.
+  //-------------------------------------------------------------------------
+  class Layer
+  {
+  public:
+    Layer();
+    ~Layer();
 
-		// Parse a layer node.
-		void Parse(const TiXmlNode *layerNode);
+    // Parse a layer node.
+    void Parse(const TiXmlNode *layerNode);
 
-		// Get the name of the layer.
-		const std::string &GetName() const { return name; }
+    // Get the name of the layer.
+    const std::string &GetName() const { return name; }
 
-		// Get the width of the layer, in tiles.
-		int GetWidth() const { return width; }
+    // Get the width of the layer, in tiles.
+    float GetWidth() const { return width; }
 
-		// Get the height of the layer, in tiles.
-		int GetHeight() const { return height; }
+    // Get the height of the layer, in tiles.
+    float GetHeight() const { return height; }
 
-		// Get the visibility of the layer
-		bool IsVisible() const { return visible; }
+    // Get the visibility of the layer
+    bool IsVisible() const { return visible; }
 
-		// Get the property set.
-		const PropertySet &GetProperties() const { return properties; }
+    // Get the property set.
+    const PropertySet &GetProperties() const { return properties; }
 
-		// Pick a specific tile from the list.
-		unsigned GetTileGid(int x, int y) const { return tile_map[y * width + x].gid; }
+    // Pick a specific tile from the list.
+    unsigned GetTileGid(int x, int y) const { return tile_map[y * width + x].gid; }
 
-		// Get whether the tile is flipped horizontally.
-		bool IsTileFlippedHorizontally(int x, int y) const 
-		{ return tile_map[y * width + x].flippedHorizontally; }
+    // Get whether the tile is flipped horizontally.
+    bool IsTileFlippedHorizontally(int x, int y) const
+    { return tile_map[y * width + x].flippedHorizontally; }
 
-		// Get whether the tile is flipped vertically.
-		bool IsTileFlippedVertically(int x, int y) const 
-		{ return tile_map[y * width + x].flippedVertically; }
+    // Get whether the tile is flipped vertically.
+    bool IsTileFlippedVertically(int x, int y) const
+    { return tile_map[y * width + x].flippedVertically; }
 
-		// Get whether the tile is flipped diagonally.
-		bool IsTileFlippedDiagonally(int x, int y) const
-		{ return tile_map[y * width + x].flippedDiagonally; }
+    // Get whether the tile is flipped diagonally.
+    bool IsTileFlippedDiagonally(int x, int y) const
+    { return tile_map[y * width + x].flippedDiagonally; }
 
-		// Get the tile specific to the map.
-		MapTile GetTile(int x, int y) const { return tile_map[y * width + x]; }
+    // Get the tile specific to the map.
+    MapTile GetTile(int x, int y) const { return tile_map[y * width + x]; }
 
-		// Get the type of encoding that was used for parsing the layer data.
-		// See: LayerEncodingType
-		LayerEncodingType GetEncoding() const { return encoding; }
+    // Get the type of encoding that was used for parsing the layer data.
+    // See: LayerEncodingType
+    LayerEncodingType GetEncoding() const { return encoding; }
 
-		// Get the type of compression that was used for parsing the layer data.
-		// See: LayerCompressionType
-		LayerCompressionType GetCompression() const { return compression; }
+    // Get the type of compression that was used for parsing the layer data.
+    // See: LayerCompressionType
+    LayerCompressionType GetCompression() const { return compression; }
 
-	private:
-		void ParseXML(const TiXmlNode *dataNode);
-		void ParseBase64(const std::string &innerText);
-		void ParseCSV(const std::string &innerText);
+  private:
+    void ParseXML(const TiXmlNode *dataNode);
+    void ParseBase64(const std::string &innerText);
+    void ParseCSV(const std::string &innerText);
 
-		std::string name;
-		
-		int width;
-		int height;
-	
-		float opacity;
-		bool visible;
+    std::string name;
 
-		PropertySet properties;
+    int width;
+    int height;
 
-		MapTile *tile_map;
+    float opacity;
+    bool visible;
 
-		LayerEncodingType encoding;
-		LayerCompressionType compression;
-	};
+    PropertySet properties;
+
+    MapTile *tile_map;
+
+    LayerEncodingType encoding;
+    LayerCompressionType compression;
+  };
 };

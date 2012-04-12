@@ -20,8 +20,8 @@ public:
   float           GetX(void)              { return position.x; }
   float           GetY(void)              { return position.y; }
   const Vec2&     GetSize() const         { return size; }
-  float           GetWidth() const        { return size.x; }
-  float           GetHeight() const       { return size.y; }
+  float           GetWidth()              { return size.x; }
+  float           GetHeight()             { return size.y; }
   const Vec2&     GetScale() const        { return scale; }
   float           GetRotation() const     { return rotation; }
   Texture*        GetTexture()            { return texture; }

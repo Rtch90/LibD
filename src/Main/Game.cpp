@@ -35,7 +35,7 @@ bool Game::Init(void) {
   glAlphaFunc(GL_GREATER, 0.1f);
 
   _level->Load("../Data/Map/Ugly.tmx");
-
+  _player->Update();
   // Return success.
   return true;
 }
