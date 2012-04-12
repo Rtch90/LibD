@@ -40,3 +40,6 @@ void Player::ProcessEvents(void) {
     _player->SetX(x);
   }
 }
+
+int Player::GetWidth() { return _player->GetWidth(); }
+int Player::GetHeight() { return _player->GetWidth(); }

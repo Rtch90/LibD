@@ -2,10 +2,13 @@
 #include <windows.h>
 #endif
 
+#include <algorithm>
+
 #include <GL/gl.h>
 #include <GL/glu.h>
 
 #include "../Global/Globals.h"
+#include "../Global/Constants.h"
 #include "../System/Debug.h"
 #include "../Sprite/Sprite.h"
 #include "../Texture/Texture.h"
@@ -52,10 +55,24 @@ void Game::Render(void) {
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
-  glTranslatef(-(_player->GetX() - 256), -(_player->GetY() - 128), 0.0f);
+  float windowCenterX = ((float)WINDOW_WIDTH / 2.0f) - ((float)_player->GetWidth() / 2.0f);
+  float windowCenterY = ((float)WINDOW_HEIGHT / 2.0f) - ((float)_player->GetHeight() / 2.0f);
+
+  float xOffset = _player->GetX() - windowCenterX;
+  float yOffset = _player->GetY() - windowCenterY;
+
+  float maxXOffset = (_level->GetWidth() * _level->GetTileWidth()) - (float)WINDOW_WIDTH;
+  float maxYOffset = (_level->GetHeight() * _level->GetTileHeight()) - (float)WINDOW_HEIGHT;
+
+  if(xOffset < 0.0f) xOffset = 0.0f;
+  if(yOffset < 0.0f) yOffset = 0.0f;
+  if(xOffset > maxXOffset) xOffset = maxXOffset;
+  if(yOffset > maxYOffset) yOffset = maxYOffset;
+
+  glTranslatef(-xOffset, -yOffset, 0.0f);
 
   // Render our shit..
-  _level->Draw(_player->GetX() - 256, _player->GetY() - 128);
+  _level->Draw(xOffset, yOffset);
   _player->Render();
 
   glPopMatrix();

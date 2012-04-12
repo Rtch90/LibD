@@ -18,6 +18,8 @@ public:
 
   int GetX() { return x; }
   int GetY() { return y; }
+  int GetWidth();
+  int GetHeight();
 
 private:
   float x;

@@ -18,6 +18,8 @@ public:
 
   int GetWidth() const { return _width; }
   int GetHeight() const { return _height; }
+  int GetTileWidth() const { return _tileWidth; }
+  int GetTileHeight() const { return _tileHeight; }
 
 private:
   int _width;
