@@ -33,19 +33,19 @@ void Player::Render(void) {
 void Player::ProcessEvents(void) {
   float oldX = x = _player->GetX();
   float oldY = y = _player->GetY();
-  if(KeyStillDown(SDLK_w)) {
+  if(KeyStillDown(SDLK_w) || KeyStillDown(SDLK_UP)) {
     y -= PLAYER_SPEED;
     _player->SetY(y);
   }
-  if(KeyStillDown(SDLK_s)) {
+  if(KeyStillDown(SDLK_s) || KeyStillDown(SDLK_DOWN)) {
     y += PLAYER_SPEED;
     _player->SetY(y);
   }
-  if(KeyStillDown(SDLK_a)) {
+  if(KeyStillDown(SDLK_a) || KeyStillDown(SDLK_LEFT)) {
     x -= PLAYER_SPEED;
     _player->SetX(x);
   }
-  if(KeyStillDown(SDLK_d)) {
+  if(KeyStillDown(SDLK_d) || KeyStillDown(SDLK_RIGHT)) {
     x += PLAYER_SPEED;
     _player->SetX(x);
   }
