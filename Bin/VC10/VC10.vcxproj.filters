@@ -147,6 +147,9 @@
     <ClInclude Include="..\..\src\System\ResourceManager.h">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Level\Tileset.h">
+      <Filter>Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\main.cpp">
@@ -228,6 +231,9 @@
       <Filter>Collision</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Level\Layer.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Level\Tileset.cpp">
       <Filter>Level</Filter>
     </ClCompile>
   </ItemGroup>

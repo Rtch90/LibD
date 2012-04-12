@@ -9,23 +9,31 @@
 #include "../System/Debug.h"
 #include "../Sprite/Sprite.h"
 #include "../Texture/Texture.h"
-//#include "../Level/Level.h"
+#include "../Level/Level.h"
 #include "Game.h"
 
 Game::Game(void) {
   _player = new Player();
+  _level = new Level();
   //_rotationAngle = 0.0f;
 }
 
 Game::~Game(void) {
-
 }
 
 bool Game::Init(void) {
   glEnable(GL_DEPTH_TEST);
   glDepthFunc(GL_LEQUAL);
 
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+  glEnable(GL_ALPHA_TEST);
+  glAlphaFunc(GL_GREATER, 0.1f);
+
+  _level->Load("../Data/Map/Ugly.tmx");
   _player->Prepare();
+
   // Return success.
   return true;
 }
@@ -45,12 +53,14 @@ void Game::Render(void) {
   glLoadIdentity();
 
   // Render our shit..
+  _level->Draw();
   _player->Render();
 }
 
 void Game::Shutdown(void) {
   Debug::logger->message("\n ----- Cleaning Engine -----");
   delete _player;
+  delete _level;
 }
 
 void Game::ProcessEvents(void) {

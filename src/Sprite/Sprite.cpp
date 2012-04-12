@@ -36,7 +36,7 @@ void Sprite::DrawRegion(const Rect& src) const {
   // .         .
   // 3---------2
 
-	Vec2 scaledSize(size.x*scale.x, size.y*scale.y);
+	Vec2 scaledSize(src.w*scale.x, src.h*scale.y);
 
   Vec2 vertices[4] = {
     Vec2(0.0f, 0.0f),
