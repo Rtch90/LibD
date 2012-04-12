@@ -73,9 +73,13 @@ bool Level::Load(const std::string& filename) {
         const Tmx::Tileset* tmxTileset = map.FindTileset(tmxTile.gid);
 
         MapTile tile;
-        tile.id = tmxTile.gid - tmxTileset->GetFirstGid();
-        tile.tileset = tilesetMap.find(tmxTileset)->second;
-
+        if(tmxTile.gid != 0) {
+          tile.id = tmxTile.gid - tmxTileset->GetFirstGid();
+          tile.tileset = tilesetMap.find(tmxTileset)->second;
+        } else {
+          tile.id = 0;
+          tile.tileset = NULL;
+        }
         layer->SetTile(x, y, tile);
       }
     }

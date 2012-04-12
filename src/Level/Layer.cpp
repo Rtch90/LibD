@@ -33,7 +33,9 @@ void Layer::Draw(int xOffset, int yOffset) {
   for(int x = 0; x < _width; x++) {
     for(int y = 0; y < _height; y++) {
       MapTile& tile = GetTile(x, y);
-      tile.tileset->DrawTile(tile.id, Vec2((float)x * _tileWidth, (float)y * _tileHeight));
+      if(tile.tileset != NULL) {
+        tile.tileset->DrawTile(tile.id, Vec2((float)x * _tileWidth, (float)y * _tileHeight));
+      }
     }
   }
 }
