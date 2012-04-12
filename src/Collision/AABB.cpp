@@ -1,7 +1,7 @@
 #include "AABB.h"
 
 
-typedef unsigned int DWORD;
+typedef Uint32 DWORD;
 
 AABB::AABB(void) {
   _sprite = 0;
@@ -64,6 +64,7 @@ void AABB::CreateAABBFromSprite(const char* filename) {
   // Find the min, look through until we find a first instance of a white color.
   bool found = false;
   int color = 0;
+
   DWORD* pixels = (DWORD*)screen->pixels;
 
   for(int width = 0; width < _sprite->GetWidth(); width++) {
