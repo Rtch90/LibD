@@ -13,6 +13,7 @@
  */
 
 struct SDL_Surface;
+class Texture;
 
 class AABB {
 public:
@@ -42,5 +43,6 @@ private:
   Vec2 _staticMin;
   Vec2 _staticMax;
 
-  SDL_Surface* _sprite;
+  SDL_Surface* _surface;
+  Texture* _texture;
 };
