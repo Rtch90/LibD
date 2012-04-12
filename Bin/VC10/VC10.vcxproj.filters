@@ -153,6 +153,12 @@
     <ClInclude Include="..\..\Src\Sound\Music.h">
       <Filter>Sound</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\Sound\SoundEffect.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Actor\NPC.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\main.cpp">
@@ -241,6 +247,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Sound\Music.cpp">
       <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Sound\SoundEffect.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Actor\NPC.cpp">
+      <Filter>Actor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

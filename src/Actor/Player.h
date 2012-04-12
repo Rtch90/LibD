@@ -6,6 +6,7 @@
 #include "../IO/Input.h"
 
 class Sprite;
+class SoundEffect;
 
 // We will derive from an Actor class at some point.
 class Player {
@@ -66,4 +67,7 @@ private:
 
   AABB* _collisionBound;
   AABB* _environmentCollisionBound;
+
+  SoundEffect* _stepSFX[4];
+  int _lastStepSFXPlayed;
 };

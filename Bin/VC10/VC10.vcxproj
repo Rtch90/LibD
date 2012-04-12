@@ -83,6 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\Actor\NPC.h" />
     <ClInclude Include="..\..\src\Actor\Player.h" />
     <ClInclude Include="..\..\src\Collision\AABB.h" />
     <ClInclude Include="..\..\src\Global\Constants.h" />
@@ -101,6 +102,7 @@
     <ClInclude Include="..\..\src\Math\Timer.h" />
     <ClInclude Include="..\..\src\Math\Vec2.h" />
     <ClInclude Include="..\..\Src\Sound\Music.h" />
+    <ClInclude Include="..\..\Src\Sound\SoundEffect.h" />
     <ClInclude Include="..\..\src\Sprite\Sprite.h" />
     <ClInclude Include="..\..\src\System\Debug.h" />
     <ClInclude Include="..\..\src\System\ResourceManager.h" />
@@ -122,6 +124,7 @@
     <ClInclude Include="..\..\src\TMXParser\TmxUtil.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Actor\NPC.cpp" />
     <ClCompile Include="..\..\src\Actor\Player.cpp" />
     <ClCompile Include="..\..\src\Collision\AABB.cpp" />
     <ClCompile Include="..\..\src\Global\Constants.cpp" />
@@ -136,6 +139,7 @@
     <ClCompile Include="..\..\src\Math\Timer.cpp" />
     <ClCompile Include="..\..\src\Math\Vec2.cpp" />
     <ClCompile Include="..\..\Src\Sound\Music.cpp" />
+    <ClCompile Include="..\..\Src\Sound\SoundEffect.cpp" />
     <ClCompile Include="..\..\src\Sprite\Sprite.cpp" />
     <ClCompile Include="..\..\src\System\Debug.cpp" />
     <ClCompile Include="..\..\src\Texture\Texture.cpp" />

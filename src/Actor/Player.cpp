@@ -1,4 +1,7 @@
+#include <stdlib.h>
+
 #include "Player.h"
+#include "../Sound/SoundEffect.h"
 
 Player::Player(void) {
   PLAYER_SPEED      = 15;
@@ -17,6 +20,12 @@ Player::Player(void) {
   _environmentCollisionBound = new AABB();
   _environmentCollisionBound->SetMin(_collisionBound->GetMin().x, _collisionBound->GetMax().y - 50.0f);
   _environmentCollisionBound->SetMax(_collisionBound->GetMax().x, _collisionBound->GetMax().y);
+
+  _stepSFX[0] = sfxManager.Load("../Data/SFX/step_cloth1.wav");
+  _stepSFX[1] = sfxManager.Load("../Data/SFX/step_cloth2.wav");
+  _stepSFX[2] = sfxManager.Load("../Data/SFX/step_cloth3.wav");
+  _stepSFX[3] = sfxManager.Load("../Data/SFX/step_cloth4.wav");
+  _lastStepSFXPlayed = -1;
 }
 
 Player::~Player(void) {
@@ -68,8 +77,8 @@ bool Player::GetInBlueCollision(void) {
 }
 
 void Player::ProcessEvents(void) {
-  x = _player->GetX();
-  y = _player->GetY();
+  float oldX = x = _player->GetX();
+  float oldY = y = _player->GetY();
   if(KeyStillDown(SDLK_w)) {
     y -= PLAYER_SPEED;
     _player->SetY(y);
@@ -85,6 +94,18 @@ void Player::ProcessEvents(void) {
   if(KeyStillDown(SDLK_d)) {
     x += PLAYER_SPEED;
     _player->SetX(x);
+  }
+  if(x != oldX || y != oldY) {
+    if(!SoundEffect::IsPlaying(1)) {
+      int sfxIndex;
+      do {
+        sfxIndex = rand() % 4;
+      } while(sfxIndex == _lastStepSFXPlayed);
+
+      SoundEffect::Play(_stepSFX[sfxIndex], 1, 0);
+      
+      _lastStepSFXPlayed = sfxIndex;
+    }
   }
 }
 
