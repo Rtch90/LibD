@@ -32,7 +32,7 @@ bool Game::Init(void) {
   glAlphaFunc(GL_GREATER, 0.1f);
 
   _level->Load("../Data/Map/Ugly.tmx");
-  _player->Prepare();
+  _player->Update();
 
   // Return success.
   return true;
@@ -64,7 +64,7 @@ void Game::Shutdown(void) {
 }
 
 void Game::ProcessEvents(void) {
-  _player->ProcessEvents();
+  // Should not need this, as the game class has no events to process..
 }
 
 void Game::OnResize(int width, int height) {
