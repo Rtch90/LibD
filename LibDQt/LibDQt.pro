@@ -1,13 +1,15 @@
 CONFIG -= qt
 LIBS += -lGL \
     -lSDL \
-    -lSDL_ttf \
     -lSDL_image \
-    -lSDL_gfx \
     -ltinyxml \
     -lGLU \
     -lz \
     -ltinyxml
+win32: {
+LIBS -= -lGL -lGLU
+LIBS += -lkernel32 -luser32 -lgdi32 -lopengl32 -lglu32
+}
 HEADERS += ../src/Actor/Player.h \
     ../src/Collision/AABB.h \
     ../src/Global/Constants.h \
@@ -17,7 +19,6 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Level/Level.h \
     ../src/Level/Layer.h \
     ../src/Level/Tileset.h \
-    ../src/Main/LGLXWindow.h \
     ../src/Main/GLWindow.h \
     ../src/Main/Game.h \
     ../src/Math/Timer.h \
@@ -52,7 +53,6 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/Level/Tileset.cpp \
     ../src/Level/Level.cpp \
     ../src/Level/Layer.cpp \
-    ../src/Main/LGLXWindow.cpp \
     ../src/Main/GLWindow.cpp \
     ../src/Main/Game.cpp \
     ../src/Main/main.cpp \

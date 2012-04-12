@@ -2,7 +2,6 @@
 #include <string>
 
 #include "../Math/Vec2.h"
-#include "../Sprite/Sprite.h"
 #include "../Global/Globals.h"
 
 /*
@@ -12,6 +11,8 @@
  * then be used to calculate collision
  * against other bounding box's.
  */
+
+struct SDL_Surface;
 
 class AABB {
 public:
@@ -39,5 +40,5 @@ private:
   Vec2 _staticMin;
   Vec2 _staticMax;
 
-  Sprite* _sprite;
+  SDL_Surface* _sprite;
 };

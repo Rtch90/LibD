@@ -6,11 +6,13 @@ Player::Player(void) {
   _allowCollision   = true;
   _notColliding     = false;
   _blueCollision    = false;
+  _player           = new Sprite();
+  _player->LoadSprite("../Data/Img/Player.png");
 
   // Loading of sprites and collision details.
   // This should be directed to a collision sheet.
-  //_collisionBound = new AABB();
-  //_collisionBound->CreateAABBFromSprite("../Data/Img/Player");
+  _collisionBound = new AABB();
+  _collisionBound->CreateAABBFromSprite("../Data/Img/Player");
 
   //_environmentCollisionBound = new AABB();
   //_environmentCollisionBound->SetMin(_collisionBound->GetMin().x, _collisionBound->GetMax().y - 50.0f);
@@ -23,9 +25,6 @@ Player::~Player(void) {
 }
 
 void Player::Update(void) {
-  if(!_player) {
-    _player->LoadSprite("../Data/Img/Player.png");
-  }
   // Position and collision bound with the player.
   //_collisionBound->SetPositionOffset(_player->GetX(), _player->GetY());
   //_environmentCollisionBound->SetPositionOffset(_player->GetX, _player->GetY());

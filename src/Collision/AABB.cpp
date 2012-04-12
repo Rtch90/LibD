@@ -1,5 +1,5 @@
+#include <SDL/SDL_image.h>
 #include "AABB.h"
-
 
 typedef Uint32 DWORD;
 
@@ -21,8 +21,10 @@ AABB::AABB(Vec2 &min, Vec2 &max) {
 }
 
 AABB::~AABB(void) {
-  if(_sprite)
-  delete _sprite;
+  if(_sprite) {
+    SDL_FreeSurface(_sprite);
+    _sprite = NULL;
+  }
 }
 
 void AABB::SetRelativePosition(float x, float y) {
@@ -53,22 +55,24 @@ bool AABB::InCollision(AABB* otherAABB) {
 void AABB::CreateAABBFromSprite(const char* filename) {
   std::string tempName(filename);
   tempName += ".png";
-  _sprite = new Sprite();
-  _sprite->LoadSprite(tempName);
+  _sprite = IMG_Load(filename);
+  if(!_sprite) {
+    return;
+  }
 
   // I have no methods here, hopefully KonoM will have it
   // implemented real soon...
-  //float spriteWidth  = _sprite->GetWidth();
-  //float spriteHeight = _sprite->GetHeight();
+  //float spriteWidth  = _sprite->w;
+  //float spriteHeight = _sprite->h;
 
   // Find the min, look through until we find a first instance of a white color.
   bool found = false;
   int color = 0;
 
-  DWORD* pixels = (DWORD*)screen->pixels;
+  DWORD* pixels = (DWORD*)_sprite->pixels;
 
-  for(int width = 0; width < _sprite->GetWidth(); width++) {
-    for(int height = 0; height < _sprite->GetHeight(); height++) {
+  for(int width = 0; width < _sprite->w; width++) {
+    for(int height = 0; height < _sprite->h; height++) {
       // FUCKING PAIN IN THE ASS MOTHERFUCKER!!!!
       DWORD offset = height * screen->pitch + width;
 //      if(((DWORD)pixels[offset]) != 0 && !found) {
@@ -76,17 +80,17 @@ void AABB::CreateAABBFromSprite(const char* filename) {
 //       found = true;
 //       color = ((DWORD)pixels[offset]);
 //       // Break out of these god forsaken loops.
-//       width  = _sprite->GetWidth();
-//       height = _sprite->GetHeight();
+//       width  = _sprite->w;
+//       height = _sprite->h;
 //      }
     }
   }
 
   // Let's try to find the max.x now..
-  _max.x = (float)_sprite->GetWidth();
+  _max.x = (float)_sprite->w;
   found = false;
-  for(int width = (int)_min.x; width < _sprite->GetWidth(); width++) {
-    DWORD offset = _min.y * screen->pitch + width;
+  for(int width = (int)_min.x; width < _sprite->w; width++) {
+    DWORD offset = (DWORD)_min.y * screen->pitch + width;
 //    if(((DWORD)pixels[offset] != color && !found)) {
 //      found = true;
 //      _max.x = (float)width;
@@ -94,10 +98,10 @@ void AABB::CreateAABBFromSprite(const char* filename) {
   }
 
   // Now for the max.y
-  _max.y = (float)_sprite->GetHeight();
+  _max.y = (float)_sprite->h;
   found = false;
-  for(int height = (int)_min.y; height < _sprite->GetWidth(); height++) {
-    DWORD offset = (DWORD)(height * screen->pitch + _min.x);
+  for(int height = (int)_min.y; height < _sprite->w; height++) {
+    DWORD offset = height * screen->pitch + (DWORD)_min.x;
 //    if(((DWORD)pixels[offset]) != color && !found) {
 //      found = true;
 //      _max.y = (float)height;
