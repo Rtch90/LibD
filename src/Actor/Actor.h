@@ -1,5 +1,8 @@
 #pragma once
+#include <SDL/SDL.h>
+
 #include "../Sprite/Sprite.h"
+#include "../Math/Vec2.h"
 
 class Actor {
 public:
@@ -50,4 +53,6 @@ private:
   float h;
 
   Sprite* _actor;
+  Vec2 _spriteVector[4][4];
+
 };

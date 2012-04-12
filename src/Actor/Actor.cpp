@@ -1,11 +1,11 @@
 #include "Actor.h"
 
 Actor::Actor(void) : VELOCITY(10.0f) {
-
+  _actor = new Sprite();
 }
 
 Actor::~Actor(void) {
-
+  delete _actor;
 }
 
 void Actor::LoadSprite(const char* filename, float w, float h) {
