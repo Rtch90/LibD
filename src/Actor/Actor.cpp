@@ -9,7 +9,7 @@ Actor::~Actor(void) {
 }
 
 void Actor::LoadSprite(const char* filename, float w, float h) {
-
+  //static const char
 }
 
 void Actor::Update(void) {

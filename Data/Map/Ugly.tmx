@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" width="60" height="60" tilewidth="64" tileheight="64">
  <properties>
   <property name="BGM" value="../Data/Music/journey_to_the_east_rocks.ogg"/>
  </properties>
  <tileset firstgid="1" name="AwesomeTileset" tilewidth="64" tileheight="64">
   <image source="../Img/AwesomeTileset.png" width="256" height="128"/>
  </tileset>
- <layer name="Tile Layer 1" width="20" height="20">
+ <layer name="Tile Layer 1" width="60" height="60">
   <data encoding="base64" compression="zlib">
-   eJxjYWBgYMSCmdAwTJwFh3oQZsYjz4SDPRDmIWNi/ItNPcw8XHaRg2lhHjOa2aTS2NxHLTOHQviNmjdq3nAyj9oYABbJAjU=
+   eJzt0MENgDAQA8EA13/NtHCBoFhiHvv3uMYYx4+qgA28vLy8vLzVbPfOVV2Nup/MtNv95o/Zkr1f/PfUewbFy8vLy8ubEC8vLy8vb0K8vLy8vLwJ8fLy8vLyJsTLy8vLy5sQLy8vLy9vQry8vLy8a703oRIWWw==
   </data>
  </layer>
- <layer name="Tile Layer 2" width="20" height="20">
+ <layer name="Tile Layer 2" width="60" height="60">
   <data encoding="base64" compression="zlib">
-   eJxjYKAdYEXjs5FpDrn6KDGfHDth/mXDIobOJtY9xOqhBFAjfOnhzlEwCkbB4AIAbfMASQ==
+   eJztleEOgjAMBrcfwPu/sTGhSf06tDNCNd4lDZDNdrdOaK21xUXbr+sexnowb5F5mzzP5LuKe70uV1tTd/ej3+nYKmMz+a7C77Wtz/rR9zjqr+/bqK+jfFrz6v4enb/eHn03FzZP8/jQfbFcbfB8JeZr9a0v2t+R7yZ5/Bz9n2h/K1x9be+rY0fnWX09+j7wc6rfVx5/zqrO3JksyfgnsnsyE/9Ela9+QzTOYtb31Tqz8ey8farGaP/e8f0mMuvHNw++teAbwTcPvrXgG8E3D7614BvBNw++teAbwTcPvrXgG8E3D7614BvBNw++teAbwTcPvrXgG8E3D7614BvBNw++teAbwTcPvrXgG8E3D761/IrvDT5XCI0=
   </data>
  </layer>
 </map>

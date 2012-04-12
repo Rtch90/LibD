@@ -53,6 +53,7 @@ private:
   float h;
 
   Sprite* _actor;
+  SDL_Surface* texture;
   Vec2 _spriteVector[4][4];
 
 };
