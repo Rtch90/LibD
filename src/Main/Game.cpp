@@ -93,7 +93,7 @@ void Game::OnResize(int width, int height) {
 
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  glOrtho(0.0, 800.0, 0.0, 600.0, 0.0, 1.0);
+  glOrtho(0.0, 800.0, 600.0, 0.0, 0.0, 1.0);
 
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();

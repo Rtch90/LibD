@@ -17,6 +17,12 @@ Player::Player(void) {
 }
 
 Player::~Player(void) {
+  for(int i = 0; i < 4; i++) {
+    if(_stepSFX[i]) {
+      sfxManager.Destroy(_stepSFX[i]);
+      _stepSFX[i] = NULL;
+    }
+  }
   delete _player;
 }
 
