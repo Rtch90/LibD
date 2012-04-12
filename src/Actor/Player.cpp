@@ -4,7 +4,7 @@
 #include "../Sound/SoundEffect.h"
 
 Player::Player(void) {
-  PLAYER_SPEED      = 15;
+  PLAYER_SPEED      = 5;
   _rotationAngle    = 0.0f;
   _player           = new Sprite();
   _player->LoadSprite("../Data/Img/Player.png");
@@ -54,6 +54,15 @@ void Player::ProcessEvents(void) {
   if(KeyStillDown(SDLK_d) || KeyStillDown(SDLK_RIGHT)) {
     x += PLAYER_SPEED;
     _player->SetX(x);
+  }
+  if(KeyDown(SDLK_LSHIFT)) {
+    // Run!
+    PLAYER_SPEED += 3;
+    Debug::logger->message("Speed: %f", PLAYER_SPEED);
+  }
+  if(KeyUp(SDLK_LSHIFT)) {
+    PLAYER_SPEED -= 2;
+    Debug::logger->message("Speed: %f", PLAYER_SPEED);
   }
   if(x != oldX || y != oldY) {
     if(!SoundEffect::IsPlaying(1)) {
