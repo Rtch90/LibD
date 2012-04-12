@@ -62,8 +62,8 @@ void AABB::CreateAABBFromSprite(const char* filename) {
 
   // I have no methods here, hopefully KonoM will have it
   // implemented real soon...
-  //float spriteWidth  = _sprite->w;
-  //float spriteHeight = _sprite->h;
+  float spriteWidth  = _sprite->w;
+  float spriteHeight = _sprite->h;
 
   // Find the min, look through until we find a first instance of a white color.
   bool found = false;
@@ -75,14 +75,14 @@ void AABB::CreateAABBFromSprite(const char* filename) {
     for(int height = 0; height < _sprite->h; height++) {
       // FUCKING PAIN IN THE ASS MOTHERFUCKER!!!!
       DWORD offset = height * screen->pitch + width;
-//      if(((DWORD)pixels[offset]) != 0 && !found) {
-//       _min = Vec2((float)width, (float)height);
-//       found = true;
-//       color = ((DWORD)pixels[offset]);
-//       // Break out of these god forsaken loops.
-//       width  = _sprite->w;
-//       height = _sprite->h;
-//      }
+      if(((DWORD)pixels[offset]) != 0 && !found) {
+       _min = Vec2((float)width, (float)height);
+       found = true;
+       color = ((DWORD)pixels[offset]);
+       // Break out of these god forsaken loops.
+       width  = _sprite->w;
+       height = _sprite->h;
+      }
     }
   }
 
@@ -91,10 +91,10 @@ void AABB::CreateAABBFromSprite(const char* filename) {
   found = false;
   for(int width = (int)_min.x; width < _sprite->w; width++) {
     DWORD offset = (DWORD)_min.y * screen->pitch + width;
-//    if(((DWORD)pixels[offset] != color && !found)) {
-//      found = true;
-//      _max.x = (float)width;
-//    }
+    if(((DWORD)pixels[offset] != color && !found)) {
+      found = true;
+      _max.x = (float)width;
+    }
   }
 
   // Now for the max.y
@@ -102,11 +102,11 @@ void AABB::CreateAABBFromSprite(const char* filename) {
   found = false;
   for(int height = (int)_min.y; height < _sprite->w; height++) {
     DWORD offset = height * screen->pitch + (DWORD)_min.x;
-//    if(((DWORD)pixels[offset]) != color && !found) {
-//      found = true;
-//      _max.y = (float)height;
-//      break;
-//    }
+    if(((DWORD)pixels[offset]) != color && !found) {
+      found = true;
+      _max.y = (float)height;
+      break;
+    }
   }
   _staticMax = _max;
   _staticMin = _min;
