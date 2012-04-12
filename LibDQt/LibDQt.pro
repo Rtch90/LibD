@@ -53,7 +53,8 @@ HEADERS += ../src/Actor/Player.h \
     ../src/TMXParser/Tmx.h \
     ../src/TMXParser/base64.h \
     ../src/Collision/TileCollision.h \
-    ../src/Actor/NPC.h
+    ../src/Actor/NPC.h \
+    ../src/Sound/SoundEffect.h
 SOURCES += ../src/Actor/Player.cpp \
     ../src/Collision/AABB.cpp \
     ../src/Global/Globals.cpp \
@@ -83,5 +84,6 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/TMXParser/TmxLayer.cpp \
     ../src/TMXParser/TmxImage.cpp \
     ../src/TMXParser/base64.cpp \
-    ../src/Actor/NPC.cpp
+    ../src/Actor/NPC.cpp \
+    ../src/Sound/SoundEffect.cpp
 OTHER_FILES += 
