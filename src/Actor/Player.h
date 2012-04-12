@@ -30,10 +30,10 @@ public:
 
   void ProcessEvents(void);
 
-  int GetX() { return x; }
-  int GetY() { return y; }
-  int GetWidth();
-  int GetHeight();
+  int GetX(void) { return x; }
+  int GetY(void) { return y; }
+  int GetWidth(void);
+  int GetHeight(void);
 
 private:
   float x;

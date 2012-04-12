@@ -62,8 +62,8 @@ void AABB::CreateAABBFromSprite(const char* filename) {
 
   // I have no methods here, hopefully KonoM will have it
   // implemented real soon...
-  float spriteWidth  = _sprite->w;
-  float spriteHeight = _sprite->h;
+  //float spriteWidth  = _sprite->w;
+  //float spriteHeight = _sprite->h;
 
   // Find the min, look through until we find a first instance of a white color.
   bool found = false;

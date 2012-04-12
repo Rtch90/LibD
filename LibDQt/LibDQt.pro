@@ -49,7 +49,8 @@ HEADERS += ../src/Actor/Player.h \
     ../src/TMXParser/TmxMap.h \
     ../src/TMXParser/TmxLayer.h \
     ../src/TMXParser/Tmx.h \
-    ../src/TMXParser/base64.h
+    ../src/TMXParser/base64.h \
+    ../src/Collision/TileCollision.h
 SOURCES += ../src/Actor/Player.cpp \
     ../src/Collision/AABB.cpp \
     ../src/Global/Globals.cpp \
