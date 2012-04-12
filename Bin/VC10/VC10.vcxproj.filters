@@ -37,11 +37,11 @@
     <Filter Include="Collision">
       <UniqueIdentifier>{27a35a1b-7725-467a-aeb8-d169c437676e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{28fe54ce-152c-4d7d-8a14-3b9d0155d089}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Main\GLWindow.h">
-      <Filter>Main</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Main\Game.h">
       <Filter>Main</Filter>
     </ClInclude>
@@ -150,15 +150,15 @@
     <ClInclude Include="..\..\src\Level\Tileset.h">
       <Filter>Level</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\Sound\Music.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Main\Game.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Main\GLWindow.cpp">
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Texture\Texture.cpp">
@@ -238,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Global\Constants.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Sound\Music.cpp">
+      <Filter>Sound</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

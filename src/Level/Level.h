@@ -5,6 +5,7 @@
 
 class Layer;
 class Tileset;
+class Music;
 
 class Level {
 public:
@@ -12,6 +13,8 @@ public:
   ~Level();
 
   bool Load(const std::string& filename);
+
+  void PlayBGM();
 
   void Update(float dt);
   void Draw(int xOffset, int yOffset);
@@ -28,4 +31,5 @@ private:
   int _tileHeight;
   std::list<Layer*> _layers;
   std::list<Tileset*> _tilesets;
+  Music* _bgm;
 };

@@ -59,7 +59,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\..\Libs\Win32\SDL\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL.lib;SDL_image.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL.lib;SDL_image.lib;SDL_mixer.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,7 +79,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>..\..\Libs\Win32\SDL\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL.lib;SDL_image.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL.lib;SDL_image.lib;SDL_mixer.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -95,12 +95,12 @@
     <ClInclude Include="..\..\src\Level\MapTile.h" />
     <ClInclude Include="..\..\src\Level\Tileset.h" />
     <ClInclude Include="..\..\src\Main\Game.h" />
-    <ClInclude Include="..\..\src\Main\GLWindow.h" />
     <ClInclude Include="..\..\src\Math\FPS.h" />
     <ClInclude Include="..\..\src\Math\MathBox.h" />
     <ClInclude Include="..\..\src\Math\Rect.h" />
     <ClInclude Include="..\..\src\Math\Timer.h" />
     <ClInclude Include="..\..\src\Math\Vec2.h" />
+    <ClInclude Include="..\..\Src\Sound\Music.h" />
     <ClInclude Include="..\..\src\Sprite\Sprite.h" />
     <ClInclude Include="..\..\src\System\Debug.h" />
     <ClInclude Include="..\..\src\System\ResourceManager.h" />
@@ -131,11 +131,11 @@
     <ClCompile Include="..\..\src\Level\Level.cpp" />
     <ClCompile Include="..\..\src\Level\Tileset.cpp" />
     <ClCompile Include="..\..\src\Main\Game.cpp" />
-    <ClCompile Include="..\..\src\Main\GLWindow.cpp" />
     <ClCompile Include="..\..\src\Main\main.cpp" />
     <ClCompile Include="..\..\src\Math\FPS.cpp" />
     <ClCompile Include="..\..\src\Math\Timer.cpp" />
     <ClCompile Include="..\..\src\Math\Vec2.cpp" />
+    <ClCompile Include="..\..\Src\Sound\Music.cpp" />
     <ClCompile Include="..\..\src\Sprite\Sprite.cpp" />
     <ClCompile Include="..\..\src\System\Debug.cpp" />
     <ClCompile Include="..\..\src\Texture\Texture.cpp" />

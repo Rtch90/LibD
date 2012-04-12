@@ -34,6 +34,7 @@ HEADERS += ../src/Actor/Player.h \
     ../src/System/Debug.h \
     ../src/System/ResourceManager.h \
     ../src/Texture/Texture.h \
+    ../src/Sound/Music.h \
     ../src/TMXParser/TmxUtil.h \
     ../src/TMXParser/TmxTileset.h \
     ../src/TMXParser/TmxTile.h \
@@ -65,6 +66,7 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/Sprite/Sprite.cpp \
     ../src/System/Debug.cpp \
     ../src/Texture/Texture.cpp \
+    ../src/Sound/Music.cpp \
     ../src/TMXParser/TmxUtil.cpp \
     ../src/TMXParser/TmxTileset.cpp \
     ../src/TMXParser/TmxTile.cpp \

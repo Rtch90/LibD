@@ -10,6 +10,7 @@
 #endif
 
 #include <SDL/SDL.h>
+#include <SDL/SDL_mixer.h>
 #include <GL/gl.h>
 #include <time.h>
 #include "Game.h"
@@ -41,7 +42,7 @@ int main(int argc, char** argv) {
   Debug::openLog(true);
   Debug::logger->message("\n ----- Engine Loading -----");
 
-  if(SDL_Init(SDL_INIT_VIDEO) < 0) {
+  if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
     Debug::logger->message("Error: Could not load SDL");
     Destroy();
     return 1;
@@ -60,6 +61,10 @@ int main(int argc, char** argv) {
 
   screen = SDL_SetVideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32, flags);
   Debug::logger->message("Video mode set..");
+
+  if(Mix_OpenAudio(44100, AUDIO_S16, 2, 4096)) {
+    Debug::logger->message("Audio opened..");
+  }
 
   info = SDL_GetVideoInfo();
   if(!info) {

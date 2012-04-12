@@ -3,6 +3,7 @@
 #include "Level.h"
 #include "Layer.h"
 #include "Tileset.h"
+#include "../Sound/Music.h"
 #include "../System/Debug.h"
 #include "../TMXParser/Tmx.h"
 
@@ -11,6 +12,7 @@ Level::Level() {
   _height = 0;
   _tileWidth = 0;
   _tileHeight = 0;
+  _bgm = NULL;
 }
 
 Level::~Level() {
@@ -23,6 +25,11 @@ Level::~Level() {
     delete (*i);
   }
   _tilesets.clear();
+
+  if(_bgm) {
+    musicManager.Destroy(_bgm);
+    _bgm = NULL;
+  }
 }
 
 bool Level::Load(const std::string& filename) {
@@ -76,7 +83,26 @@ bool Level::Load(const std::string& filename) {
     _layers.push_back(layer);
   }
 
+  std::map<std::string, std::string> mapProps = map.GetProperties().GetList();
+  for(std::map<std::string, std::string>::iterator i = mapProps.begin(); i != mapProps.end(); ++i) {
+    if(i->first == "BGM") {
+      _bgm = musicManager.Load(i->second);
+    }
+  }
+
   return true;
+}
+
+void Level::PlayBGM() {
+  if(_bgm) {
+    Music::Play(_bgm, -1);
+  }
+}
+
+void Level::Update(float dt) {
+  for(std::list<Layer*>::iterator i = _layers.begin(); i != _layers.end(); ++i) {
+    (*i)->Update(dt);
+  }
 }
 
 void Level::Draw(int xOffset, int yOffset) {
