@@ -40,8 +40,6 @@ int main(int argc, char** argv) {
   // Start by opening a debug log.
   Debug::openLog(true);
   Debug::logger->message("\n ----- Engine Loading -----");
-  // Our game code.
-  Game game;
 
   if(SDL_Init(SDL_INIT_VIDEO) < 0) {
     Debug::logger->message("Error: Could not load SDL");
@@ -78,6 +76,7 @@ int main(int argc, char** argv) {
   Debug::logger->message("\n ----- Engine Initialization Complete -----");
   Debug::logger->message("\n ----- Logic -----");
 
+  Game game;
   game.Init();
   CreateInput();
 

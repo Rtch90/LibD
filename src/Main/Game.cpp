@@ -35,7 +35,6 @@ bool Game::Init(void) {
   glAlphaFunc(GL_GREATER, 0.1f);
 
   _level->Load("../Data/Map/Ugly.tmx");
-  _player->Update();
 
   // Return success.
   return true;
@@ -74,8 +73,6 @@ void Game::Render(void) {
   // Render our shit..
   _level->Draw(xOffset, yOffset);
   _player->Render();
-
-  glPopMatrix();
 }
 
 void Game::Shutdown(void) {
@@ -85,7 +82,7 @@ void Game::Shutdown(void) {
 }
 
 void Game::ProcessEvents(void) {
-  // Should not need this, as the game class has no events to process..
+  _player->ProcessEvents();
 }
 
 void Game::OnResize(int width, int height) {
