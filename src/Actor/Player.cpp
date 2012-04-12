@@ -41,7 +41,24 @@ void Player::Render(void) {
 }
 
 void Player::ProcessCollisions(void) {
+  // Process collisions with entities and actors.
+  // We should ensure we are not dead.
+  EntityCollisionTest();
+  ActorCollisionTest();
 
+  // Set all collision flags to false conditions
+  // then they will need to be proven in the test.
+  _notColliding   = true;
+  _blueCollision  = false;
+  bool onFloor    = false;
+
+  // This is going to get messy, and I am going to have to play
+  // in KonoM's level stuff.
+
+  // We need a level manager class that will create a list of collidable
+  // entites/actors.
+
+  // I'll do this tomorrow now.
 }
 
 void Player::ProcessEvents(void) {
