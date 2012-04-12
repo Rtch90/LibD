@@ -33,6 +33,8 @@ public:
   bool InCollision(AABB* otherAABB);
   void CreateAABBFromSprite(const char* filename);
 
+  void Render(void);
+
 private:
   Vec2 _min;
   Vec2 _max;

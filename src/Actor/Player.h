@@ -10,6 +10,21 @@ class Sprite;
 // We will derive from an Actor class at some point.
 class Player {
 public:
+  // Facing enum controls which spritr to render.
+  enum Facing {
+    LEFT,
+    RIGHT,
+    NONE
+  };
+
+  // Control the current state the character is in.
+  enum Status {
+    STANDING = 0,
+    WALKING,
+    HURT,
+    DEAD,
+  };
+
   Player(void);
   ~Player(void);
 
@@ -46,6 +61,8 @@ private:
   bool _allowCollision;
   bool _notColliding;
   bool _blueCollision;
+
+  Facing _preventMovement;
 
   AABB* _collisionBound;
   AABB* _environmentCollisionBound;

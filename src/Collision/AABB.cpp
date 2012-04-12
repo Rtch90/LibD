@@ -113,3 +113,7 @@ void AABB::CreateAABBFromSprite(const char* filename) {
   delete _sprite;
   _sprite = 0;
 }
+
+void AABB::Render(void) {
+  // FUCK YOU KonoM!!
+}

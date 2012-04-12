@@ -63,6 +63,10 @@ void Player::ActorCollisionTest(void) {
 
 }
 
+bool Player::GetInBlueCollision(void) {
+  return(_blueCollision && _preventMovement != NONE);
+}
+
 void Player::ProcessEvents(void) {
   x = _player->GetX();
   y = _player->GetY();

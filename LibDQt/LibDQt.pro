@@ -5,7 +5,8 @@ LIBS += -lGL \
     -ltinyxml \
     -lGLU \
     -lz \
-    -ltinyxml
+    -ltinyxml \
+    -lSDL_mixer
 win32: { 
     LIBS -= -lGL \
         -lGLU
@@ -13,7 +14,8 @@ win32: {
         -luser32 \
         -lgdi32 \
         -lopengl32 \
-        -lglu32
+        -lglu32 \
+        -lSDL_mixer
 }
 HEADERS += ../src/Actor/Player.h \
     ../src/Collision/AABB.h \
@@ -50,7 +52,8 @@ HEADERS += ../src/Actor/Player.h \
     ../src/TMXParser/TmxLayer.h \
     ../src/TMXParser/Tmx.h \
     ../src/TMXParser/base64.h \
-    ../src/Collision/TileCollision.h
+    ../src/Collision/TileCollision.h \
+    ../src/Actor/NPC.h
 SOURCES += ../src/Actor/Player.cpp \
     ../src/Collision/AABB.cpp \
     ../src/Global/Globals.cpp \
@@ -79,4 +82,6 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/TMXParser/TmxMap.cpp \
     ../src/TMXParser/TmxLayer.cpp \
     ../src/TMXParser/TmxImage.cpp \
-    ../src/TMXParser/base64.cpp
+    ../src/TMXParser/base64.cpp \
+    ../src/Actor/NPC.cpp
+OTHER_FILES += 
