@@ -61,7 +61,7 @@ bool AABB::InCollision(AABB* otherAABB) {
 void AABB::CreateAABBFromSprite(const char* filename) {
   std::string tempName(filename);
   tempName += ".png";
-  
+
   _surface = IMG_Load(filename);
   if(!_surface) {
     return;
@@ -88,7 +88,7 @@ void AABB::CreateAABBFromSprite(const char* filename) {
     for(int height = 0; height < _surface->h; height++) {
       // FUCKING PAIN IN THE ASS MOTHERFUCKER!!!!
       Uint32 offset = height * screen->pitch + width;
-      if(((DWORD)pixels[offset]) != 0 && !found) {
+      if(((Uint32)pixels[offset]) != 0 && !found) {
        _min = Vec2((float)width, (float)height);
        found = true;
        color = ((Uint32)pixels[offset]);
@@ -123,7 +123,7 @@ void AABB::CreateAABBFromSprite(const char* filename) {
   }
   _staticMax = _max;
   _staticMin = _min;
-  
+
   SDL_FreeSurface(_surface);
   _surface = NULL;
 }
