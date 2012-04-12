@@ -61,7 +61,7 @@ void Player::ProcessEvents(void) {
     Debug::logger->message("Speed: %f", PLAYER_SPEED);
   }
   if(KeyUp(SDLK_LSHIFT)) {
-    PLAYER_SPEED -= 2;
+    PLAYER_SPEED -= 3;
     Debug::logger->message("Speed: %f", PLAYER_SPEED);
   }
   if(x != oldX || y != oldY) {
