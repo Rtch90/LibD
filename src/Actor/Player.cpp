@@ -14,9 +14,9 @@ Player::Player(void) {
   _collisionBound = new AABB();
   _collisionBound->CreateAABBFromSprite("../Data/Img/Player");
 
-  //_environmentCollisionBound = new AABB();
-  //_environmentCollisionBound->SetMin(_collisionBound->GetMin().x, _collisionBound->GetMax().y - 50.0f);
-  //_environmentCollisionBound->SetMax(_collisionBound->GetMax());
+  _environmentCollisionBound = new AABB();
+  _environmentCollisionBound->SetMin(_collisionBound->GetMin().x, _collisionBound->GetMax().y - 50.0f);
+  _environmentCollisionBound->SetMax(_collisionBound->GetMax().x, _collisionBound->GetMax().y);
 }
 
 Player::~Player(void) {
@@ -26,11 +26,11 @@ Player::~Player(void) {
 
 void Player::Update(void) {
   // Position and collision bound with the player.
-  //_collisionBound->SetPositionOffset(_player->GetX(), _player->GetY());
-  //_environmentCollisionBound->SetPositionOffset(_player->GetX, _player->GetY());
+  _collisionBound->SetPositionOffset(_player->GetX(), _player->GetY());
+  _environmentCollisionBound->SetPositionOffset(_player->GetPosition().x, _player->GetPosition().y);
 
   // Time to process the collisions.
-  //ProcessCollisions();
+  ProcessCollisions();
 
   // Process events here.
   ProcessEvents();
@@ -44,22 +44,15 @@ void Player::Render(void) {
 void Player::ProcessCollisions(void) {
   // Process collisions with entities and actors.
   // We should ensure we are not dead.
-  //EntityCollisionTest();
-  //ActorCollisionTest();
+  EntityCollisionTest();
+  ActorCollisionTest();
 
   // Set all collision flags to false conditions
   // then they will need to be proven in the test.
   _notColliding   = true;
   _blueCollision  = false;
-  bool onFloor    = false;
 
-  // This is going to get messy, and I am going to have to play
-  // in KonoM's level stuff.
-
-  // We need a level manager class that will create a list of collidable
-  // entites/actors.
-
-  // I'll do this tomorrow now.
+  //if(_environmentCollisionBound->InCollision())
 }
 
 void Player::EntityCollisionTest(void) {
@@ -91,5 +84,5 @@ void Player::ProcessEvents(void) {
   }
 }
 
-int Player::GetWidth() { return _player->GetWidth(); }
-int Player::GetHeight() { return _player->GetWidth(); }
+int Player::GetWidth(void) { return _player->GetWidth(); }
+int Player::GetHeight(void) { return _player->GetWidth(); }
