@@ -124,6 +124,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Actor\Player.cpp" />
     <ClCompile Include="..\..\src\Collision\AABB.cpp" />
+    <ClCompile Include="..\..\src\Global\Constants.cpp" />
     <ClCompile Include="..\..\src\Global\Globals.cpp" />
     <ClCompile Include="..\..\src\IO\Input.cpp" />
     <ClCompile Include="..\..\src\Level\Layer.cpp" />

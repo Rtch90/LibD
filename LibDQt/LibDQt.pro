@@ -46,6 +46,7 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Level/Layer.h \
 SOURCES += ../src/Actor/Player.cpp \
     ../src/Global/Globals.cpp \
+    ../src/Global/Constants.cpp \
     ../src/IO/Input.cpp \
     ../src/Main/main.cpp \
     ../src/Main/LGLXWindow.cpp \

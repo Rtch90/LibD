@@ -1,11 +1,11 @@
 #pragma once
 #include <SDL/SDL.h>
 
-const int WINDOW_WIDTH        = 800;
-const int WINDOW_HEIGHT       = 600;
-const int WINDOW_BPP          = 16;
-const int WINDOW_FULLSCREEN   = false;
+extern const int WINDOW_WIDTH;
+extern const int WINDOW_HEIGHT;
+extern const int WINDOW_BPP;
+extern const int WINDOW_FULLSCREEN;
 
-const SDL_VideoInfo* info     = NULL;
+extern const SDL_VideoInfo* info;
 
-int flags                     = 0;
+extern int flags;

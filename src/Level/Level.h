@@ -14,7 +14,7 @@ public:
   bool Load(const std::string& filename);
 
   void Update(float dt);
-  void Draw();
+  void Draw(int xOffset, int yOffset);
 
   int GetWidth() const { return _width; }
   int GetHeight() const { return _height; }
