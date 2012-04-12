@@ -15,7 +15,7 @@ Player::Player(void) {
 
   _environmentCollisionBound = new AABB();
   _environmentCollisionBound->SetMin(_collisionBound->GetMin().x, _collisionBound->GetMax().y - 50.0f);
-  _environmentCollisionBound->SetMax(_collisionBound->GetMax());
+  //_environmentCollisionBound->SetMax(_collisionBound->GetMax());
 }
 
 Player::~Player(void) {
@@ -26,7 +26,7 @@ Player::~Player(void) {
 void Player::Update(void) {
   // Position and collision bound with the player.
   _collisionBound->SetPositionOffset(_player->GetX(), _player->GetY());
-  _environmentCollisionBound->SetPositionOffset(_player->GetX, _player->GetY());
+  //_environmentCollisionBound->SetPositionOffset(_player->GetX, _player->GetY());
 
   // Time to process the collisions.
   ProcessCollisions();
@@ -59,6 +59,14 @@ void Player::ProcessCollisions(void) {
   // entites/actors.
 
   // I'll do this tomorrow now.
+}
+
+void Player::EntityCollisionTest(void) {
+
+}
+
+void Player::ActorCollisionTest(void) {
+
 }
 
 void Player::ProcessEvents(void) {
