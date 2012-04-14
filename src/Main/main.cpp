@@ -20,6 +20,7 @@
 #include "../System/Debug.h"
 
 void Destroy(void) {
+  Mix_CloseAudio();
   DestroyInput();
   SDL_FreeSurface(screen);
   SDL_Quit();
