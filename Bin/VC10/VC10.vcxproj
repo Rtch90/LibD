@@ -107,6 +107,7 @@
     <ClInclude Include="..\..\Src\Sound\SoundEffect.h" />
     <ClInclude Include="..\..\src\Sprite\Sprite.h" />
     <ClInclude Include="..\..\src\System\Debug.h" />
+    <ClInclude Include="..\..\src\System\FileReader.h" />
     <ClInclude Include="..\..\src\System\ResourceManager.h" />
     <ClInclude Include="..\..\src\Texture\Texture.h" />
     <ClInclude Include="..\..\src\TMXParser\base64.h" />
@@ -146,6 +147,7 @@
     <ClCompile Include="..\..\Src\Sound\SoundEffect.cpp" />
     <ClCompile Include="..\..\src\Sprite\Sprite.cpp" />
     <ClCompile Include="..\..\src\System\Debug.cpp" />
+    <ClCompile Include="..\..\src\System\FileReader.cpp" />
     <ClCompile Include="..\..\src\Texture\Texture.cpp" />
     <ClCompile Include="..\..\src\TMXParser\base64.cpp" />
     <ClCompile Include="..\..\src\TMXParser\TmxImage.cpp" />

@@ -1,17 +1,18 @@
 #include "NPC.h"
 
-NPC::NPC(void) {
-  _NPC = new Sprite();
+NPC::NPC(void) : Actor() {
 }
 
 NPC::~NPC(void) {
-  delete _NPC;
 }
 
-void NPC::Update(void) {
-
+void NPC::Update(float dt) {
+  Actor::Update(dt);
 }
 
 void NPC::Render(void) {
-  _NPC->Draw();
+  Actor::Render();
+}
+
+void NPC::Move(float dt) {
 }

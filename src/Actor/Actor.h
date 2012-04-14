@@ -4,14 +4,17 @@
 #include "../Sprite/Sprite.h"
 #include "../Math/Vec2.h"
 
+class SoundEffect;
+
 class Actor {
 public:
   Actor(void);
   ~Actor(void);
 
-  void LoadSprite(const char* filename, float w, float h);
-  void Update(void);
-  void Render(void);
+  void LoadSprite(const char* filename);
+
+  virtual void Update(float dt);
+  virtual void Render(void);
 
   float GetX(void)                      { return x; }
   float GetY(void)                      { return y; }
@@ -24,8 +27,9 @@ public:
   void SetDirection(int direction)      { _direction = direction; }
 
 protected:
-  const float VELOCITY;
+  virtual void Move(float dt) = 0;
 
+  float _velocity;
   int _direction;
 
   static const int ANIM_LEFT_FOOT    = 0;
@@ -33,14 +37,17 @@ protected:
   static const int ANIM_RIGHT_FOOT   = 2;
   static const int ANIM_ATTACK       = 3;
 
-private:
+  Sprite* _actor;
+
   float x;
   float y;
+
+private:
   float w;
   float h;
 
-  Sprite* _actor;
-  SDL_Surface* texture;
   Vec2 _spriteVector[4][4];
 
+  SoundEffect* _stepSFX[4];
+  int _lastStepSFXPlayed;
 };

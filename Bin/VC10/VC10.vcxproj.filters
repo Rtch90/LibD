@@ -168,6 +168,9 @@
     <ClInclude Include="..\..\src\Font\Font.h">
       <Filter>Font</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\System\FileReader.h">
+      <Filter>System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\main.cpp">
@@ -268,6 +271,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Font\Font.cpp">
       <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\System\FileReader.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
