@@ -6,19 +6,6 @@
 
 class Actor {
 public:
-  enum State {
-    WALKING,
-    RUNNING,
-    ATTACKING,
-  };
-
-  enum Facing {
-    FRONT,
-    BACK,
-    LEFT,
-    RIGHT
-  };
-
   Actor(void);
   ~Actor(void);
 
