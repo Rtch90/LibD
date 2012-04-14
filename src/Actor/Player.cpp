@@ -26,9 +26,9 @@ Player::~Player(void) {
   delete _player;
 }
 
-void Player::Update(void) {
+void Player::Update(float dt) {
   // Process events here.
-  ProcessEvents();
+  ProcessEvents(dt);
 }
 
 void Player::Render(void) {
@@ -36,7 +36,7 @@ void Player::Render(void) {
   _player->Draw();
 }
 
-void Player::ProcessEvents(void) {
+void Player::ProcessEvents(float dt) {
   float oldX = x = _player->GetX();
   float oldY = y = _player->GetY();
   if(KeyStillDown(SDLK_w) || KeyStillDown(SDLK_UP)) {
@@ -58,11 +58,11 @@ void Player::ProcessEvents(void) {
   if(KeyDown(SDLK_LSHIFT)) {
     // Run!
     PLAYER_SPEED += 3;
-    Debug::logger->message("Speed: %f", PLAYER_SPEED);
+    Debug::logger->message("Speed: %f", PLAYER_SPEED * 16 * dt);
   }
   if(KeyUp(SDLK_LSHIFT)) {
     PLAYER_SPEED -= 3;
-    Debug::logger->message("Speed: %f", PLAYER_SPEED);
+    Debug::logger->message("Speed: %f", PLAYER_SPEED * 16 * dt);
   }
   if(x != oldX || y != oldY) {
     if(!SoundEffect::IsPlaying(1)) {

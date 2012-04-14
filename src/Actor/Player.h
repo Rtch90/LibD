@@ -13,12 +13,12 @@ public:
   Player(void);
   ~Player(void);
 
-  void Update(void);
+  void Update(float dt);
   void Render(void);
 
   // --- Collision stuff.
 
-  void ProcessEvents(void);
+  void ProcessEvents(float dt);
 
   int GetX(void) { return x; }
   int GetY(void) { return y; }

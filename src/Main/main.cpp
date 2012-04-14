@@ -26,11 +26,9 @@ void Destroy(void) {
   SDL_Quit();
 }
 
-static void ResizeWindow(int w, int h) {
+static void ResizeWindow(Game& game, int w, int h) {
   SDL_SetVideoMode(w, h, 32, SDL_OPENGL | SDL_RESIZABLE);
-  glViewport(0,0,w,h);
-  glLoadIdentity();
-  glOrtho(0.0, 800.0, 600.0, 0.0, 0.0, 1.0);
+  game.OnResize(w, h);
   SDL_GL_SwapBuffers();
 }
 
@@ -60,7 +58,7 @@ int main(int argc, char** argv) {
 
   flags = SDL_OPENGL | SDL_HWSURFACE | SDL_RESIZABLE;
 
-  screen = SDL_SetVideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32, flags);
+  screen = SDL_SetVideoMode(windowWidth, windowHeight, 32, flags);
   Debug::logger->message("Video mode set..");
 
   if(Mix_OpenAudio(44100, AUDIO_S16, 2, 4096)) {
@@ -86,6 +84,9 @@ int main(int argc, char** argv) {
   game.Init();
   CreateInput();
 
+  Uint32 timeStart = SDL_GetTicks();
+  float dt = 1.0f / 60.0f;
+
   bool isRunning = true;
   while(isRunning) {
 
@@ -96,15 +97,19 @@ int main(int argc, char** argv) {
       }
       if(event.type == SDL_VIDEORESIZE) {
         // Resize the window.
-        ResizeWindow(event.resize.w, event.resize.h);
+        ResizeWindow(game, event.resize.w, event.resize.h);
         break;
       }
     }
 
     UpdateInput();
-    game.ProcessEvents();
+    game.ProcessEvents(dt);
     game.Render();
     SDL_GL_SwapBuffers();
+
+	Uint32 timeEnd = SDL_GetTicks();
+	dt = (float)(timeEnd - timeStart) / 1000.0f;
+	timeStart = timeEnd;
   }
 
   game.Shutdown();
