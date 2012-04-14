@@ -49,21 +49,17 @@ void Game::Prepare(float dt) {
 void Game::Render(void) {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  glOrtho(0.0, 800.0, 600.0, 0.0, 0.0, 1.0);
-
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
-  float windowCenterX = ((float)WINDOW_WIDTH / 2.0f) - ((float)_player->GetWidth() / 2.0f);
-  float windowCenterY = ((float)WINDOW_HEIGHT / 2.0f) - ((float)_player->GetHeight() / 2.0f);
+  float windowCenterX = ((float)windowWidth / 2.0f) - ((float)_player->GetWidth() / 2.0f);
+  float windowCenterY = ((float)windowHeight / 2.0f) - ((float)_player->GetHeight() / 2.0f);
 
   float xOffset = _player->GetX() - windowCenterX;
   float yOffset = _player->GetY() - windowCenterY;
 
-  float maxXOffset = (_level->GetWidth() * _level->GetTileWidth()) - (float)WINDOW_WIDTH;
-  float maxYOffset = (_level->GetHeight() * _level->GetTileHeight()) - (float)WINDOW_HEIGHT;
+  float maxXOffset = (_level->GetWidth() * _level->GetTileWidth()) - (float)windowWidth;
+  float maxYOffset = (_level->GetHeight() * _level->GetTileHeight()) - (float)windowHeight;
 
   if(xOffset < 0.0f) xOffset = 0.0f;
   if(yOffset < 0.0f) yOffset = 0.0f;
@@ -84,16 +80,19 @@ void Game::Shutdown(void) {
   delete _level;
 }
 
-void Game::ProcessEvents(void) {
-  _player->ProcessEvents();
+void Game::ProcessEvents(float dt) {
+  _player->ProcessEvents(dt);
 }
 
 void Game::OnResize(int width, int height) {
   glViewport(0, 0, width, height);
 
+  windowWidth = width;
+  windowHeight = height;
+
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  glOrtho(0.0, 800.0, 600.0, 0.0, 0.0, 1.0);
+  glOrtho(0.0, (GLdouble)windowWidth, (GLdouble)windowHeight, 0.0, 0.0, 1.0);
 
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();

@@ -16,7 +16,7 @@ public:
   void Render(void);
   void Shutdown(void);
 
-  void ProcessEvents(void);
+  void ProcessEvents(float dt);
 
   void OnResize(int width, int height);
 

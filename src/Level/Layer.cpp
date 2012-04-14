@@ -1,6 +1,6 @@
 #include "Layer.h"
 #include "Tileset.h"
-#include "../Global/Constants.h"
+#include "../Global/Globals.h"
 
 Layer::Layer(int width, int height, int tileWidth, int tileHeight) {
   _width = width;
@@ -26,9 +26,9 @@ void Layer::Draw(int xOffset, int yOffset) {
   int yOffsetTiles = yOffset / _tileHeight;
 
   int minX = std::max(xOffsetTiles, 0);
-  int maxX = std::min(_width, xOffsetTiles + WINDOW_WIDTH / (int)_tileWidth + 2);
+  int maxX = std::min(_width, xOffsetTiles + windowWidth / (int)_tileWidth + 2);
   int minY = std::max(yOffsetTiles, 0);
-  int maxY = std::min(_height, yOffsetTiles + WINDOW_HEIGHT / (int)_tileHeight + 2);
+  int maxY = std::min(_height, yOffsetTiles + windowHeight / (int)_tileHeight + 2);
   
   for(int x = minX; x < maxX; x++) {
     for(int y = minY; y < maxY; y++) {
