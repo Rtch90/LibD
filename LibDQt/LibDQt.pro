@@ -6,7 +6,8 @@ LIBS += -lGL \
     -lGLU \
     -lz \
     -ltinyxml \
-    -lSDL_mixer
+    -lSDL_mixer \
+    -lSDL_ttf
 win32: { 
     LIBS -= -lGL \
         -lGLU

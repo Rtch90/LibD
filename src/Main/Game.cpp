@@ -17,9 +17,17 @@
 
 Game::Game(void) {
   _player = new Player();
-  //_NPC    = new NPC();
+  _NPC    = new NPC();
   _level  = new Level();
-  //_rotationAngle = 0.0f;
+
+  _player->LoadSprite("../Data/Img/Player.png");
+  _NPC->LoadSprite("../Data/Img/Player.png");
+
+  _NPC->SetXY(30.0f, 30.0f);
+
+  _testFont = new Font();
+  _testFont->Load("../Data/Font/Fairydust.ttf");
+  _testFont->SetColor(0.0f, 1.0f, 1.0f, 1.0f);
 }
 
 Game::~Game(void) {
@@ -71,17 +79,24 @@ void Game::Render(void) {
   // Render our shit..
   _level->Draw(xOffset, yOffset);
   _player->Render();
-  //_NPC->Render();
+  _NPC->Render();
+  _testFont->DrawText(
+    _player->GetX() - 5,
+    _player->GetY() - _testFont->GetLineSkip() - 2,
+    "Miss D");
 }
 
 void Game::Shutdown(void) {
   Debug::logger->message("\n ----- Cleaning Engine -----");
+  delete _testFont;
+  delete _NPC;
   delete _player;
   delete _level;
 }
 
 void Game::ProcessEvents(float dt) {
-  _player->ProcessEvents(dt);
+  _player->Update(dt);
+  _NPC->Update(dt);
 }
 
 void Game::OnResize(int width, int height) {

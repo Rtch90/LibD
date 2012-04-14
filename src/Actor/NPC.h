@@ -1,14 +1,15 @@
 #pragma once
 #include "../Sprite/Sprite.h"
+#include "../Actor/Actor.h"
 
-class NPC {
+class NPC : public Actor {
 public:
   NPC(void);
   ~NPC(void);
 
-  void Update(void);
+  void Update(float dt);
   void Render(void);
 
 private:
-  Sprite* _NPC;
+  void Move(float dt);
 };
