@@ -56,7 +56,9 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Collision/TileCollision.h \
     ../src/Actor/NPC.h \
     ../src/Sound/SoundEffect.h \
-    ../src/Actor/Actor.h
+    ../src/Actor/Actor.h \
+    ../src/Animation/AnimimationSequence.h \
+    ../src/System/FileReader.h
 SOURCES += ../src/Actor/Player.cpp \
     ../src/Collision/AABB.cpp \
     ../src/Global/Globals.cpp \
@@ -88,5 +90,7 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/TMXParser/base64.cpp \
     ../src/Actor/NPC.cpp \
     ../src/Sound/SoundEffect.cpp \
-    ../src/Actor/Actor.cpp
+    ../src/Actor/Actor.cpp \
+    ../src/Animation/AnimimationSequence.cpp \
+    ../src/System/FileReader.cpp
 OTHER_FILES += 
