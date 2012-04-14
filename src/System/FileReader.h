@@ -2,6 +2,8 @@
 #include <string.h>
 #include <stdio.h>
 
+#include "../System/String.h"
+
 class FileReader {
 public:
   FileReader(void);
@@ -23,6 +25,6 @@ public:
 
 private:
   FILE* _file;
-  std::string _filename;
-  std::string _accessType;
+  String _filename;
+  String _accessType;
 };
