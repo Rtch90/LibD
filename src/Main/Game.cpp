@@ -20,6 +20,8 @@ Game::Game(void) {
   //_NPC    = new NPC();
   _level  = new Level();
   //_rotationAngle = 0.0f;
+  _testFont = new Font();
+  _testFont->Load("../Data/Font/Fairydust.ttf");
 }
 
 Game::~Game(void) {
@@ -71,11 +73,17 @@ void Game::Render(void) {
   // Render our shit..
   _level->Draw(xOffset, yOffset);
   _player->Render();
+  _testFont->SetColor(0.0f, 1.0f, 1.0f, 1.0f);
+  _testFont->DrawText(
+    _player->GetX() - 5,
+    _player->GetY() - _testFont->GetLineSkip() - 2,
+    "Miss D");
   //_NPC->Render();
 }
 
 void Game::Shutdown(void) {
   Debug::logger->message("\n ----- Cleaning Engine -----");
+  delete _testFont;
   delete _player;
   delete _level;
 }

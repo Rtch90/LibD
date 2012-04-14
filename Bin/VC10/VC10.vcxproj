@@ -59,7 +59,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\..\Libs\Win32\SDL\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL.lib;SDL_image.lib;SDL_mixer.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL.lib;SDL_image.lib;SDL_mixer.lib;SDL_ttf.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,7 +79,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>..\..\Libs\Win32\SDL\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL.lib;SDL_image.lib;SDL_mixer.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL.lib;SDL_image.lib;SDL_mixer.lib;SDL_ttf.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -87,6 +87,7 @@
     <ClInclude Include="..\..\src\Actor\NPC.h" />
     <ClInclude Include="..\..\src\Actor\Player.h" />
     <ClInclude Include="..\..\src\Collision\AABB.h" />
+    <ClInclude Include="..\..\src\Font\Font.h" />
     <ClInclude Include="..\..\src\Global\Constants.h" />
     <ClInclude Include="..\..\src\Global\Globals.h" />
     <ClInclude Include="..\..\src\glx\glext.h" />
@@ -129,6 +130,7 @@
     <ClCompile Include="..\..\src\Actor\NPC.cpp" />
     <ClCompile Include="..\..\src\Actor\Player.cpp" />
     <ClCompile Include="..\..\src\Collision\AABB.cpp" />
+    <ClCompile Include="..\..\src\Font\Font.cpp" />
     <ClCompile Include="..\..\src\Global\Constants.cpp" />
     <ClCompile Include="..\..\src\Global\Globals.cpp" />
     <ClCompile Include="..\..\src\IO\Input.cpp" />

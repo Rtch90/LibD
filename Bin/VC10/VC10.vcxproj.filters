@@ -40,6 +40,9 @@
     <Filter Include="Sound">
       <UniqueIdentifier>{28fe54ce-152c-4d7d-8a14-3b9d0155d089}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Font">
+      <UniqueIdentifier>{be4a8635-8a7a-45ba-8c95-06e95cdfb8e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Main\Game.h">
@@ -162,6 +165,9 @@
     <ClInclude Include="..\..\src\Actor\Actor.h">
       <Filter>Actor</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Font\Font.h">
+      <Filter>Font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\main.cpp">
@@ -259,6 +265,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Actor\Actor.cpp">
       <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Font\Font.cpp">
+      <Filter>Font</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

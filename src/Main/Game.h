@@ -2,6 +2,7 @@
 #include "../IO/Input.h"
 #include "../Actor/NPC.h"
 #include "../Actor/Player.h"
+#include "../Font/Font.h"
 
 class Sprite;
 class Level;
@@ -21,6 +22,7 @@ public:
   void OnResize(int width, int height);
 
 private:
+  Font*   _testFont;
   Player* _player;
   NPC*    _NPC;
   Level*  _level;

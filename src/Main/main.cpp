@@ -11,6 +11,7 @@
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_mixer.h>
+#include <SDL/SDL_ttf.h>
 #include <GL/gl.h>
 #include <time.h>
 #include "Game.h"
@@ -20,6 +21,7 @@
 #include "../System/Debug.h"
 
 void Destroy(void) {
+  TTF_Quit();
   Mix_CloseAudio();
   DestroyInput();
   SDL_FreeSurface(screen);
@@ -65,6 +67,10 @@ int main(int argc, char** argv) {
     Debug::logger->message("Audio opened..");
   }
 
+  if(TTF_Init()) {
+	  Debug::logger->message("SDL_ttf initialized.\n");
+  }
+
   info = SDL_GetVideoInfo();
   if(!info) {
     // This should never accur.
@@ -107,9 +113,9 @@ int main(int argc, char** argv) {
     game.Render();
     SDL_GL_SwapBuffers();
 
-	Uint32 timeEnd = SDL_GetTicks();
-	dt = (float)(timeEnd - timeStart) / 1000.0f;
-	timeStart = timeEnd;
+    Uint32 timeEnd = SDL_GetTicks();
+	  dt = (float)(timeEnd - timeStart) / 1000.0f;
+	  timeStart = timeEnd;
   }
 
   game.Shutdown();
