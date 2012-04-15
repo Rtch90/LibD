@@ -74,7 +74,7 @@ void Game::Render(void) {
   if(xOffset > maxXOffset) xOffset = maxXOffset;
   if(yOffset > maxYOffset) yOffset = maxYOffset;
 
-  glTranslatef(-xOffset, -yOffset, 0.0f);
+  glTranslatef((int)-xOffset, (int)-yOffset, 0.0f);
 
   // Render our shit..
   _level->Draw(xOffset, yOffset);
