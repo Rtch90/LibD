@@ -31,6 +31,7 @@ void Destroy(void) {
 static void ResizeWindow(Game& game, int w, int h) {
   SDL_SetVideoMode(w, h, 32, SDL_OPENGL | SDL_RESIZABLE);
   game.OnResize(w, h);
+
   SDL_GL_SwapBuffers();
 }
 
@@ -68,7 +69,7 @@ int main(int argc, char** argv) {
   }
 
   if(TTF_Init()) {
-	  Debug::logger->message("SDL_ttf initialized.\n");
+    Debug::logger->message("SDL_ttf initialized.\n");
   }
 
   info = SDL_GetVideoInfo();
@@ -93,6 +94,11 @@ int main(int argc, char** argv) {
   Uint32 timeStart = SDL_GetTicks();
   float dt = 1.0f / 60.0f;
 
+  // We need to give windowWidth and windowHeight an initial value
+  // Otherwise it is just garbage, and the orthorgraphic view
+  // screws up for me. -- Allanis.
+  game.OnResize(windowWidth, windowHeight);
+
   bool isRunning = true;
   while(isRunning) {
 
@@ -114,8 +120,8 @@ int main(int argc, char** argv) {
     SDL_GL_SwapBuffers();
 
     Uint32 timeEnd = SDL_GetTicks();
-	  dt = (float)(timeEnd - timeStart) / 1000.0f;
-	  timeStart = timeEnd;
+    dt = (float)(timeEnd - timeStart) / 1000.0f;
+    timeStart = timeEnd;
   }
 
   game.Shutdown();
