@@ -81,7 +81,7 @@ bool String::operator==(const char* value) const {
 }
 
 bool String::operator==(String& value) const {
-  if(strcmp(_string, value.GetPointer) == 0) {
+  if(strcmp(_string, value.GetPointer()) == 0) {
     return true;
   }
   return false;
