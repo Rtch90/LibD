@@ -16,6 +16,8 @@ public:
   void Concatenate(char value);
   int Length(void);
 
+  void Format(const char* format, ...);
+
   // Operator overloads.
   String& operator=(const char* value);
   String& operator=(String& value);

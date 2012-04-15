@@ -12,7 +12,14 @@ Actor::Actor(void) {
   _stepSFX[3] = sfxManager.Load("../Data/SFX/step_cloth4.wav");
   _lastStepSFXPlayed = -1;
 
-  _velocity = 4.0f;
+  _velocity        = 4.0f;
+  _direction       = Front;
+  _preventMovement = NONE;
+
+  _actorLeft  = new AnimatingSprite();
+  _actorRight = new AnimatingSprite();
+  _actorFront    = new AnimatingSprite();
+  _actorBack  = new AnimatingSprite();
 }
 
 Actor::~Actor(void) {
@@ -23,6 +30,10 @@ Actor::~Actor(void) {
     }
   }
   delete _actor;
+  delete _actorLeft;
+  delete _actorRight;
+  delete _actorFront;
+  delete _actorBack;
 }
 
 void Actor::LoadSprite(const char* filename) {
@@ -34,6 +45,24 @@ void Actor::LoadSprite(const char* filename) {
 void Actor::Update(float dt) {
   float oldX = x = _actor->GetX();
   float oldY = y = _actor->GetY();
+
+
+  if(_direction == LEFT) {
+    _actorLeft->Update(dt);
+  }
+  else if(_direction == RIGHT) {
+    _actorRight->Update(dt);
+  }
+  else if(_direction == Front) {
+    _actorFront->Update(dt);
+  }
+  else if(_direction == BACK) {
+    _actorBack->Update(dt);
+  }
+
+  // We should check for collisions now.
+
+
 
   Move(dt);
 

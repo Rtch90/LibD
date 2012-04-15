@@ -2,6 +2,10 @@
 #include "../IO/Input.h"
 
 Player::Player(void) : Actor() {
+  Actor::_actorFront->LoadAnimatingSprite("Player_f", "../Data/Img/Player/Front/Player_F", "../Data/Img/Player/Player_F", 4, _velocity);
+  //Actor::_actorFront->LoadAnimatingSprite("Player_b", "../Data/Img/Player/Front/Player_B", "../Data/Img/Player/Player_B", 4, _velocity);
+  //Actor::_actorFront->LoadAnimatingSprite("Player_L", "../Data/Img/Player/Front/Player_L", "../Data/Img/Player/Player_L", 4, _velocity);
+  //Actor::_actorFront->LoadAnimatingSprite("Player_R", "../Data/Img/Player/Front/Player_R", "../Data/Img/Player/Player_R", 4, _velocity);
 }
 
 Player::~Player(void) {

@@ -24,7 +24,6 @@ AnimationSequence::AnimationSequence(void) {
 AnimationSequence::AnimationSequence(const char* filename) {
   _numberOfFrames   = 0;
   _sequenceID       = filename;
-  _sequenceID.Concatenate(".txt");
   ReadFile();
 }
 
@@ -70,7 +69,7 @@ void AnimationSequence::ReadFile(void) {
       _animations[index]->_loopTo       = loop;
     }
   } else {
-    //Debug::logger->message("%s does not exist.", _sequenceID);
+    Debug::logger->message("%s does not exist.", _sequenceID);
     assert(false);
   }
 }

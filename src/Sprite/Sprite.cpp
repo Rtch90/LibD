@@ -101,4 +101,3 @@ void Sprite::SetTexture(Texture* texture) {
   this->texture = texture;
   this->size = Vec2((float)texture->GetWidth(), (float)texture->GetHeight());
 }
-

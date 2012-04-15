@@ -59,13 +59,34 @@ void AnimatingSprite::Update(float dt) {
 
 
 void AnimatingSprite::LoadAnimatingSprite(const char* id, const char* filename, const char* sequence, int frames, float animationSpeed) {
-
+  for(int i = 0; i < frames; i++) {
+    String tempFilename;
+    tempFilename = "";
+    if(i < 10) {
+      tempFilename.Format("%s.00%i.png", filename, i);
+    }
+    else if(i < 100) {
+      tempFilename.Format("%s.0%i.png", filename, i);
+    } else {
+      tempFilename.Format("%s.%i.png", filename, i);
+    }
+    _sprites[_spriteCounter] = new Sprite();
+    _sprites[_spriteCounter]->LoadSprite((const char*)tempFilename);
+    _spriteCounter++;
+  }
+  _id = id;
+  _numberOfFrames = frames;
+  _animationSpeed = animationSpeed;
+  _sequence = new AnimationSequence(sequence);
+  SetCurrentAnimation(0);
 }
 
-void AnimatingSprite::SetCurrentAnimation(const char* filename) {
-
+void AnimatingSprite::SetCurrentAnimation(const char* animation) {
+  _currentAnimation = _sequence->GetAnimation(animation)->_animationID;
+  _currentFrame    = _sequence->GetAnimation(animation)->frameBegin;
 }
 
 void AnimatingSprite::SetCurrentAnimation(int index) {
-
+  _currentAnimation = _sequence->GetAnimation(index)->_animationID;
+  _currentFrame     = _sequence->GetAnimation(index)->frameBegin;
 }

@@ -12,7 +12,7 @@
 
 class AnimationSequence {
   struct Animation {
-    String _animationID;
+    const char* _animationID;
     int frameBegin;
     int frameEnd;
     String _loopTo;
@@ -30,7 +30,7 @@ public:
 private:
   const char* Scan(char* source, int& counter);
 
-  String _sequenceID;
+  const char* _sequenceID;
   int _numberOfFrames;
   FileReader _file;
   Animation* _animations[MAX_FRAMES];

@@ -3,6 +3,8 @@
 #include <string>
 #include <map>
 
+#include "../System/String.h"
+
 class Resource {
 public:
   virtual bool Load(const std::string& filename) = 0;

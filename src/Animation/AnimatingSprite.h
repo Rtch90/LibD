@@ -29,11 +29,11 @@ private:
   int _spriteCounter;
   AnimationSequence* _sequence;
 
-  String  _id;
-  float   _animationSpeed;
-  float   _timer;
-  int     _currentFrame;
-  int     _numberOfFrames;
+  const char*   _id;
+  float         _animationSpeed;
+  float         _timer;
+  int           _currentFrame;
+  int           _numberOfFrames;
 
-  String  _currentAnimation;
+  const char*   _currentAnimation;
 };

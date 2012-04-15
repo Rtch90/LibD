@@ -20,9 +20,6 @@ Game::Game(void) {
   _NPC    = new NPC();
   _level  = new Level();
 
-  _player->LoadSprite("../Data/Img/Player.png");
-  _NPC->LoadSprite("../Data/Img/Player.png");
-
   _NPC->SetXY(30.0f, 30.0f);
 
   _testFont = new Font();

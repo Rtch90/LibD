@@ -34,7 +34,7 @@ int BuildTexture(const char* filename, GLuint* texID, GLint param, bool genMips)
 
   // Load the image, check for errors, if it isn't found, quit.
   textureImage = IMG_Load(filename);
-  
+
   if(!textureImage) {
      Debug::logger->message("Warning: could not load %s", filename);
     return false;
@@ -70,18 +70,18 @@ int BuildTexture(const char* filename, GLuint* texID, GLint param, bool genMips)
     SDL_FreeSurface(textureImage);
     return false;
   }
-  
+
   // Create the texture.
   glGenTextures(1, texID);
-  
+
   // Typical texture generation using data from the bitmap.
   BindTexture(*texID);
-  
+
   // Setup filtering.
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, param);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, param);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-  
+
   if(genMips) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     // Generate the textures and mipmaps.
@@ -107,52 +107,52 @@ int LoadTGAFile(const char* filename, TGAFILE* tgaFile) {
   int             colorMode;    // 4 for RGBA or 3 for RGB.
   long            imgIndex;     // counter variable.
   unsigned char   colorSwap;    // Swap variable.
-  
+
   // Open the TGA file.
   filePtr = fopen(filename, "rb");
   if(!filePtr)
     return 0;
-  
+
   // Read the first two bytes of garbage.
   fread(&ucharBad, sizeof(unsigned char), 1, filePtr);
   fread(&ucharBad, sizeof(unsigned char), 1, filePtr);
-  
+
   // Read in the image type.
   fread(&tgaFile->textureTypeCode, sizeof(unsigned char), 1, filePtr);
-  
+
   // The texture type should be either 2(color) or 3(greyscale).
   if((tgaFile->textureTypeCode != 2) && (tgaFile->textureTypeCode != 3)) {
     fclose(filePtr);
     return 0;
   }
-  
+
   // Read 13 bytes of garbage data.
   fread(&sintBad, sizeof(short int), 1, filePtr);
   fread(&sintBad, sizeof(short int), 1, filePtr);
   fread(&ucharBad, sizeof(unsigned char), 1, filePtr);
   fread(&sintBad, sizeof(short int), 1, filePtr);
   fread(&sintBad, sizeof(short int), 1, filePtr);
-  
+
   // Read image dimensions.
   fread(&tgaFile->textureWidth, sizeof(short int), 1, filePtr);
   fread(&tgaFile->textureHeight, sizeof(short int), 1, filePtr);
-  
+
   // Read image bit depth.
   fread(&tgaFile->bitCount, sizeof(unsigned char), 1, filePtr);
-  
+
   // Read 1 byte of garbage data.
   fread(&ucharBad, sizeof(unsigned char), 1, filePtr);
-  
+
   // colorMode -> 3 = BGR, 4 = BGRA
   colorMode = tgaFile->bitCount / 8;
   imageSize = tgaFile->textureWidth * tgaFile->textureHeight * colorMode;
-  
+
   // Allocate memory for image data.
   tgaFile->textureData = (unsigned char*)malloc(sizeof(unsigned char)*imageSize);
-  
+
   // Read in the image data.
   fread(tgaFile->textureData, sizeof(unsigned char), imageSize, filePtr);
-  
+
   // Change BGR to RGB so OpenGL can read the data.
   for(imgIndex = 0; imgIndex < imageSize; imgIndex += colorMode) {
     colorSwap = tgaFile->textureData[imgIndex];
@@ -174,58 +174,58 @@ int WriteTGAFile(const char* filename, short int width, short int height, unsign
   unsigned char   bitDepth;
   long            imageSize;
   FILE*           filePtr;
-  
+
   // Create a file for writing to binary mode.
   filePtr = fopen(filename, "wb");
   if(!filePtr) {
     fclose(filePtr);
     return 0;
   }
-  
+
   imageType   = 2;    // RGB, uncompressed.
   bitDepth    = 24;   // 24-bitdepth.
   colorMode   = 3;    // RGB color mode.
-  
+
   byteSkip    = 0;
   shortSkip   = 0;
-  
+
   // Write 2 bytes of data.
   fwrite(&byteSkip, sizeof(unsigned char), 1, filePtr);
   fwrite(&byteSkip, sizeof(unsigned char), 1, filePtr);
-  
+
   // Write image type.
   fwrite(&imageType, sizeof(unsigned char), 1, filePtr);
-  
+
   fwrite(&shortSkip, sizeof(short int), 1, filePtr);
   fwrite(&shortSkip, sizeof(short int), 1, filePtr);
   fwrite(&byteSkip, sizeof(unsigned char), 1, filePtr);
   fwrite(&shortSkip, sizeof(short int), 1, filePtr);
   fwrite(&shortSkip, sizeof(short int), 1, filePtr);
-  
+
   // Write image dimensions.
   fwrite(&width, sizeof(short int), 1, filePtr);
   fwrite(&height, sizeof(short int), 1, filePtr);
   fwrite(&bitDepth, sizeof(unsigned char), 1, filePtr);
-  
+
   // Write 1 byte of data
   fwrite(&byteSkip, sizeof(unsigned char), 1, filePtr);
-  
+
   // Calculate the image size.
   imageSize = width * height * colorMode;
-  
+
   // Change the image data from RGB to BGR
   for(imgIndex = 0; imgIndex < imageSize; imgIndex += colorMode) {
     colorSwap = imageData[imgIndex];
     imageData[imgIndex] = imageData[imgIndex + 2];
     imageData[imgIndex + 2] = colorSwap;
   }
-  
+
   // Write the image data.
   fwrite(imageData, sizeof(unsigned char), imageSize, filePtr);
-  
+
   // Close the file.
   fclose(filePtr);
-  
+
   return 1;
 }
 
@@ -257,3 +257,4 @@ bool Texture::Load(const std::string& filename) {
   }
   return false;
 }
+

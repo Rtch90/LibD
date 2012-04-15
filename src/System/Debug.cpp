@@ -18,85 +18,85 @@ using namespace std;
 Debug *Debug::logger = NULL;
 
 Debug::Debug(bool logToFile) {
-	time_t timestamp;
-	if(logToFile) {
-		_logFile.open("../Bin/Debug.log", ios::out);
-		if(!_logFile.is_open()) {
-			// We can not open our log.
-			cerr << "Warning: Can not open Debug.log to write, continueing without logging\n";
+  time_t timestamp;
+  if(logToFile) {
+    _logFile.open("../Bin/Debug.log", ios::out);
+    if(!_logFile.is_open()) {
+      // We can not open our log.
+      cerr << "Warning: Can not open Debug.log to write, continueing without logging\n";
 
-		} else {
-			// Log File is open, let us give it a nice time stamp.
-			timestamp = time(NULL);
-			_logFile << "Log Started: " << ctime(&timestamp) << endl;
-		}
-	}
+    } else {
+      // Log File is open, let us give it a nice time stamp.
+      timestamp = time(NULL);
+      _logFile << "Log Started: " << ctime(&timestamp) << endl;
+    }
+  }
 }
 
 Debug::~Debug(void) {
-	time_t timestamp;
+  time_t timestamp;
 
-	// We only need to close the log if it is open.
-	if(_logFile.is_open()) {
-		// Give it a closing timestamp.
-		timestamp = time(NULL);
-		_logFile << endl << "Log Closed: " << ctime(&timestamp) << endl;
+  // We only need to close the log if it is open.
+  if(_logFile.is_open()) {
+    // Give it a closing timestamp.
+    timestamp = time(NULL);
+    _logFile << endl << "Log Closed: " << ctime(&timestamp) << endl;
 
-		// Close the log file.
-		_logFile.close();
-	}
+    // Close the log file.
+    _logFile.close();
+  }
 }
 
 void Debug::message(std::string msg) {
-	if(_logFile.is_open()) {
-		_logFile << msg << endl;
-	}
-	cerr << msg << endl << endl;
+  if(_logFile.is_open()) {
+    _logFile << msg << endl;
+  }
+  cerr << msg << endl << endl;
 }
 
 void Debug::message(const char *msg, ...) {
-	va_list vargList; // This is to handlle the variable arguments
+  va_list vargList; // This is to handlle the variable arguments
 
-	char outBuf[1024];
-	unsigned short outLen;
+  char outBuf[1024];
+  unsigned short outLen;
 
-	// This takes the arguments and puts them into the character array.
-	va_start(vargList, msg);
+  // This takes the arguments and puts them into the character array.
+  va_start(vargList, msg);
 
-#if defined WIN32
-	outLen = _vsnprintf(outBuf, sizeof(outBuf), msg, vargList);
+#ifdef WIN32
+  outLen = _vsnprintf(outBuf, sizeof(outBuf), msg, vargList);
 #else
-	outLen = vsnprintf(outBuf, sizeof(outBuf), msg, vargList);
+  outLen = vsnprintf(outBuf, sizeof(outBuf), msg, vargList);
 #endif
 
-	va_end(vargList);
+  va_end(vargList);
 
-	if(outLen >= sizeof(outBuf)) {
-		outLen = sizeof(outBuf);
-	}
+  if(outLen >= sizeof(outBuf)) {
+    outLen = sizeof(outBuf);
+  }
 
-	if(_logFile.is_open()) {
-		_logFile << outBuf << endl;
-	}
+  if(_logFile.is_open()) {
+    _logFile << outBuf << endl;
+  }
 
-	cerr << outBuf << endl;
+  cerr << outBuf << endl;
 }
 
 bool Debug::openLog(bool logToFile) {
-	// Make sure the logger has not already been initialized.
-	if(logger != NULL) {
-		logger->message("Warning: Multiple calls to openLog().");
-		return false;
-	}
-	logger = new Debug(logToFile);
-	return true;
+  // Make sure the logger has not already been initialized.
+  if(logger != NULL) {
+    logger->message("Warning: Multiple calls to openLog().");
+    return false;
+  }
+  logger = new Debug(logToFile);
+  return true;
 }
 
 void Debug::closeLog(void) {
-	if(logger == NULL) {
-		cerr << "Warning: Call to closeLog() with NULL logger pointer." << endl;
-		return;
-	}
-	delete logger;
-	logger = NULL;
+  if(logger == NULL) {
+    cerr << "Warning: Call to closeLog() with NULL logger pointer." << endl;
+    return;
+  }
+  delete logger;
+  logger = NULL;
 }

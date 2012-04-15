@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <cstdarg>
+#include "../System/String.h"
 #include "../Math/Vec2.h"
 #include "../Math/Rect.h"
 

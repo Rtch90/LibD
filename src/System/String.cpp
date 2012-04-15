@@ -1,7 +1,10 @@
+#ifdef _WIN32
+#define "windows.h"
+#endif
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
-
+#include <stdarg.h>
 #include "String.h"
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -38,6 +41,21 @@ const char* String::GetPointer(void) {
 int String::Length(void) {
   // Return the length of the string.
   return strlen(_string);
+}
+
+void String::Format(const char* format, ...) {
+  char temp[256];
+  va_list vlist;
+
+  va_start(vlist, format);
+#ifdef _WIN32
+  vsprintf_s(&temp[0], 256, format, vlist);
+#else
+  vsnprintf(&temp[0], 256, format, vlist);
+#endif
+  va_end(vlist);
+
+  memcpy(_string, temp, strlen(temp)+1);
 }
 
 void String::Concatenate(char value) {

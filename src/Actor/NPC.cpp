@@ -1,6 +1,7 @@
 #include "NPC.h"
 
 NPC::NPC(void) : Actor() {
+  LoadSprite("../Data/Img/Player.png");
 }
 
 NPC::~NPC(void) {
