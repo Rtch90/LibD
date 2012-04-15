@@ -12,6 +12,7 @@ public:
 
   virtual void Update(float dt);
   virtual void Draw() const;
+  virtual void Draw(float x, float y);
   virtual void DrawRegion(const Rect& src) const;
 
   virtual bool LoadSprite(const std::string& filename);

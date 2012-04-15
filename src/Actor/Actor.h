@@ -15,6 +15,7 @@ public:
 
   virtual void Update(float dt);
   virtual void Render(void);
+  virtual void Render(float x, float y);
 
   float GetX(void)                      { return x; }
   float GetY(void)                      { return y; }

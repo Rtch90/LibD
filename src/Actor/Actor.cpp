@@ -54,3 +54,7 @@ void Actor::Update(float dt) {
 void Actor::Render(void) {
   _actor->Draw();
 }
+
+void Actor::Render(float x, float y) {
+  _actor->Draw(x, y);
+}

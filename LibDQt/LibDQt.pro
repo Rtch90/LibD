@@ -61,7 +61,8 @@ HEADERS += ../src/Actor/Player.h \
     ../src/System/FileReader.h \
     ../src/Animation/AnimationSequence.h \
     ../src/System/String.h \
-    ../src/Font/Font.h
+    ../src/Font/Font.h \
+    ../src/Animation/AnimatingSprite.h
 SOURCES += ../src/Actor/Player.cpp \
     ../src/Collision/AABB.cpp \
     ../src/Global/Globals.cpp \
@@ -97,5 +98,6 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/System/FileReader.cpp \
     ../src/Animation/AnimationSequence.cpp \
     ../src/System/String.cpp \
-    ../src/Font/Font.cpp
+    ../src/Font/Font.cpp \
+    ../src/Animation/AnimatingSprite.cpp
 OTHER_FILES += 

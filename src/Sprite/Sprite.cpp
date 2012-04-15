@@ -23,6 +23,11 @@ void Sprite::Draw() const {
   DrawRegion(Rect(0.0f, 0.0f, (float)texture->GetWidth(), (float)texture->GetHeight()));
 }
 
+void Sprite::Draw(float x, float y) {
+  DrawRegion(Rect(0.0f, 0.0f, (float)texture->GetWidth(), (float)texture->GetHeight()));
+  SetPosition(Vec2(x, y));
+}
+
 void Sprite::DrawRegion(const Rect& src) const {
   const float uvX = src.x / (float)texture->GetWidth();
   const float uvY = src.y / (float)texture->GetHeight();
@@ -36,7 +41,7 @@ void Sprite::DrawRegion(const Rect& src) const {
   // .         .
   // 3---------2
 
-	Vec2 scaledSize(src.w*scale.x, src.h*scale.y);
+  Vec2 scaledSize(src.w*scale.x, src.h*scale.y);
 
   Vec2 vertices[4] = {
     Vec2(0.0f, 0.0f),
