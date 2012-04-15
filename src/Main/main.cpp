@@ -94,7 +94,7 @@ int main(int argc, char** argv) {
   Uint32 timeStart = SDL_GetTicks();
   float dt = 1.0f / 60.0f;
 
-  // We need to give windowWidth and windowHeight an initial value
+  // We need to give OnResize()'s width and height params an initial value
   // Otherwise it is just garbage, and the orthorgraphic view
   // screws up for me. -- Allanis.
   game.OnResize(windowWidth, windowHeight);
