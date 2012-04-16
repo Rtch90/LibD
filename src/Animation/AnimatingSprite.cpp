@@ -71,7 +71,7 @@ void AnimatingSprite::LoadAnimatingSprite(const char* id, const char* filename, 
       tempFilename.Format("%s.%i.png", filename, i);
     }
     _sprites[_spriteCounter] = new Sprite();
-    _sprites[_spriteCounter]->LoadSprite(id, (const char*)tempFilename);
+    _sprites[_spriteCounter]->LoadSprite((const char*)tempFilename);
     _spriteCounter++;
   }
   _id = id;
