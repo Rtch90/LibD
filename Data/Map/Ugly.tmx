@@ -1,48 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="50" height="50" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" width="50" height="50" tilewidth="32" tileheight="32">
  <properties>
   <property name="BGM" value="../Data/Music/journey_to_the_east_rocks.ogg"/>
  </properties>
- <tileset firstgid="1" name="AwesomeTileset" tilewidth="64" tileheight="64">
-  <image source="../Img/AwesomeTileset.png" width="256" height="128"/>
+ <tileset firstgid="1" name="Collision" tilewidth="32" tileheight="32">
+  <image source="../Img/CollisionTileset.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="9" name="Collision" tilewidth="64" tileheight="64">
-  <image source="../Img/CollisionTileset.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="10" name="Woodland" tilewidth="64" tileheight="64">
+ <tileset firstgid="2" name="Woodland" tilewidth="32" tileheight="32">
   <image source="../Img/Woodland_ground.png" width="512" height="512"/>
  </tileset>
- <tileset firstgid="74" name="Woodland 2" tilewidth="64" tileheight="64">
+ <tileset firstgid="258" name="Woodland 2" tilewidth="32" tileheight="32">
   <image source="../Img/OpenArt/Woodland_x2.png" width="512" height="128"/>
  </tileset>
- <tileset firstgid="90" name="Woodland 3" tilewidth="64" tileheight="64">
+ <tileset firstgid="322" name="Woodland 3" tilewidth="32" tileheight="32">
   <image source="../Img/OpenArt/Woodland_x3.png" width="512" height="192"/>
  </tileset>
- <tileset firstgid="114" name="Woodland 4" tilewidth="64" tileheight="64">
+ <tileset firstgid="418" name="Woodland 4" tilewidth="32" tileheight="32">
   <image source="../Img/OpenArt/Woodland_x5.png" width="512" height="160"/>
  </tileset>
- <tileset firstgid="130" name="Woodland 5" tilewidth="64" tileheight="64">
+ <tileset firstgid="498" name="Woodland 5" tilewidth="32" tileheight="32">
   <image source="../Img/OpenArt/Woodland_x8.png" width="512" height="256"/>
  </tileset>
- <tileset firstgid="162" name="Village 1" tilewidth="64" tileheight="64">
+ <tileset firstgid="626" name="Village 1" tilewidth="32" tileheight="32">
   <image source="../Img/OpenArt/Woodland_village.png" width="512" height="512"/>
  </tileset>
- <tileset firstgid="226" name="Village 2" tilewidth="64" tileheight="64">
+ <tileset firstgid="882" name="Village 2" tilewidth="32" tileheight="32">
   <image source="../Img/OpenArt/Woodland_village_x2.png" width="512" height="64"/>
  </tileset>
- <layer name="Tile Layer 1" width="50" height="50">
+ <layer name="Ground" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztwwEJAAAMBKH7/qWXY6DgqqmqqqqqqqqqqurzBwHpCcU=
+   eJztlF1uwjAQhK1wmKJyjVLoK7SBvhYSCneAngA4Ae1VuxKJZLnZdTY/tRHz8PklJszMziYxxiQAgLvjkRhFoCNWkM/tgtkhpxgJnfeejoPFVxI+kyYc6ThZnOGjd7KBMTmxIT6JLbEbXJ9d6Pi2+AnkI/R+gfgJ0RH0EkigH8g7NMgE2dwjT8RYwXMEmqt4Jd4UpBFkXpXlLfkotVZpaOtDyqhr1kRG5BUaVozeWfEbF/cdUkZ1e9J2N6VZpML/2e/jMtL0pG2n6/pw73W1I135KLP09ce958temp/9jOu0xoe7nxNiquBFkbM027Y+3P1cEEsF7wF8fJi/u+7u53/5kLpsM/fMhOvPg9LH0PAd43zU6aTPb1540OptMhvuu1Bnlj768qDRxd3XfGP68uB2TIK736c2AABowi8gBhQk
   </data>
  </layer>
- <layer name="Tile Layer 2" width="50" height="50">
+ <layer name="Above" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztzjluAmEQBeHJHEDoQ0BmdrMZifVeLIkxCUvCcldXQAjJ/Eg9EvVJJXXQwcuyx+rUoCa1qE2dJ79F1qM+DWhIPzQKXZTPmCY0pRnNaRG6KL8KValE5eAtKb6odr8/I4ck+qZu9IgX+Yge8OaWtKI1bYK3pPilLf3RLnhLij0d6Ein4C0pznShK92Ct0iSJEmSJEmSJEmSiu8fZyQOjw==
+   eJztWLluFEEQbe0Q73plYrsd8AfmDrkh5SYGc2SLJSAjMAh+CsQX8CEmdIAcUS2m5Nqiqrq6Z3uWwE8qzdVd5+uangnhBDthGRvBBxwXnePXhS1yHgfqmmWuc1iQ87nwPPbHbXbPWxMEH2/NX/Q2tpTnnB+S37XguiWUxl6CjYwPOf+myv0LXQgXQS6BXAa5AnK1+5vnbWWOhZTzRXZUHWiM1Ma5To+Dw1oHFl+8+hFvDV2a7fMsjutd+Ih2sH7v4fyDYddCSZ40Hzkkzt8AfTdBboHcBrkPcdyF4z1i5wucf+2v6XrWbNAxmKeUH28cWs+I5Jzz/QHoewjyCOQxyBOQpyDPKvPPgXlK+Ul5ugNC80RzO2NHhKeez+H6BcgeyEuQTbj3Go5v2Dieey+Hh+aplpebhu/7GZsSb3meXnVynjQQXhbFsQvS9XJG8Q3heQ9Z0PJCeUV4GSReSr5Epi/VxoqjtN6zsFzvBG1NI4bwMvZHbpNiFby1gL3ew8uoajmxifmahuX3iPDeUeOgNeVx8Hojp2iv575Q7PRzrPdwmns4CeHX5F/dwntH5C33mceh7ZUkXxIO+mM0xvK+Tdc8XfsJFm+PJ3l/sA7c5kGQIfnCxQPsB+gH5+2es5/SekyD3vOwTtHpnwWJj8kPzCHuN0v6L42j9PuLQpub63+SHznQtYXrsGS+hNx32FwZw/djGk+vKfe5nHX4SnNN88t7277gH53nrU0NEu/njWzU8NSak+ulnm/0nI4an2PFHAncf++7g/PJ6ivSPsqKOTrs57gj7f09emvt8n8GJTX15nwMWP9MvDGV/nfR1hDnFNVL58RCe17QurT8N9YaQ765/oe409oq7ZFWzLFwvOd5a9BvH44he7NW4N/pvB/HkfyoQc1/41O0xW/hXss96pj43B+PBuqRcjRkXMK6+x5C8/nnqF748Kmx/pL6rQI5Xr5boa7asWPhm/GsdB+P41v2sR8NdSccsaP2fB1ItnEtWmtm7PWU8H0NNktQ6l9rnrXGGPWwekftHE/eW8bWQnepzlbx1dTrFDb+AMmMcBk=
+  </data>
+ </layer>
+ <layer name="Trees" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1jsOwjAMBuCEcgOYmVhYmFhYee48d57XgBvADeAEvR8TrmhUFDVq08hpVP2fFEWgysZO0iAEQHPcpBB3WfevcPegGp4NqONFNbwbUEcIFtTHJUMvZxRz7nGNdpRrn5Nv4Bh3QzG3Huu4UK4rjU/r9zlO57Fj3BPFPDP0x1aHKa5rf8ro04jSMWXKMUrjtwueczlfXGtQhel8ldmXIdVhOl/JvlRn2SSkOlxUqaMXFT/DdUeZVKljqNWRt39NdxSXbs53tr1M9m+s7V91R9XJtpehnTG1DqqXZd/nHHVMKO9UZrMNfR18/1/6t6K8a5nNNvQ9bXqf+3CgvEeZzQAAAAAAAAAAAAAQpi/3hxwT
+  </data>
+ </layer>
+ <layer name="Trees 2" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt17ERgCAMBVBYTTfQDXT/HaShofDO0wuo7zUp4eeSIikxqimnNOfev7hvKRnWD+TYSob9AzkAAIB/cFM+p/ayrVeMcFPWXrb1bWov29pDxJ5FvBExCxFvRMzCCLsMAAAAwLkD/HwNtA==
+  </data>
+ </layer>
+ <layer name="Roofs and Windows" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1TsOwkAMRVErrILP9oEFBEio+YUaELAbXpE0iAZkmyi6R3pK55lYtsYMQzMvzBbKsvj3TX5T6t4rZa1slEqpla3z/0T3aae6e+WgHJWT0ihnp/Oy+nRRvatya+ve9X0oT6dzovv0bjqKqevVp77t7+TLfmXNZbTsuYwSvb+d7LmdOe8xc9svWXObZRz07gAAAAAAAAAAAAD47AVEdEaX
   </data>
  </layer>
  <layer name="Collision" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt07ENADAIA0Ha7L9winSIBUzuJEu0X1A1O8MSbevod6LekmpjB/Bs+QsdAAAAAAAAAPzmAqQVAP0=
+   eJztl0sOwyAMROn9L91NF1ZkiH9DTDNPYtG0eDxgQzoG6crnNyJz5HianT6sv43Ej/q46lnnoXx4NTI6Hh9XHQR3PuSzJ/pvNV/LTX7W4ng0rXl4YmZ9RDRX+pX9u8OHJQ9PTC3Pil6z1gvKRxWI+Hf9NZTvKzQ1nWxMa13urqtMzDHq12t2ViDqFtEHs9iV9w4Cq/5q/z1xkFhy6L4fXXKQePPRejd6b2WpyKFDjf+Dj8q6eHovZC7y2Ul49gO93jv2c8d7xIk+EBqeu5gQQggh72H2/rkaHYn8N+7IaT6q6iQyt6omUbUdWYOMFqoWsj66nC9e/ZPOP0LIO/kCOj8BWg==
   </data>
  </layer>
 </map>
