@@ -24,6 +24,8 @@ public:
   int GetTileWidth() const { return _tileWidth; }
   int GetTileHeight() const { return _tileHeight; }
 
+  bool CheckCollision(float x, float y, float w, float h) const;
+
 private:
   int _width;
   int _height;
@@ -32,4 +34,5 @@ private:
   std::list<Layer*> _layers;
   std::list<Tileset*> _tilesets;
   Music* _bgm;
+  bool* _collisions;
 };

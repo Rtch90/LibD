@@ -2,8 +2,11 @@
 
 #include "Actor.h"
 #include "../Sound/SoundEffect.h"
+#include "../Level/Level.h"
 
-Actor::Actor(void) {
+Actor::Actor(const Level* level) {
+  _level = level;
+
   _stepSFX[0] = sfxManager.Load("../Data/SFX/step_cloth1.wav");
   _stepSFX[1] = sfxManager.Load("../Data/SFX/step_cloth2.wav");
   _stepSFX[2] = sfxManager.Load("../Data/SFX/step_cloth3.wav");
@@ -54,9 +57,15 @@ void Actor::Update(float dt) {
   float oldX = x;
   float oldY = y;
 
-  // We should check for collisions now.
-
   Move(dt);
+
+  if(x != oldX || y != oldY) {
+    if(_level->CheckCollision(x, y, GetAnimation()->GetMaxWidth(), GetAnimation()->GetMaxHeight())) {
+      x = oldX;
+      y = oldY;
+      return;
+    }
+  }
 
   if(x != oldX || y != oldY) {
     GetAnimation()->SetCurrentAnimation(1);

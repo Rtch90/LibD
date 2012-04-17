@@ -6,6 +6,7 @@
 #include "../Math/Vec2.h"
 
 class SoundEffect;
+class Level;
 
 class Actor {
 public:
@@ -23,7 +24,7 @@ public:
     HURT
   };
 
-  Actor(void);
+  Actor(const Level* level);
   ~Actor(void);
 
   void LoadSprites(const String& basename);
@@ -47,6 +48,8 @@ protected:
 
   AnimatingSprite* GetAnimation(void);
 
+  const Level* _level;
+
   float _velocity;
 
   AnimatingSprite* _actorLeft;
@@ -61,6 +64,7 @@ protected:
   float y;
 
 private:
+
   SoundEffect* _stepSFX[4];
   int _lastStepSFXPlayed;
 

@@ -16,9 +16,9 @@
 #include "Game.h"
 
 Game::Game(void) {
-  _player = new Player();
-  _NPC    = new NPC();
   _level  = new Level();
+  _player = new Player(_level);
+  _NPC    = new NPC(_level);
 
   _NPC->SetXY(30.0f, 30.0f);
 

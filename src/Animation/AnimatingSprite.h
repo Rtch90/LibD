@@ -16,6 +16,9 @@ public:
   int GetTotalFrames(void)  { return _sequence->GetAnimation(_currentAnimation)->frameEnd; }
   Sprite* GetCurrentFrameSprite(void) { return _sprites[_currentFrame - 1]; }
 
+  int GetMaxWidth(void) const { return _maxWidth; }
+  int GetMaxHeight(void) const { return _maxHeight; }
+
   void Update(float dt);
 
   void Render(void);
@@ -34,4 +37,7 @@ private:
   int           _numberOfFrames;
 
   const char*   _currentAnimation;
+
+  int _maxWidth;
+  int _maxHeight;
 };

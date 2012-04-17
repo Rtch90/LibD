@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "../IO/Input.h"
 
-Player::Player(void) : Actor() {
+Player::Player(const Level* level) : Actor(level) {
   _direction = Actor::RIGHT;
 }
 
@@ -34,11 +34,4 @@ void Player::Move(float dt) {
     _direction = Actor::FRONT;
   }
 
-  if(KeyDown(SDLK_LSHIFT)) {
-    // Run!
-    _velocity += 3;
-  }
-  if(KeyUp(SDLK_LSHIFT)) {
-    _velocity -= 3;
-  }
 }

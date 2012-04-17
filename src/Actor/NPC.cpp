@@ -1,6 +1,6 @@
 #include "NPC.h"
 
-NPC::NPC(void) : Actor() {
+NPC::NPC(const Level* level) : Actor(level) {
 }
 
 NPC::~NPC(void) {

@@ -49,6 +49,8 @@ void AnimatingSprite::Update(float dt) {
 
 
 void AnimatingSprite::LoadAnimatingSprite(const char* filename, const char* sequence, int frames, float animationSpeed) {
+  _maxWidth = 0;
+  _maxHeight = 0;
   for(int i = 0; i < frames; i++) {
     String tempFilename;
     tempFilename = "";
@@ -62,6 +64,8 @@ void AnimatingSprite::LoadAnimatingSprite(const char* filename, const char* sequ
     }
     _sprites[_spriteCounter] = new Sprite();
     _sprites[_spriteCounter]->LoadSprite((const char*)tempFilename);
+    if(_sprites[_spriteCounter]->GetWidth() > _maxWidth) _maxWidth = _sprites[_spriteCounter]->GetWidth();
+    if(_sprites[_spriteCounter]->GetHeight() > _maxHeight) _maxHeight = _sprites[_spriteCounter]->GetHeight();
     _spriteCounter++;
   }
   _numberOfFrames = frames;

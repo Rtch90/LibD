@@ -13,6 +13,7 @@ Level::Level() {
   _tileWidth = 0;
   _tileHeight = 0;
   _bgm = NULL;
+  _collisions = NULL;
 }
 
 Level::~Level() {
@@ -25,6 +26,11 @@ Level::~Level() {
     delete (*i);
   }
   _tilesets.clear();
+
+  if(_collisions) {
+	delete[] _collisions;
+	_collisions = NULL;
+  }
 
   if(_bgm) {
     musicManager.Destroy(_bgm);
@@ -59,8 +65,23 @@ bool Level::Load(const std::string& filename) {
     tilesetMap.insert(std::pair<const Tmx::Tileset*, Tileset*>(tmxTileset, tileset));
   }
 
+  _collisions = new bool[_width * _height];
+  for(int i = 0; i < (_width * _height); i++) {
+    _collisions[i] = false;
+  }
+
   for(int i = 0; i < map.GetNumLayers(); i++) {
     const Tmx::Layer* tmxLayer = map.GetLayer(i);
+	
+    if(!stricmp(tmxLayer->GetName().c_str(), "collision")) {
+      for(int x = 0; x < _width; x++) {
+        for(int y = 0; y < _height; y++) {
+          Tmx::MapTile tile = tmxLayer->GetTile(x, y);
+          _collisions[y * _width + x] = tile.gid != 0;
+        }
+      }
+      continue;
+    }
     
     Layer* layer = new Layer(
       tmxLayer->GetWidth(), tmxLayer->GetHeight(),
@@ -113,4 +134,56 @@ void Level::Draw(int xOffset, int yOffset) {
   for(std::list<Layer*>::iterator i = _layers.begin(); i != _layers.end(); ++i) {
     (*i)->Draw(xOffset, yOffset);
   }
+}
+
+bool Level::CheckCollision(float x, float y, float w, float h) const {
+  if(x < 0.0f || x > (float)(_width * _tileWidth) ||
+     y < 0.0f || y > (float)(_height * _tileHeight)) {
+    return true;
+  }
+  
+  int tileX;
+  int tileY;
+  
+  // Check Top Left
+  tileX = (int)(x / (float)_tileWidth);
+  tileY = (int)(y / (float)_tileHeight);
+  if(tileX >= 0 && tileX < _width &&
+     tileY >= 0 && tileY < _height) {
+    if(_collisions[tileY * _width + tileX]) {
+      return true;
+    }
+  }
+
+  // Check Top Right
+  tileX = (int)((x + w) / (float)_tileWidth);
+  tileY = (int)(y / (float)_tileHeight);
+  if(tileX >= 0 && tileX < _width &&
+     tileY >= 0 && tileY < _height) {
+    if(_collisions[tileY * _width + tileX]) {
+      return true;
+    }
+  }
+
+  // Check Bottom Right
+  tileX = (int)((x + w) / (float)_tileWidth);
+  tileY = (int)((y + h) / (float)_tileHeight);
+  if(tileX >= 0 && tileX < _width &&
+     tileY >= 0 && tileY < _height) {
+    if(_collisions[tileY * _width + tileX]) {
+      return true;
+    }
+  }
+
+   // Check Bottom Left
+  tileX = (int)(x / (float)_tileWidth);
+  tileY = (int)((y + h) / (float)_tileHeight);
+  if(tileX >= 0 && tileX < _width &&
+     tileY >= 0 && tileY < _height) {
+    if(_collisions[tileY * _width + tileX]) {
+      return true;
+    }
+  }
+
+  return false;
 }
