@@ -5,6 +5,8 @@
 #include "../System/Debug.h"
 #include "../IO/Input.h"
 
+class Level;
+
 class Player : public Actor{
 public:
   Player(const Level* level);
