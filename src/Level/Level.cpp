@@ -1,5 +1,6 @@
 #include <map>
 #include <algorithm>
+#include <string.h>
 #include "Level.h"
 #include "Layer.h"
 #include "Tileset.h"
@@ -28,8 +29,8 @@ Level::~Level() {
   _tilesets.clear();
 
   if(_collisions) {
-	delete[] _collisions;
-	_collisions = NULL;
+  delete[] _collisions;
+  _collisions = NULL;
   }
 
   if(_bgm) {
@@ -72,8 +73,8 @@ bool Level::Load(const std::string& filename) {
 
   for(int i = 0; i < map.GetNumLayers(); i++) {
     const Tmx::Layer* tmxLayer = map.GetLayer(i);
-	
-    if(!stricmp(tmxLayer->GetName().c_str(), "collision")) {
+
+    if(!strcmp(tmxLayer->GetName().c_str(), "collision")) {
       for(int x = 0; x < _width; x++) {
         for(int y = 0; y < _height; y++) {
           Tmx::MapTile tile = tmxLayer->GetTile(x, y);
@@ -82,7 +83,7 @@ bool Level::Load(const std::string& filename) {
       }
       continue;
     }
-    
+
     Layer* layer = new Layer(
       tmxLayer->GetWidth(), tmxLayer->GetHeight(),
       _tileWidth, _tileHeight);
@@ -90,7 +91,7 @@ bool Level::Load(const std::string& filename) {
     for(int x = 0; x < layer->GetWidth(); x++) {
       for(int y = 0; y < layer->GetHeight(); y++) {
         Tmx::MapTile tmxTile = tmxLayer->GetTile(x, y);
-        
+
         const Tmx::Tileset* tmxTileset = map.FindTileset(tmxTile.gid);
 
         MapTile tile;
@@ -104,7 +105,7 @@ bool Level::Load(const std::string& filename) {
         layer->SetTile(x, y, tile);
       }
     }
-    
+
     _layers.push_back(layer);
   }
 
@@ -141,10 +142,10 @@ bool Level::CheckCollision(float x, float y, float w, float h) const {
      y < 0.0f || y > (float)(_height * _tileHeight)) {
     return true;
   }
-  
+
   int tileX;
   int tileY;
-  
+
   // Check Top Left
   tileX = (int)(x / (float)_tileWidth);
   tileY = (int)(y / (float)_tileHeight);
