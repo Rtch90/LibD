@@ -8,6 +8,12 @@
 #include "../System/Debug.h"
 #include "../TMXParser/Tmx.h"
 
+#ifdef _WIN32
+#ifndef strcasecmp
+#define strcasecmp stricmp
+#endif
+#endif
+
 Level::Level() {
   _width = 0;
   _height = 0;
@@ -74,7 +80,7 @@ bool Level::Load(const std::string& filename) {
   for(int i = 0; i < map.GetNumLayers(); i++) {
     const Tmx::Layer* tmxLayer = map.GetLayer(i);
 
-    if(!strcmp(tmxLayer->GetName().c_str(), "collision")) {
+    if(!strcasecmp(tmxLayer->GetName().c_str(), "collision")) {
       for(int x = 0; x < _width; x++) {
         for(int y = 0; y < _height; y++) {
           Tmx::MapTile tile = tmxLayer->GetTile(x, y);
