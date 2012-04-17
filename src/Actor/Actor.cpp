@@ -4,8 +4,6 @@
 #include "../Sound/SoundEffect.h"
 
 Actor::Actor(void) {
-  _actor = new Sprite();
-
   _stepSFX[0] = sfxManager.Load("../Data/SFX/step_cloth1.wav");
   _stepSFX[1] = sfxManager.Load("../Data/SFX/step_cloth2.wav");
   _stepSFX[2] = sfxManager.Load("../Data/SFX/step_cloth3.wav");
@@ -13,12 +11,15 @@ Actor::Actor(void) {
   _lastStepSFXPlayed = -1;
 
   _velocity        = 4.0f;
-  _direction       = Front;
+  _direction       = FRONT;
   _preventMovement = NONE;
+
+  x = 0.0f;
+  y = 0.0f;
 
   _actorLeft  = new AnimatingSprite();
   _actorRight = new AnimatingSprite();
-  _actorFront    = new AnimatingSprite();
+  _actorFront = new AnimatingSprite();
   _actorBack  = new AnimatingSprite();
 }
 
@@ -29,44 +30,37 @@ Actor::~Actor(void) {
       _stepSFX[i] = NULL;
     }
   }
-  delete _actor;
   delete _actorLeft;
   delete _actorRight;
   delete _actorFront;
   delete _actorBack;
 }
 
-void Actor::LoadSprite(const char* filename) {
-  _actor->LoadSprite(filename);
-  w = _actor->GetWidth();
-  h = _actor->GetHeight();
+void Actor::LoadSprites(const String& basename) {
+  String frontFilename = String("../Data/Img/") + basename + "/Front/" + basename + "_F";
+  String leftFilename = String("../Data/Img/") + basename + "/Left/" + basename + "_L";
+  String rightFilename = String("../Data/Img/") + basename + "/Right/" + basename + "_R";
+  String backFilename = String("../Data/Img/") + basename + "/Back/" + basename + "_B";
+
+  _actorFront->LoadAnimatingSprite(frontFilename, frontFilename, 4, 1.0f / _velocity);
+  _actorLeft->LoadAnimatingSprite(leftFilename, leftFilename, 4, 1.0f / _velocity);
+  _actorRight->LoadAnimatingSprite(rightFilename, rightFilename, 4, 1.0f / _velocity);
+  _actorBack->LoadAnimatingSprite(backFilename, backFilename, 4, 1.0f / _velocity);
 }
 
 void Actor::Update(float dt) {
-  float oldX = x = _actor->GetX();
-  float oldY = y = _actor->GetY();
+  GetAnimation()->Update(dt);
 
-
-  if(_direction == LEFT) {
-    _actorLeft->Update(dt);
-  }
-  else if(_direction == RIGHT) {
-    _actorRight->Update(dt);
-  }
-  else if(_direction == Front) {
-    _actorFront->Update(dt);
-  }
-  else if(_direction == BACK) {
-    _actorBack->Update(dt);
-  }
+  float oldX = x;
+  float oldY = y;
 
   // We should check for collisions now.
-
-
 
   Move(dt);
 
   if(x != oldX || y != oldY) {
+    GetAnimation()->SetCurrentAnimation(1);
+
     if(!SoundEffect::IsPlaying(1)) {
       int sfxIndex;
       do {
@@ -78,12 +72,39 @@ void Actor::Update(float dt) {
       _lastStepSFXPlayed = sfxIndex;
     }
   }
+  else {
+    GetAnimation()->SetCurrentAnimation(0);
+  }
 }
 
 void Actor::Render(void) {
-  _actor->Draw();
+  GetAnimation()->Render(x, y);
 }
 
 void Actor::Render(float x, float y) {
-  _actor->Draw(x, y);
+  GetAnimation()->Render(x, y);
+}
+
+AnimatingSprite* Actor::GetAnimation(void) {
+  if(_direction == LEFT) {
+    return _actorLeft;
+  }
+  else if(_direction == RIGHT) {
+    return _actorRight;
+  }
+  else if(_direction == FRONT) {
+    return _actorFront;
+  }
+  else if(_direction == BACK) {
+    return _actorBack;
+  }
+  return NULL;
+}
+
+float Actor::GetWidth(void) {
+  return GetAnimation()->GetCurrentFrameSprite()->GetWidth();
+}
+
+float Actor::GetHeight(void) {
+  return GetAnimation()->GetCurrentFrameSprite()->GetHeight();
 }

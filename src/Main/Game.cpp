@@ -43,6 +43,9 @@ bool Game::Init(void) {
   _level->Load("../Data/Map/Ugly.tmx");
   _level->PlayBGM();
 
+  _player->LoadSprites("Player");
+  _NPC->LoadSprites("Player");
+
   // Return success.
   return true;
 }

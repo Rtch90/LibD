@@ -29,5 +29,5 @@ void SoundEffect::Stop(int channel) {
 }
 
 bool SoundEffect::IsPlaying(int channel) {
-  return Mix_Playing(channel);
+  return Mix_Playing(channel) == 1;
 }

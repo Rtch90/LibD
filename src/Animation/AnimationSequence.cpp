@@ -18,12 +18,13 @@
  */
 
 AnimationSequence::AnimationSequence(void) {
-
+  memset(_animations, 0, sizeof(_animations));
 }
 
 AnimationSequence::AnimationSequence(const char* filename) {
   _numberOfFrames   = 0;
   _sequenceID       = filename;
+  memset(_animations, 0, sizeof(_animations));
   ReadFile();
 }
 
@@ -38,28 +39,30 @@ void AnimationSequence::ReadFile(void) {
   // animation array.
   if(_file.Exists(_sequenceID)) {
     String name;
-    String loop;
     char* temp;
-    _file.OpenFile(_sequenceID, "r");
+    _file.OpenFile(_sequenceID, "rb");
     _file.ReadBuffer(temp);
     _file.CloseFile();
 
     int counter = 0;
 
-    _numberOfFrames = atoi(Scan(temp, counter));
+    {
+      String scanResult = Scan(temp, counter);
+      _numberOfFrames = atoi(scanResult.GetPointer());
+    }
 
     for(int index = 0; index < _numberOfFrames; index++) {
       name              = "";
       int startFrame    = 0;
       int endFrame      = 0;
-      loop              = "";
+      int loop          = 1;
 
       name          = Scan(temp, counter);
       startFrame    = atoi(Scan(temp, counter));
       endFrame      = atoi(Scan(temp, counter));
 
       if(temp[counter - 1] == SPACE) {
-        loop = Scan(temp, counter);
+        loop = atoi(Scan(temp, counter));
       }
 
       _animations[index] = new Animation();
@@ -74,7 +77,7 @@ void AnimationSequence::ReadFile(void) {
   }
 }
 
-const char* AnimationSequence::Scan(char* source, int &counter) {
+String AnimationSequence::Scan(char* source, int &counter) {
   String temp;
   temp = "";
   bool terminate = false;
@@ -94,16 +97,16 @@ const char* AnimationSequence::Scan(char* source, int &counter) {
   return temp;
 }
 
-AnimationSequence::Animation* AnimationSequence::GetAnimation(const char* filename) {
+Animation* AnimationSequence::GetAnimation(const String& filename) {
   for(int i = 0; i < _numberOfFrames; i++) {
-    if(strcmp(filename, _animations[i]->_animationID) == 0) {
+    if(filename == _animations[i]->_animationID) {
       return _animations[i];
     }
   }
   return 0;
 }
 
-AnimationSequence::Animation* AnimationSequence::GetAnimation(int index) {
+Animation* AnimationSequence::GetAnimation(int index) {
   if(index < _numberOfFrames) {
     return _animations[index];
   }

@@ -10,14 +10,14 @@
 #define ENDOFLINE     59
 #define SPACE         32
 
-class AnimationSequence {
-  struct Animation {
-    const char* _animationID;
-    int frameBegin;
-    int frameEnd;
-    String _loopTo;
-  };
+struct Animation {
+  String _animationID;
+  int frameBegin;
+  int frameEnd;
+  int _loopTo;
+};
 
+class AnimationSequence {
 public:
   AnimationSequence(void);
   AnimationSequence(const char* filename);
@@ -25,10 +25,10 @@ public:
 
   void ReadFile(void);
   Animation* GetAnimation(int index);
-  Animation* GetAnimation(const char* filename);
+  Animation* GetAnimation(const String& filename);
 
 private:
-  const char* Scan(char* source, int& counter);
+  String Scan(char* source, int& counter);
 
   const char* _sequenceID;
   int _numberOfFrames;

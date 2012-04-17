@@ -24,8 +24,8 @@ void Sprite::Draw() const {
 }
 
 void Sprite::Draw(float x, float y) {
-  DrawRegion(Rect(0.0f, 0.0f, (float)texture->GetWidth(), (float)texture->GetHeight()));
   SetPosition(Vec2(x, y));
+  DrawRegion(Rect(0.0f, 0.0f, (float)texture->GetWidth(), (float)texture->GetHeight()));
 }
 
 void Sprite::DrawRegion(const Rect& src) const {

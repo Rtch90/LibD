@@ -8,6 +8,7 @@
 AnimatingSprite::AnimatingSprite(void) {
   _spriteCounter = 0;
   _timer         = 0;
+  _currentFrame  = 1;
 }
 
 AnimatingSprite::~AnimatingSprite(void) {
@@ -33,32 +34,21 @@ void AnimatingSprite::Update(float dt) {
    * the _currentFrame is set to the next valid frame.
    */
 
-  _timer += dt;
   if(_sequence) {
+    _timer += dt;
     if(_timer > _animationSpeed) {
       _timer = 0;
       _currentFrame++;
-      if(_currentFrame > _sequence->GetAnimation(_currentAnimation)->frameEnd) {
-        if(_sequence->GetAnimation(_currentAnimation)->_loopTo != "") {
-          SetCurrentAnimation(_sequence->GetAnimation(_currentAnimation)->_loopTo);
-        } else {
-          _currentFrame = _sequence->GetAnimation(_currentAnimation)->frameBegin;
-        }
-      }
-    }
-  } else {
-    if(_timer > _animationSpeed) {
-      _timer = 0;
-      _currentFrame = 0;
-      if(_currentFrame > _numberOfFrames) {
-        _currentFrame = 1;
+      Animation* curAnim = _sequence->GetAnimation(_currentAnimation);
+      if(_currentFrame > curAnim->frameEnd) {
+        _currentFrame = curAnim->_loopTo;
       }
     }
   }
 }
 
 
-void AnimatingSprite::LoadAnimatingSprite(const char* id, const char* filename, const char* sequence, int frames, float animationSpeed) {
+void AnimatingSprite::LoadAnimatingSprite(const char* filename, const char* sequence, int frames, float animationSpeed) {
   for(int i = 0; i < frames; i++) {
     String tempFilename;
     tempFilename = "";
@@ -74,19 +64,16 @@ void AnimatingSprite::LoadAnimatingSprite(const char* id, const char* filename, 
     _sprites[_spriteCounter]->LoadSprite((const char*)tempFilename);
     _spriteCounter++;
   }
-  _id = id;
   _numberOfFrames = frames;
   _animationSpeed = animationSpeed;
   _sequence = new AnimationSequence(sequence);
   SetCurrentAnimation(0);
 }
 
-void AnimatingSprite::SetCurrentAnimation(const char* animation) {
+void AnimatingSprite::SetCurrentAnimation(const String& animation) {
   _currentAnimation = _sequence->GetAnimation(animation)->_animationID;
-  _currentFrame    = _sequence->GetAnimation(animation)->frameBegin;
 }
 
 void AnimatingSprite::SetCurrentAnimation(int index) {
   _currentAnimation = _sequence->GetAnimation(index)->_animationID;
-  _currentFrame     = _sequence->GetAnimation(index)->frameBegin;
 }

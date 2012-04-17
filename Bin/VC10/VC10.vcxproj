@@ -86,6 +86,8 @@
     <ClInclude Include="..\..\src\Actor\Actor.h" />
     <ClInclude Include="..\..\src\Actor\NPC.h" />
     <ClInclude Include="..\..\src\Actor\Player.h" />
+    <ClInclude Include="..\..\src\Animation\AnimatingSprite.h" />
+    <ClInclude Include="..\..\src\Animation\AnimationSequence.h" />
     <ClInclude Include="..\..\src\Collision\AABB.h" />
     <ClInclude Include="..\..\src\Font\Font.h" />
     <ClInclude Include="..\..\src\Global\Constants.h" />
@@ -131,6 +133,8 @@
     <ClCompile Include="..\..\src\Actor\Actor.cpp" />
     <ClCompile Include="..\..\src\Actor\NPC.cpp" />
     <ClCompile Include="..\..\src\Actor\Player.cpp" />
+    <ClCompile Include="..\..\src\Animation\AnimatingSprite.cpp" />
+    <ClCompile Include="..\..\src\Animation\AnimationSequence.cpp" />
     <ClCompile Include="..\..\src\Collision\AABB.cpp" />
     <ClCompile Include="..\..\src\Font\Font.cpp" />
     <ClCompile Include="..\..\src\Global\Constants.cpp" />

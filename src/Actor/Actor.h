@@ -11,7 +11,7 @@ class Actor {
 public:
 
   enum Facing {
-    Front,
+    FRONT,
     BACK,
     LEFT,
     RIGHT,
@@ -26,7 +26,7 @@ public:
   Actor(void);
   ~Actor(void);
 
-  void LoadSprite(const char* filename);
+  void LoadSprites(const String& basename);
 
   virtual void Update(float dt);
   virtual void Render(void);
@@ -34,8 +34,8 @@ public:
 
   float GetX(void)                      { return x; }
   float GetY(void)                      { return y; }
-  float GetWidth(void)                  { return w; }
-  float GetHeight(void)                 { return h; }
+  float GetWidth(void);
+  float GetHeight(void);
 
   void SetXY(float xArg, float yArg)    { x = xArg; y = yArg; }
 
@@ -45,9 +45,10 @@ public:
 protected:
   virtual void Move(float dt) = 0;
 
+  AnimatingSprite* GetAnimation(void);
+
   float _velocity;
 
-  Sprite* _actor;
   AnimatingSprite* _actorLeft;
   AnimatingSprite* _actorRight;
   AnimatingSprite* _actorFront;
@@ -60,9 +61,8 @@ protected:
   float y;
 
 private:
-  float w;
-  float h;
-
   SoundEffect* _stepSFX[4];
   int _lastStepSFXPlayed;
+
+  String _walkAnimationID;
 };

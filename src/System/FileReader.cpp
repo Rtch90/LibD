@@ -14,7 +14,7 @@ FileReader::~FileReader(void) {
 
 bool FileReader::Exists(const char* filename) {
   // Check to see if _filename is existent in memory,
-  _file = fopen(filename, "r");
+  _file = fopen(filename, "rb");
 
   if(_file) {
     // Close the file we have.
@@ -64,7 +64,7 @@ void FileReader::Write(const int buffer) {
 }
 
 void FileReader::Read(const int &value) {
-  if((_file) && (_accessType == "r")) {
+  if((_file) && (_accessType == "rb")) {
     fscanf(_file, "%i", &value);
   } else {
     // _filename does not exist or we have the wrong accessType.
@@ -85,13 +85,14 @@ void FileReader::WriteBuffer(const char* buffer, int count) {
 }
 
 void FileReader::ReadBuffer(char* &buffer) {
-  if((_file) && (_accessType == "r")) {
+  if((_file) && (_accessType == "rb")) {
     size_t size = 0;
     fseek(_file, 0, SEEK_END);
     size = ftell(_file);
     rewind(_file);
 
-    buffer = (char*)malloc(sizeof(char)* size);
+    buffer = (char*)malloc(sizeof(char)* size + sizeof(char));
+    buffer[size] = 0;
 
     if(buffer != NULL) {
       fread(buffer, 1, size, _file);
