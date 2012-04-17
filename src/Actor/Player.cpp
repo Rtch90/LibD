@@ -34,4 +34,10 @@ void Player::Move(float dt) {
     _direction = Actor::FRONT;
   }
 
+  if(KeyDown(SDLK_LSHIFT)) {
+    _velocity += 3;
+  }
+  if(KeyUp(SDLK_LSHIFT)) {
+    _velocity -= 3;
+  }
 }
