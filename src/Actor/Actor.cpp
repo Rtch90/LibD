@@ -59,8 +59,10 @@ void Actor::Update(float dt) {
 
   Move(dt);
 
+  float collisionYOffset = GetMaxHeight() / 2.0f;
+
   if(x != oldX || y != oldY) {
-    if(_level->CheckCollision(x, y, GetAnimation()->GetMaxWidth(), GetAnimation()->GetMaxHeight())) {
+    if(_level->CheckCollision(x, y + collisionYOffset, GetAnimation()->GetMaxWidth(), GetAnimation()->GetMaxHeight() - collisionYOffset)) {
       x = oldX;
       y = oldY;
       return;
