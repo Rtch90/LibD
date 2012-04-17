@@ -117,3 +117,11 @@ float Actor::GetWidth(void) {
 float Actor::GetHeight(void) {
   return GetAnimation()->GetCurrentFrameSprite()->GetHeight();
 }
+
+float Actor::GetMaxWidth(void) {
+  return GetAnimation()->GetMaxWidth();
+}
+
+float Actor::GetMaxHeight(void) {
+  return GetAnimation()->GetMaxHeight();
+}

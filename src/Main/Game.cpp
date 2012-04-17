@@ -60,8 +60,8 @@ void Game::Render(void) {
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
-  float windowCenterX = ((float)windowWidth / 2.0f) - ((float)_player->GetWidth() / 2.0f);
-  float windowCenterY = ((float)windowHeight / 2.0f) - ((float)_player->GetHeight() / 2.0f);
+  float windowCenterX = ((float)windowWidth / 2.0f) - ((float)_player->GetMaxWidth() / 2.0f);
+  float windowCenterY = ((float)windowHeight / 2.0f) - ((float)_player->GetMaxHeight() / 2.0f);
 
   float xOffset = _player->GetX() - windowCenterX;
   float yOffset = _player->GetY() - windowCenterY;

@@ -37,6 +37,8 @@ public:
   float GetY(void)                      { return y; }
   float GetWidth(void);
   float GetHeight(void);
+  float GetMaxWidth(void);
+  float GetMaxHeight(void);
 
   void SetXY(float xArg, float yArg)    { x = xArg; y = yArg; }
 
