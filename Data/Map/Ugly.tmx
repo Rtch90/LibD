@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="60" height="60" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" width="50" height="50" tilewidth="64" tileheight="64">
  <properties>
   <property name="BGM" value="../Data/Music/journey_to_the_east_rocks.ogg"/>
  </properties>
@@ -9,19 +9,40 @@
  <tileset firstgid="9" name="Collision" tilewidth="64" tileheight="64">
   <image source="../Img/CollisionTileset.png" width="64" height="64"/>
  </tileset>
- <layer name="Tile Layer 1" width="60" height="60">
+ <tileset firstgid="10" name="Woodland" tilewidth="64" tileheight="64">
+  <image source="../Img/Woodland_ground.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="74" name="Woodland 2" tilewidth="64" tileheight="64">
+  <image source="../Img/OpenArt/Woodland_x2.png" width="512" height="128"/>
+ </tileset>
+ <tileset firstgid="90" name="Woodland 3" tilewidth="64" tileheight="64">
+  <image source="../Img/OpenArt/Woodland_x3.png" width="512" height="192"/>
+ </tileset>
+ <tileset firstgid="114" name="Woodland 4" tilewidth="64" tileheight="64">
+  <image source="../Img/OpenArt/Woodland_x5.png" width="512" height="160"/>
+ </tileset>
+ <tileset firstgid="130" name="Woodland 5" tilewidth="64" tileheight="64">
+  <image source="../Img/OpenArt/Woodland_x8.png" width="512" height="256"/>
+ </tileset>
+ <tileset firstgid="162" name="Village 1" tilewidth="64" tileheight="64">
+  <image source="../Img/OpenArt/Woodland_village.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="226" name="Village 2" tilewidth="64" tileheight="64">
+  <image source="../Img/OpenArt/Woodland_village_x2.png" width="512" height="64"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt0MENgDAQA8EA13/NtHCBoFhiHvv3uMYYx4+qgA28vLy8vLzVbPfOVV2Nup/MtNv95o/Zkr1f/PfUewbFy8vLy8ubEC8vLy8vb0K8vLy8vLwJ8fLy8vLyJsTLy8vLy5sQLy8vLy9vQry8vLy8a703oRIWWw==
+   eJztwwEJAAAMBKH7/qWXY6DgqqmqqqqqqqqqqurzBwHpCcU=
   </data>
  </layer>
- <layer name="Tile Layer 2" width="60" height="60">
+ <layer name="Tile Layer 2" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztleEOgjAMBrcfwPu/sTGhSf06tDNCNd4lDZDNdrdOaK21xUXbr+sexnowb5F5mzzP5LuKe70uV1tTd/ej3+nYKmMz+a7C77Wtz/rR9zjqr+/bqK+jfFrz6v4enb/eHn03FzZP8/jQfbFcbfB8JeZr9a0v2t+R7yZ5/Bz9n2h/K1x9be+rY0fnWX09+j7wc6rfVx5/zqrO3JksyfgnsnsyE/9Ela9+QzTOYtb31Tqz8ey8farGaP/e8f0mMuvHNw++teAbwTcPvrXgG8E3D7614BvBNw++teAbwTcPvrXgG8E3D7614BvBNw++teAbwTcPvrXgG8E3D7614BvBNw++teAbwTcPvrXgG8E3D761/IrvDT5XCI0=
+   eJztzjluAmEQBeHJHEDoQ0BmdrMZifVeLIkxCUvCcldXQAjJ/Eg9EvVJJXXQwcuyx+rUoCa1qE2dJ79F1qM+DWhIPzQKXZTPmCY0pRnNaRG6KL8KValE5eAtKb6odr8/I4ck+qZu9IgX+Yge8OaWtKI1bYK3pPilLf3RLnhLij0d6Ein4C0pznShK92Ct0iSJEmSJEmSJEmSiu8fZyQOjw==
   </data>
  </layer>
- <layer name="Collision" width="60" height="60">
+ <layer name="Collision" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1MEKgCAMANBd/f8f7hripoSYh/cgarKNaKOIiPa6YhD3Z1VeJPFKv1Pa5N4/Z3Vfzv6wa77ZnG+db/8uVU5Vl32XWb9TqrlkOVVd1uemfc7i0U7O9ndUu9IPdhj9Z+wbAAAAAAAAAAAAAACwywOaowOg
+   eJzt07ENADAIA0Ha7L9winSIBUzuJEu0X1A1O8MSbevod6LekmpjB/Bs+QsdAAAAAAAAAPzmAqQVAP0=
   </data>
  </layer>
 </map>
