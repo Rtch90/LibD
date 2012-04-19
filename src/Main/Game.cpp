@@ -12,8 +12,10 @@
 #include "../System/Debug.h"
 #include "../Sprite/Sprite.h"
 #include "../Texture/Texture.h"
+
 #include "../Level/Level.h"
 #include "Game.h"
+#include "TitleScreen.h"
 
 Game::Game(void) {
   _level  = new Level();
@@ -23,8 +25,13 @@ Game::Game(void) {
   _NPC->SetXY(30.0f, 30.0f);
 
   _testFont = new Font();
-  _testFont->Load("../Data/Font/Fairydust.ttf");
+  _testFont->Load("../Data/Font/Fairydust.ttf", 24);
   _testFont->SetColor(0.0f, 1.0f, 1.0f, 1.0f);
+
+  _titleScreen = new TitleScreen();
+  _inTitleScreen = true;
+
+  _running = true;
 }
 
 Game::~Game(void) {
@@ -56,7 +63,80 @@ void Game::Prepare(float dt) {
 
 void Game::Render(void) {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  if(_inTitleScreen) {
+    RenderTitle();
+  } else {
+    RenderGame();
+  }
+}
 
+void Game::Shutdown(void) {
+  Debug::logger->message("\n ----- Cleaning Engine -----");
+  delete _testFont;
+  delete _NPC;
+  delete _player;
+  delete _level;
+  delete _titleScreen;
+}
+
+void Game::ProcessEvents(float dt) {
+  if(_inTitleScreen) {
+    UpdateTitle(dt);
+  } else {
+    UpdateGame(dt);
+  }
+}
+
+void Game::OnResize(int width, int height) {
+  glViewport(0, 0, width, height);
+
+  windowWidth = width;
+  windowHeight = height;
+
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  glOrtho(0.0, (GLdouble)windowWidth, (GLdouble)windowHeight, 0.0, 0.0, 1.0);
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+}
+
+void Game::UpdateTitle(float dt) {
+  _titleScreen->Update(dt);
+
+  if(!_titleScreen->IsAlive()) {
+    switch(_titleScreen->GetResult()) {
+    case TitleScreen::QUIT:
+      _running = false;
+      break;
+
+    case TitleScreen::NEW_GAME:
+      _inTitleScreen = false;
+      break;
+    }
+  }
+}
+
+void Game::UpdateGame(float dt) {
+  _player->Update(dt);
+  _NPC->Update(dt);
+  _level->Update(dt);
+}
+
+void Game::RenderTitle(void) {
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+
+  glDisable(GL_DEPTH_TEST);
+  glDisable(GL_ALPHA_TEST);
+
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+  _titleScreen->Render();
+}
+
+void Game::RenderGame(void) {
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
@@ -80,35 +160,8 @@ void Game::Render(void) {
   _level->Draw(xOffset, yOffset);
   _player->Render();
   _NPC->Render();
-  _testFont->DrawText(
+  _testFont->RenderText(
     _player->GetX() - 5,
     _player->GetY() - _testFont->GetLineSkip() - 2,
     "Miss D");
-}
-
-void Game::Shutdown(void) {
-  Debug::logger->message("\n ----- Cleaning Engine -----");
-  delete _testFont;
-  delete _NPC;
-  delete _player;
-  delete _level;
-}
-
-void Game::ProcessEvents(float dt) {
-  _player->Update(dt);
-  _NPC->Update(dt);
-}
-
-void Game::OnResize(int width, int height) {
-  glViewport(0, 0, width, height);
-
-  windowWidth = width;
-  windowHeight = height;
-
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  glOrtho(0.0, (GLdouble)windowWidth, (GLdouble)windowHeight, 0.0, 0.0, 1.0);
-
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
 }

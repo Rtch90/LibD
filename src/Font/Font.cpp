@@ -19,8 +19,8 @@ Font::~Font(void) {
   }
 }
 
-bool Font::Load(const std::string& filename) {
-  TTF_Font* font = TTF_OpenFont(filename.c_str(), 16);
+bool Font::Load(const std::string& filename, int size) {
+  TTF_Font* font = TTF_OpenFont(filename.c_str(), size);
   if(!font) {
     Debug::logger->message("Error loading %s: %s", filename.c_str(), TTF_GetError());
     return false;
@@ -94,7 +94,7 @@ bool Font::Load(const std::string& filename) {
   return true;
 }
 
-void Font::DrawText(int xOffset, int yOffset, const char* text) {
+void Font::RenderText(int xOffset, int yOffset, const char* text) {
   glEnable(GL_TEXTURE_2D);
   BindTexture(_texture);
 
@@ -158,4 +158,25 @@ void Font::DrawText(int xOffset, int yOffset, const char* text) {
   glEnd();
 
   glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+}
+
+void Font::TextSize(const char* text, int& width, int& height) {
+  width   = 0;
+  height  = _lineSkip;
+  
+  int textLength = strlen(text);
+  for(int i = 0; i < textLength; i++) {
+    char c = text[i];
+    if(c == '\n') {
+      height += _lineSkip;
+      continue;
+    } else if(c == ' ') {
+      width += _spaceWidth;
+      continue;
+    } else if(c == '\t') {
+      width += _tabWidth;
+      continue;
+    }
+    width += _characters[(int)c].advance;
+  }
 }
