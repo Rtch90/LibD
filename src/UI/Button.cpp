@@ -6,6 +6,7 @@ Button::Button(void) {
   _text = "";
   _font = NULL;
   _highlighted = false;
+  _selected = false;
   _triggered = false;
   x = 0;
   y = 0;
@@ -33,7 +34,7 @@ void Button::Update(void) {
 
 void Button::Render(void) {
   if(_font) {
-    if(_highlighted) {
+    if(_highlighted || _selected) {
       _font->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
     } else {
       _font->SetColor(0.5f, 0.5f, 0.5f, 1.0f);

@@ -19,6 +19,9 @@ public:
   bool IsHighlighted(void) const        { return _highlighted; }
   void SetHighlighted(bool highlighted) { _highlighted = highlighted; }
 
+  bool IsSelected(void) const     { return _selected; }
+  void SetSelected(bool selected) { _selected = selected; }
+
   bool Triggered(void) const { return _triggered; }
 
   int   GetX(void) const    { return x; }
@@ -35,6 +38,7 @@ private:
   String  _text;
  
   bool _highlighted;
+  bool _selected;
   bool _triggered;
 
   int x;

@@ -1,8 +1,10 @@
 #include "Menu.h"
 #include "Button.h"
+#include "../IO/Input.h"
 
 Menu::Menu(void) {
   _triggeredButton = -1;
+  _selectedButton = 0;
   x = 0;
   y = 0;
 }
@@ -15,6 +17,11 @@ Menu::~Menu(void) {
 }
 
 void Menu::AddButton(Button* button) {
+  // Select first button.
+  if(_buttons.empty()) {
+    button->SetSelected(true);
+  }
+
   _buttons.push_back(button);
 }
 
@@ -31,6 +38,15 @@ void Menu::AlignButtons(int how) {
       y += button->GetHeight() + 2;
     }
   }
+}
+
+void Menu::SelectButton(int index) {
+  int buttonsIndex = 0;
+  for(std::list<Button*>::iterator i = _buttons.begin(); i != _buttons.end(); ++i) {   
+    (*i)->SetSelected(buttonsIndex == index);
+    buttonsIndex++;
+  }
+  _selectedButton = index;
 }
 
 void Menu::Update(void) {
@@ -51,6 +67,25 @@ void Menu::Update(void) {
     }
 
     index++;
+  }
+
+  if(KeyDown(SDLK_DOWN)) {
+    _selectedButton++;
+    if(_selectedButton == _buttons.size()) {
+      _selectedButton = 0;
+    }
+    SelectButton(_selectedButton);
+  }
+  else if(KeyDown(SDLK_UP)) {
+    _selectedButton--;
+    if(_selectedButton < 0) {
+      _selectedButton = _buttons.size() - 1;
+    }
+    SelectButton(_selectedButton);
+  }
+
+  if(KeyDown(SDLK_RETURN)) {
+    _triggeredButton = _selectedButton;
   }
 }
 

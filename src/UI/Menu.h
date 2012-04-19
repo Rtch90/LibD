@@ -16,6 +16,7 @@ public:
 
   void AddButton(Button* button);
   void AlignButtons(int how);
+  void SelectButton(int index);
 
   void Update(void);
   void Render(void);
@@ -31,6 +32,7 @@ public:
 private:
   std::list<Button*> _buttons;
   int _triggeredButton;
+  int _selectedButton;
   
   int x;
   int y;
