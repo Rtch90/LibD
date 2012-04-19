@@ -158,8 +158,12 @@ void Game::RenderGame(void) {
   _NPC->Render();
   _testFont->RenderText(
     _player->GetX() - 5,
-    _player->GetY() - _testFont->GetLineSkip() - 2,
+    _player->GetY() - _testFont->GetLineSkip() - 20,
     "Miss D");
+  _testFont->RenderText(
+    _player->GetX() - 50,
+    _player->GetY() - _testFont->GetLineSkip() - 2,
+    "<Mistress of Magic>");
 }
 
 void Game::NewGame(void) {
