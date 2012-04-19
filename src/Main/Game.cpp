@@ -195,12 +195,16 @@ void Game::RenderGame(void) {
     _player->GetX() - 50,
     _player->GetY() - _testFont->GetLineSkip() - 20,
     "<Misteress of Magic>");
+
+  glLoadIdentity();
+
+  glDisable(GL_DEPTH_TEST);
+  glDisable(GL_ALPHA_TEST);
+  RenderHUD();
+}
+
+void Game::RenderHUD(void) {
   if(_inGameMenuShown) {
-    glLoadIdentity();
-
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_ALPHA_TEST);
-
     _inGameMenu->Render();
   }
 }

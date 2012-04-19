@@ -32,6 +32,7 @@ private:
   void UpdateGame(float dt);
   void RenderTitle(void);
   void RenderGame(void);
+  void RenderHUD(void);
 
   void NewGame(void);
   void LoadGame(void);
