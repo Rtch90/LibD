@@ -64,7 +64,8 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Font/Font.h \
     ../src/Animation/AnimatingSprite.h \
     ../src/UI/Menu.h \
-    ../src/UI/Button.h
+    ../src/UI/Button.h \
+    ../src/Main/TitleScreen.h
 SOURCES += ../src/Actor/Player.cpp \
     ../src/Collision/AABB.cpp \
     ../src/Global/Globals.cpp \
@@ -103,5 +104,5 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/Font/Font.cpp \
     ../src/Animation/AnimatingSprite.cpp \
     ../src/UI/Menu.cpp \
-    ../src/UI/Button.cpp
-OTHER_FILES += 
+    ../src/UI/Button.cpp \
+    ../src/Main/TitleScreen.cpp

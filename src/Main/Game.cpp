@@ -183,9 +183,9 @@ void Game::RenderGame(void) {
   _player->Render();
   _NPC->Render();
   _testFont->RenderText(
-    _player->GetX() - 5,
+    _player->GetX() - 50,
     _player->GetY() - _testFont->GetLineSkip() - 2,
-    "Miss D");
+    "<Mistress of Magic>");
 
   if(_inGameMenuShown) {
     glLoadIdentity();
@@ -195,6 +195,7 @@ void Game::RenderGame(void) {
 
     _inGameMenu->Render();
   }
+  
 }
 
 void Game::NewGame(void) {

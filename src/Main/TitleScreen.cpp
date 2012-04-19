@@ -8,7 +8,7 @@ TitleScreen::TitleScreen(void) {
   _result = TitleScreen::QUIT;
 
   _font = new Font();
-  _font->Load("../Data/Font/fairydust.ttf", 24);
+  _font->Load("../Data/Font/Fairydust.ttf", 24);
 
   Button* newGameButton = new Button();
   Button* loadGameButton = new Button();
