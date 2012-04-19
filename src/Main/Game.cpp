@@ -25,8 +25,6 @@ Game::Game(void) {
   _NPC->SetXY(30.0f, 30.0f);
 
   _testFont = new Font();
-  _testFont->Load("../Data/Font/Fairydust.ttf", 24);
-  _testFont->SetColor(0.0f, 1.0f, 1.0f, 1.0f);
 
   _titleScreen = new TitleScreen();
   _inTitleScreen = true;
@@ -46,12 +44,6 @@ bool Game::Init(void) {
 
   glEnable(GL_ALPHA_TEST);
   glAlphaFunc(GL_GREATER, 0.1f);
-
-  _level->Load("../Data/Map/Ugly.tmx");
-  _level->PlayBGM();
-
-  _player->LoadSprites("Player");
-  _NPC->LoadSprites("Player");
 
   // Return success.
   return true;
@@ -106,12 +98,16 @@ void Game::UpdateTitle(float dt) {
 
   if(!_titleScreen->IsAlive()) {
     switch(_titleScreen->GetResult()) {
-    case TitleScreen::QUIT:
-      _running = false;
+    case TitleScreen::NEW_GAME:
+      NewGame();
       break;
 
-    case TitleScreen::NEW_GAME:
-      _inTitleScreen = false;
+    case TitleScreen::LOAD_GAME:
+      LoadGame();
+      break;
+
+    case TitleScreen::QUIT:
+      Quit();
       break;
     }
   }
@@ -164,4 +160,24 @@ void Game::RenderGame(void) {
     _player->GetX() - 5,
     _player->GetY() - _testFont->GetLineSkip() - 2,
     "Miss D");
+}
+
+void Game::NewGame(void) {
+  _level->Load("../Data/Map/Ugly.tmx");
+  _level->PlayBGM();
+
+  _player->LoadSprites("Player");
+  _NPC->LoadSprites("Player");
+
+  _testFont->Load("../Data/Font/Fairydust.ttf", 16);
+  _testFont->SetColor(0.0f, 1.0f, 1.0f, 1.0f);
+
+  _inTitleScreen = false;
+}
+
+void Game::LoadGame(void) {
+}
+
+void Game::Quit(void) {
+  SetRunning(false);
 }

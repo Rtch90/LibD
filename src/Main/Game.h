@@ -32,6 +32,10 @@ private:
   void RenderTitle(void);
   void RenderGame(void);
 
+  void NewGame(void);
+  void LoadGame(void);
+  void Quit(void);
+
   Font*   _testFont;
   Player* _player;
   NPC*    _NPC;

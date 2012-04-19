@@ -26,7 +26,6 @@ TitleScreen::TitleScreen(void) {
   _menu.AddButton(loadGameButton);
   _menu.AddButton(quitButton);
   _menu.AlignButtons(Menu::ALIGN_VERTICALLY);
-  _menu.SetXY(32, windowHeight - 128);
 }
 
 TitleScreen::~TitleScreen(void) {
@@ -57,5 +56,6 @@ void TitleScreen::Update(float dt) {
 }
 
 void TitleScreen::Render(void) {
+  _menu.SetXY(32, windowHeight - 128);
   _menu.Render();
 }
