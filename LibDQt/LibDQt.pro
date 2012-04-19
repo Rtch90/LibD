@@ -65,7 +65,8 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Animation/AnimatingSprite.h \
     ../src/UI/Menu.h \
     ../src/UI/Button.h \
-    ../src/Main/TitleScreen.h
+    ../src/Main/TitleScreen.h \
+    ../src/BattleSys/HUB.h
 SOURCES += ../src/Actor/Player.cpp \
     ../src/Collision/AABB.cpp \
     ../src/Global/Globals.cpp \
@@ -105,4 +106,5 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/Animation/AnimatingSprite.cpp \
     ../src/UI/Menu.cpp \
     ../src/UI/Button.cpp \
-    ../src/Main/TitleScreen.cpp
+    ../src/Main/TitleScreen.cpp \
+    ../src/BattleSys/HUB.cpp

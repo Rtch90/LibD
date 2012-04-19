@@ -32,7 +32,7 @@ Game::Game(void) {
 
   _titleScreen = new TitleScreen();
   _inTitleScreen = true;
-  
+
   _inGameMenuShown = false;
 
   _running = true;
@@ -183,6 +183,10 @@ void Game::RenderGame(void) {
   _player->Render();
   _NPC->Render();
   _testFont->RenderText(
+    _player->GetX() - 5,
+    _player->GetY() - _testFont->GetLineSkip() - 20,
+    "Miss D");
+  _testFont->RenderText(
     _player->GetX() - 50,
     _player->GetY() - _testFont->GetLineSkip() - 2,
     "<Mistress of Magic>");
@@ -195,7 +199,7 @@ void Game::RenderGame(void) {
 
     _inGameMenu->Render();
   }
-  
+
 }
 
 void Game::NewGame(void) {
