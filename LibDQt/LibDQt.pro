@@ -8,7 +8,7 @@ LIBS += -lGL \
     -ltinyxml \
     -lSDL_mixer \
     -lSDL_ttf
-win32: { 
+win32: {
     LIBS -= -lGL \
         -lGLU
     LIBS += -lkernel32 \
@@ -65,8 +65,7 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Animation/AnimatingSprite.h \
     ../src/UI/Menu.h \
     ../src/UI/Button.h \
-    ../src/Main/TitleScreen.h \
-    ../src/BattleSys/HUB.h
+    ../src/Main/TitleScreen.h
 SOURCES += ../src/Actor/Player.cpp \
     ../src/Collision/AABB.cpp \
     ../src/Global/Globals.cpp \
@@ -107,4 +106,3 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/UI/Menu.cpp \
     ../src/UI/Button.cpp \
     ../src/Main/TitleScreen.cpp \
-    ../src/BattleSys/HUB.cpp
