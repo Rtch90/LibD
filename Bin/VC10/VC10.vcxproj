@@ -100,6 +100,7 @@
     <ClInclude Include="..\..\src\Level\MapTile.h" />
     <ClInclude Include="..\..\src\Level\Tileset.h" />
     <ClInclude Include="..\..\src\Main\Game.h" />
+    <ClInclude Include="..\..\src\Main\TitleScreen.h" />
     <ClInclude Include="..\..\src\Math\FPS.h" />
     <ClInclude Include="..\..\src\Math\MathBox.h" />
     <ClInclude Include="..\..\src\Math\Rect.h" />
@@ -128,6 +129,8 @@
     <ClInclude Include="..\..\src\TMXParser\TmxTile.h" />
     <ClInclude Include="..\..\src\TMXParser\TmxTileset.h" />
     <ClInclude Include="..\..\src\TMXParser\TmxUtil.h" />
+    <ClInclude Include="..\..\src\UI\Button.h" />
+    <ClInclude Include="..\..\src\UI\Menu.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Actor\Actor.cpp" />
@@ -145,6 +148,7 @@
     <ClCompile Include="..\..\src\Level\Tileset.cpp" />
     <ClCompile Include="..\..\src\Main\Game.cpp" />
     <ClCompile Include="..\..\src\Main\main.cpp" />
+    <ClCompile Include="..\..\src\Main\TitleScreen.cpp" />
     <ClCompile Include="..\..\src\Math\FPS.cpp" />
     <ClCompile Include="..\..\src\Math\Timer.cpp" />
     <ClCompile Include="..\..\src\Math\Vec2.cpp" />
@@ -167,6 +171,8 @@
     <ClCompile Include="..\..\src\TMXParser\TmxTile.cpp" />
     <ClCompile Include="..\..\src\TMXParser\TmxTileset.cpp" />
     <ClCompile Include="..\..\src\TMXParser\TmxUtil.cpp" />
+    <ClCompile Include="..\..\src\UI\Button.cpp" />
+    <ClCompile Include="..\..\src\UI\Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="tinyxml.vcxproj">

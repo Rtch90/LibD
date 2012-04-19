@@ -99,12 +99,11 @@ int main(int argc, char** argv) {
   // screws up for me. -- Allanis.
   game.OnResize(windowWidth, windowHeight);
 
-  bool isRunning = true;
-  while(isRunning) {
+  while(game.IsRunning()) {
 
     while(SDL_PollEvent(&event)) {
       if((event.type == SDL_QUIT) || KeyStillDown(SDLK_ESCAPE)) {
-        isRunning = false;
+        game.SetRunning(false);
         break;
       }
       if(event.type == SDL_VIDEORESIZE) {

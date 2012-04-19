@@ -16,16 +16,15 @@ struct FontChar {
   int advance;
 };
 
-class Font : public Resource {
-  template<class T> friend class ResourceManager;
-
+class Font {
 public:
   Font(void);
   ~Font(void);
 
-  bool Load(const std::string& filename);
+  bool Load(const std::string& filename, int size);
 
-  void DrawText(int xOffset, int yOffset, const char* text);
+  void RenderText(int xOffset, int yOffset, const char* text);
+  void TextSize(const char* text, int& width, int& height);
 
   int     GetLineSkip() const { return _lineSkip; }
   float*  GetColor() { return _color; }
