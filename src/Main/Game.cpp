@@ -33,6 +33,7 @@ Game::Game(void) {
   _titleScreen = new TitleScreen();
   _inTitleScreen = true;
   
+  _inGameMenu = NULL;
   _inGameMenuShown = false;
 
   _running = true;
@@ -74,7 +75,10 @@ void Game::Shutdown(void) {
   delete _NPC;
   delete _player;
   delete _level;
-  delete _inGameMenu;
+  if(_inGameMenu) {
+    delete _inGameMenu;
+    _inGameMenu = NULL;
+  }
 }
 
 void Game::ProcessEvents(float dt) {
@@ -120,7 +124,7 @@ void Game::UpdateTitle(float dt) {
 }
 
 void Game::UpdateGame(float dt) {
-  if(KeyDown(SDLK_ESCAPE)) {
+  if(KeyDown(SDLK_F1)) {
     _inGameMenuShown = !_inGameMenuShown;
   }
   if(_inGameMenuShown) {
@@ -182,11 +186,15 @@ void Game::RenderGame(void) {
   _level->Draw(xOffset, yOffset);
   _player->Render();
   _NPC->Render();
+  _testFont->SetColor(0.0f, 1.0f, 1.0f, 1.0f);
+  _testFont->RenderText(
+    _player->GetX() - 5,
+    _player->GetY() - _testFont->GetLineSkip() - 2,
+    "Miss D");
   _testFont->RenderText(
     _player->GetX() - 50,
-    _player->GetY() - _testFont->GetLineSkip() - 2,
-    "<Mistress of Magic>");
-
+    _player->GetY() - _testFont->GetLineSkip() - 20,
+    "<Misteress of Magic>");
   if(_inGameMenuShown) {
     glLoadIdentity();
 
@@ -195,7 +203,6 @@ void Game::RenderGame(void) {
 
     _inGameMenu->Render();
   }
-  
 }
 
 void Game::NewGame(void) {

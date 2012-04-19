@@ -102,7 +102,7 @@ int main(int argc, char** argv) {
   while(game.IsRunning()) {
 
     while(SDL_PollEvent(&event)) {
-      if((event.type == SDL_QUIT)) {
+      if((event.type == SDL_QUIT) || KeyStillDown(SDLK_ESCAPE)) {
         game.SetRunning(false);
         break;
       }
