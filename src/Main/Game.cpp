@@ -32,7 +32,7 @@ Game::Game(void) {
 
   _titleScreen = new TitleScreen();
   _inTitleScreen = true;
-  
+
   _inGameMenu = NULL;
   _inGameMenuShown = false;
 

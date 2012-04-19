@@ -8,7 +8,7 @@ LIBS += -lGL \
     -ltinyxml \
     -lSDL_mixer \
     -lSDL_ttf
-win32: { 
+win32: {
     LIBS -= -lGL \
         -lGLU
     LIBS += -lkernel32 \
@@ -105,4 +105,4 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/Animation/AnimatingSprite.cpp \
     ../src/UI/Menu.cpp \
     ../src/UI/Button.cpp \
-    ../src/Main/TitleScreen.cpp
+    ../src/Main/TitleScreen.cpp \
