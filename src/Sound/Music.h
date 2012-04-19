@@ -15,6 +15,7 @@ public:
 
   static void Play(Music* music, int loops);
   static void Stop();
+  static void SetVolume(int volume);
 
 private:
   struct _Mix_Music* _music;

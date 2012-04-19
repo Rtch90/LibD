@@ -31,3 +31,7 @@ void SoundEffect::Stop(int channel) {
 bool SoundEffect::IsPlaying(int channel) {
   return Mix_Playing(channel) == 1;
 }
+
+void SoundEffect::SetVolume(int channel, int volume) {
+  Mix_Volume(channel, volume);
+}

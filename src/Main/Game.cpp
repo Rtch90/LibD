@@ -12,6 +12,10 @@
 #include "../System/Debug.h"
 #include "../Sprite/Sprite.h"
 #include "../Texture/Texture.h"
+#include "../UI/Button.h"
+#include "../UI/Menu.h"
+#include "../Sound/Music.h"
+#include "../Sound/SoundEffect.h"
 
 #include "../Level/Level.h"
 #include "Game.h"
@@ -28,6 +32,8 @@ Game::Game(void) {
 
   _titleScreen = new TitleScreen();
   _inTitleScreen = true;
+  
+  _inGameMenuShown = false;
 
   _running = true;
 }
@@ -68,7 +74,7 @@ void Game::Shutdown(void) {
   delete _NPC;
   delete _player;
   delete _level;
-  delete _titleScreen;
+  delete _inGameMenu;
 }
 
 void Game::ProcessEvents(float dt) {
@@ -114,9 +120,29 @@ void Game::UpdateTitle(float dt) {
 }
 
 void Game::UpdateGame(float dt) {
-  _player->Update(dt);
-  _NPC->Update(dt);
-  _level->Update(dt);
+  if(KeyDown(SDLK_ESCAPE)) {
+    _inGameMenuShown = !_inGameMenuShown;
+  }
+  if(_inGameMenuShown) {
+    _inGameMenu->SetXY(windowWidth / 2, windowHeight / 2);
+    _inGameMenu->Update();
+
+    switch(_inGameMenu->GetTriggeredButton()) {
+    case 0:
+      SoundEffect::SetVolume(-1, 0);
+      Music::SetVolume(0);
+      break;
+
+    case 1:
+      SoundEffect::SetVolume(-1, 100);
+      Music::SetVolume(100);
+      break;
+    }
+  } else {
+    _player->Update(dt);
+    _NPC->Update(dt);
+    _level->Update(dt);
+  }
 }
 
 void Game::RenderTitle(void) {
@@ -160,6 +186,15 @@ void Game::RenderGame(void) {
     _player->GetX() - 5,
     _player->GetY() - _testFont->GetLineSkip() - 2,
     "Miss D");
+
+  if(_inGameMenuShown) {
+    glLoadIdentity();
+
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_ALPHA_TEST);
+
+    _inGameMenu->Render();
+  }
 }
 
 void Game::NewGame(void) {
@@ -172,7 +207,21 @@ void Game::NewGame(void) {
   _testFont->Load("../Data/Font/Fairydust.ttf", 16);
   _testFont->SetColor(0.0f, 1.0f, 1.0f, 1.0f);
 
+  Button* muteSoundsButton = new Button();
+  muteSoundsButton->SetFont(_testFont);
+  muteSoundsButton->SetText("Mute Sounds");
+
+  Button* unmuteSoundsButton = new Button();
+  unmuteSoundsButton->SetFont(_testFont);
+  unmuteSoundsButton->SetText("Unmute Sounds");
+
+  _inGameMenu = new Menu();
+  _inGameMenu->AddButton(muteSoundsButton);
+  _inGameMenu->AddButton(unmuteSoundsButton);
+  _inGameMenu->AlignButtons(Menu::ALIGN_VERTICALLY);
+
   _inTitleScreen = false;
+  delete _titleScreen;
 }
 
 void Game::LoadGame(void) {
@@ -180,4 +229,5 @@ void Game::LoadGame(void) {
 
 void Game::Quit(void) {
   SetRunning(false);
+  delete _titleScreen;
 }

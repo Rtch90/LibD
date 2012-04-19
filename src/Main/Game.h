@@ -8,6 +8,7 @@ class Sprite;
 class Level;
 class Button;
 class TitleScreen;
+class Menu;
 
 class Game {
 public:
@@ -43,6 +44,9 @@ private:
 
   TitleScreen* _titleScreen;
   bool         _inTitleScreen;
+
+  Menu* _inGameMenu;
+  bool _inGameMenuShown;
 
   bool _running;
 };

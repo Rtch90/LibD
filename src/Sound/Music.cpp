@@ -28,3 +28,7 @@ void Music::Play(Music* music, int loops) {
 void Music::Stop() {
   Mix_HaltMusic();
 }
+
+void Music::SetVolume(int volume) {
+  Mix_VolumeMusic(volume);
+}

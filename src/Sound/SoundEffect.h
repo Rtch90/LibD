@@ -16,6 +16,7 @@ public:
   static void Play(SoundEffect* effect, int channel, int loops);
   static void Stop(int channel);
   static bool IsPlaying(int channel);
+  static void SetVolume(int channel, int volume);
 
 private:
   Mix_Chunk* _chunk;
