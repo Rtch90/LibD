@@ -42,8 +42,8 @@ public:
 
   void SetXY(float xArg, float yArg)    { x = xArg; y = yArg; }
 
-  Facing GetDirection(void)                 { return _direction; }
-  void SetDirection(Facing direction)      { _direction = direction; }
+  Facing GetDirection(void)             { return _direction; }
+  void SetDirection(Facing direction)   { _direction = direction; }
 
 protected:
   virtual void Move(float dt) = 0;
