@@ -195,6 +195,9 @@
     <ClInclude Include="..\..\src\UI\Menu.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\Level\Warp.h">
+      <Filter>Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\main.cpp">
@@ -316,6 +319,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\UI\Menu.cpp">
       <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Level\Warp.cpp">
+      <Filter>Level</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

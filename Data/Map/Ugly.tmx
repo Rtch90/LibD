@@ -57,10 +57,17 @@
    eJztl8ESwyAIRJP//+leemA6oIC7BhvejIemlV0QNb2upir3d2TnZeYyyHi5lYHWYsaWc5ha2TpFNFZ0Inn86jCY5SGf7exbK8bMm/xs/darZ3lA1yGSR0ZzpI/cvzvy8PiIxNR8ovaaxxsrDxSM+LP9dSnfIzQ1ndWY6L70ajLy0OqP0rHOCkadGHW3YiPvHQZe/dH6R+Iw8Xiovh5VPEiifrS9m723VkF4qNDj/5AHsi+eXgvpRT47ich6sOu9Yz13vEecmAdDI3IXN03TNE3zHqz3z9GoSOa/cUVOywPVJ5m5qJ5k9XamBitarF5YzaPK+RLVP+n8a5rmnXwA7bUBUA==
   </data>
  </layer>
- <objectgroup name="NPCs" width="50" height="50">
+ <objectgroup name="Events" width="50" height="50">
   <object name="NPC!!!" type="NPC" x="544" y="320" width="32" height="32">
    <properties>
     <property name="image" value="Player"/>
+   </properties>
+  </object>
+  <object name="Warp to house" type="warp" x="605" y="188" width="34" height="59">
+   <properties>
+    <property name="map" value="../Data/Map/house.tmx"/>
+    <property name="x" value="7"/>
+    <property name="y" value="13"/>
    </properties>
   </object>
  </objectgroup>

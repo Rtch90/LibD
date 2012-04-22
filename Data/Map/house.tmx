@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="15" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="woodland_indoor_0" tilewidth="32" tileheight="32">
+  <image source="../Img/OpenArt/woodland_indoor_0.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="257" name="CollisionTileset" tilewidth="32" tileheight="32">
+  <image source="../Img/CollisionTileset.png" width="32" height="32"/>
+ </tileset>
+ <layer name="Layer 1" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJy10dEJgDAMBNDrCI5gZtFOou4/gvGvHHc1flh4EEJC4dIANALRUxYBps9WAabPQoDpV1R3xxdUvxlzC6pn/3CeQTXv8Y04N5ehumc1vy+zzN3zb9W7Pba0pz7Zde9IZ7omMzc2PRZ3
+  </data>
+ </layer>
+ <layer name="Layer 2" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYEAFzAz4gRwQywOxApR/DojPA/EFIBYmoFcPiPWB2ADKvwfE94H4AQF92PS+A+L3ROjDpvcfEP8nUu8oYGBoAeJWIG7Do2YpGgaBg0A8BYinAvE0ID5Mgp0gvUugZi0jUe9QAwA5/BXY
+  </data>
+ </layer>
+ <layer name="Layer 3" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBheQAWIVcnUawLEplR0CzLgAWJeMvXKALEsFd1CT7AciDuAuGugHTKIAQBabAK+
+  </data>
+ </layer>
+ <layer name="Collision" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjZGRgYCQRgwCpetD1IgNc4vjUIJtHql5c8oQArjCgtl5iw54YfcQCWugdKPcQaz419eKLL0JqAIUTAME=
+  </data>
+ </layer>
+ <objectgroup name="Events" width="15" height="15">
+  <object name="Warp to village" type="warp" x="210" y="433" width="61" height="34">
+   <properties>
+    <property name="map" value="../Data/Map/Ugly.tmx"/>
+    <property name="x" value="19"/>
+    <property name="y" value="7"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

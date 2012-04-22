@@ -24,8 +24,10 @@ public:
     HURT
   };
 
-  Actor(const Level* level);
+  Actor(Level* level);
   ~Actor(void);
+
+  void SetLevel(Level* level) { _level = level; }
 
   void LoadSprites(const String& basename);
 
@@ -50,7 +52,7 @@ protected:
 
   AnimatingSprite* GetAnimation(void);
 
-  const Level* _level;
+  Level* _level;
 
   float _velocity;
 
@@ -61,6 +63,8 @@ protected:
 
   Facing _direction;
   Facing _preventMovement;
+
+  float _distanceTraveled;
 
   float x;
   float y;

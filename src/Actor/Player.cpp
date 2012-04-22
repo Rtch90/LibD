@@ -1,7 +1,10 @@
 #include "Player.h"
 #include "../IO/Input.h"
+#include "../Level/Level.h"
+#include "../Level/Warp.h"
+#include "../Main/Game.h"
 
-Player::Player(const Level* level) : Actor(level) {
+Player::Player(Level* level) : Actor(level) {
   _direction = Actor::RIGHT;
 }
 
@@ -10,6 +13,14 @@ Player::~Player(void) {
 
 void Player::Update(float dt) {
   Actor::Update(dt);
+  
+  if(_distanceTraveled > 32.0f) {
+    Warp* warp = _level->CheckWarp(x, y, GetMaxWidth(), GetMaxHeight());
+    if(warp) {
+      _level->GetGame()->Warp(warp->GetTargetMap(), warp->GetTargetX(), warp->GetTargetY());
+      _distanceTraveled = 0;
+    }
+  }
 }
 
 void Player::Render(void) {

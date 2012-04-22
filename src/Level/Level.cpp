@@ -4,10 +4,12 @@
 #include "Level.h"
 #include "Layer.h"
 #include "Tileset.h"
+#include "Warp.h"
 #include "../Sound/Music.h"
 #include "../System/Debug.h"
 #include "../TMXParser/Tmx.h"
 #include "../Actor/NPC.h"
+#include "../Math/Rect.h"
 
 #ifdef _WIN32
 #ifndef strcasecmp
@@ -18,7 +20,8 @@
 #endif
 #endif
 
-Level::Level() {
+Level::Level(Game* game) {
+  _game = game;
   _width = 0;
   _height = 0;
   _tileWidth = 0;
@@ -41,7 +44,12 @@ Level::~Level() {
   for(std::list<NPC*>::iterator  i = _npcs.begin(); i != _npcs.end(); ++i) {
     delete (*i);
   }
-  _npcs.end();
+  _npcs.clear();
+
+  for(std::list<Warp*>::iterator i = _warps.begin(); i != _warps.end(); ++i) {
+    delete (*i);
+  }
+  _warps.clear();
 
   if(_collisions) {
   delete[] _collisions;
@@ -134,6 +142,15 @@ bool Level::Load(const std::string& filename) {
         npc->SetXY(tmxObject->GetX(), tmxObject->GetY());
         _npcs.push_back(npc);
       }
+      else if(!strncasecmp(tmxObject->GetName().c_str(), "Warp", 4)) {
+        Warp* warp = new Warp();
+        warp->SetXY(tmxObject->GetX(), tmxObject->GetY());
+        warp->SetWidthHeight(tmxObject->GetWidth(), tmxObject->GetHeight());
+        warp->SetTargetMap(tmxObject->GetProperties().GetLiteralProperty("map").c_str());
+        warp->SetTargetX(tmxObject->GetProperties().GetNumericProperty("x") * 32);
+        warp->SetTargetY(tmxObject->GetProperties().GetNumericProperty("y") * 32);
+        _warps.push_back(warp);
+      }
     }
   }
 
@@ -172,8 +189,8 @@ void Level::Draw(int xOffset, int yOffset) {
 }
 
 bool Level::CheckCollision(float x, float y, float w, float h) const {
-  if(x < 0.0f || x > (float)(_width * _tileWidth) ||
-     y < 0.0f || y > (float)(_height * _tileHeight)) {
+  if(x < 0.0f || x >= (float)((_width - 1) * _tileWidth) ||
+     y < 0.0f || y >= (float)((_height - 1) * _tileHeight)) {
     return true;
   }
 
@@ -221,4 +238,18 @@ bool Level::CheckCollision(float x, float y, float w, float h) const {
   }
 
   return false;
+}
+
+Warp* Level::CheckWarp(float x, float y, float w, float h) const {  
+  Rect objectArea(x, y, w, h);
+  for(std::list<Warp*>::const_iterator i = _warps.cbegin(); i != _warps.cend(); ++i) {
+    Warp* warp = (*i);
+    Rect warpArea(
+      warp->GetX(), warp->GetY(),
+      warp->GetWidth(), warp->GetHeight());
+    if(warpArea.CollidesWith(objectArea)) {
+      return warp;
+    }
+  }
+  return NULL;
 }

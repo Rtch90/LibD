@@ -4,7 +4,7 @@
 
 class NPC : public Actor {
 public:
-  NPC(const Level* level);
+  NPC(Level* level);
   ~NPC(void);
 
   void Update(float dt);

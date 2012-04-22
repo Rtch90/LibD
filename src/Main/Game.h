@@ -1,6 +1,5 @@
 #pragma once
 #include "../IO/Input.h"
-#include "../Actor/NPC.h"
 #include "../Actor/Player.h"
 #include "../Font/Font.h"
 
@@ -24,6 +23,8 @@ public:
 
   void OnResize(int width, int height);
 
+  void Warp(const String& mapName, int x, int y);
+
   bool IsRunning()              { return _running; }
   void SetRunning(bool running) { _running = running; }
 
@@ -40,7 +41,6 @@ private:
 
   Font*   _testFont;
   Player* _player;
-  NPC*    _NPC;
   Level*  _level;
 
   TitleScreen* _titleScreen;

@@ -9,7 +9,7 @@ class Level;
 
 class Player : public Actor{
 public:
-  Player(const Level* level);
+  Player(Level* level);
   ~Player(void);
 
   void Update(float dt);

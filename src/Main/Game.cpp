@@ -22,11 +22,8 @@
 #include "TitleScreen.h"
 
 Game::Game(void) {
-  _level  = new Level();
+  _level  = new Level(this);
   _player = new Player(_level);
-  _NPC    = new NPC(_level);
-
-  _NPC->SetXY(30.0f, 30.0f);
 
   _testFont = new Font();
 
@@ -72,7 +69,6 @@ void Game::Render(void) {
 void Game::Shutdown(void) {
   Debug::logger->message("\n ----- Cleaning Engine -----");
   delete _testFont;
-  delete _NPC;
   delete _player;
   delete _level;
   if(_inGameMenu) {
@@ -101,6 +97,23 @@ void Game::OnResize(int width, int height) {
 
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
+}
+
+void Game::Warp(const String& mapName, int x, int y) {
+  Level* newLevel = new Level(this);
+
+  if(!newLevel->Load(mapName.GetPointer())) {
+    delete newLevel;
+    return;
+  }
+
+  delete _level;
+  _level = newLevel;
+
+  _player->SetXY(x, y);
+  _player->SetLevel(_level);
+
+  _level->PlayBGM();
 }
 
 void Game::UpdateTitle(float dt) {
@@ -144,7 +157,6 @@ void Game::UpdateGame(float dt) {
     }
   } else {
     _player->Update(dt);
-    _NPC->Update(dt);
     _level->Update(dt);
   }
 }
@@ -166,26 +178,39 @@ void Game::RenderGame(void) {
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
-  float windowCenterX = ((float)windowWidth / 2.0f) - ((float)_player->GetMaxWidth() / 2.0f);
-  float windowCenterY = ((float)windowHeight / 2.0f) - ((float)_player->GetMaxHeight() / 2.0f);
+  float xOffset;
+  float yOffset;
 
-  float xOffset = _player->GetX() - windowCenterX;
-  float yOffset = _player->GetY() - windowCenterY;
+  int levelWidthPixels = _level->GetWidth() * _level->GetTileWidth();
+  int levelHeightPixels = _level->GetHeight() * _level->GetTileHeight();
 
-  float maxXOffset = (_level->GetWidth() * _level->GetTileWidth()) - (float)windowWidth;
-  float maxYOffset = (_level->GetHeight() * _level->GetTileHeight()) - (float)windowHeight;
+  if(levelWidthPixels < windowWidth && levelHeightPixels < windowHeight) {
+    xOffset = levelWidthPixels / 2 - windowWidth / 2;
+    yOffset = levelHeightPixels / 2 - windowHeight / 2;
+    glTranslatef((int)-xOffset, (int)-yOffset, 0.0f);
+  }
+  else
+  {
+    float windowCenterX = ((float)windowWidth / 2.0f) - ((float)_player->GetMaxWidth() / 2.0f);
+    float windowCenterY = ((float)windowHeight / 2.0f) - ((float)_player->GetMaxHeight() / 2.0f);
 
-  if(xOffset < 0.0f) xOffset = 0.0f;
-  if(yOffset < 0.0f) yOffset = 0.0f;
-  if(xOffset > maxXOffset) xOffset = maxXOffset;
-  if(yOffset > maxYOffset) yOffset = maxYOffset;
+    xOffset = _player->GetX() - windowCenterX;
+    yOffset = _player->GetY() - windowCenterY;
 
-  glTranslatef((int)-xOffset, (int)-yOffset, 0.0f);
+    float maxXOffset = (float)(levelWidthPixels - windowWidth);
+    float maxYOffset = (float)(levelHeightPixels - windowHeight);
+
+    if(xOffset < 0.0f) xOffset = 0.0f;
+    if(yOffset < 0.0f) yOffset = 0.0f;
+    if(xOffset > maxXOffset) xOffset = maxXOffset;
+    if(yOffset > maxYOffset) yOffset = maxYOffset;
+
+    glTranslatef((int)-xOffset, (int)-yOffset, 0.0f);
+  }
 
   // Render our shit..
   _level->Draw(xOffset, yOffset);
   _player->Render();
-  _NPC->Render();
   _testFont->SetColor(0.0f, 1.0f, 1.0f, 1.0f);
   _testFont->RenderText(
     _player->GetX() - 5,
@@ -214,7 +239,6 @@ void Game::NewGame(void) {
   _level->PlayBGM();
 
   _player->LoadSprites("Player");
-  _NPC->LoadSprites("Player");
 
   _testFont->Load("../Data/Font/Fairydust.ttf", 16);
   _testFont->SetColor(0.0f, 1.0f, 1.0f, 1.0f);
