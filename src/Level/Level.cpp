@@ -240,9 +240,9 @@ bool Level::CheckCollision(float x, float y, float w, float h) const {
   return false;
 }
 
-Warp* Level::CheckWarp(float x, float y, float w, float h) const {  
+Warp* Level::CheckWarp(float x, float y, float w, float h) const {
   Rect objectArea(x, y, w, h);
-  for(std::list<Warp*>::const_iterator i = _warps.cbegin(); i != _warps.cend(); ++i) {
+  for(std::list<Warp*>::const_iterator i = _warps.begin(); i != _warps.end(); ++i) {
     Warp* warp = (*i);
     Rect warpArea(
       warp->GetX(), warp->GetY(),
