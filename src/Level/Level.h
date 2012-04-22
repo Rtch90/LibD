@@ -6,6 +6,7 @@
 class Layer;
 class Tileset;
 class Music;
+class NPC;
 
 class Level {
 public:
@@ -33,6 +34,7 @@ private:
   int _tileHeight;
   std::list<Layer*> _layers;
   std::list<Tileset*> _tilesets;
+  std::list<NPC*> _npcs;
   Music* _bgm;
   bool* _collisions;
 };

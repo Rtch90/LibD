@@ -7,10 +7,14 @@
 #include "../Sound/Music.h"
 #include "../System/Debug.h"
 #include "../TMXParser/Tmx.h"
+#include "../Actor/NPC.h"
 
 #ifdef _WIN32
 #ifndef strcasecmp
 #define strcasecmp stricmp
+#endif
+#ifndef strncasecmp
+#define strncasecmp strnicmp
 #endif
 #endif
 
@@ -33,6 +37,11 @@ Level::~Level() {
     delete (*i);
   }
   _tilesets.clear();
+
+  for(std::list<NPC*>::iterator  i = _npcs.begin(); i != _npcs.end(); ++i) {
+    delete (*i);
+  }
+  _npcs.end();
 
   if(_collisions) {
   delete[] _collisions;
@@ -115,6 +124,19 @@ bool Level::Load(const std::string& filename) {
     _layers.push_back(layer);
   }
 
+  for(int i = 0; i < map.GetNumObjectGroups(); i++) {
+    const Tmx::ObjectGroup* tmxGroup = map.GetObjectGroup(i);
+    for(int j = 0; j < tmxGroup->GetNumObjects(); j++) {
+      const Tmx::Object* tmxObject = tmxGroup->GetObject(j);
+      if(!strncasecmp(tmxObject->GetName().c_str(), "NPC", 3)) {
+        NPC* npc = new NPC(this);
+        npc->LoadSprites(tmxObject->GetProperties().GetLiteralProperty("image").c_str());
+        npc->SetXY(tmxObject->GetX(), tmxObject->GetY());
+        _npcs.push_back(npc);
+      }
+    }
+  }
+
   std::map<std::string, std::string> mapProps = map.GetProperties().GetList();
   for(std::map<std::string, std::string>::iterator i = mapProps.begin(); i != mapProps.end(); ++i) {
     if(i->first == "BGM") {
@@ -135,11 +157,17 @@ void Level::Update(float dt) {
   for(std::list<Layer*>::iterator i = _layers.begin(); i != _layers.end(); ++i) {
     (*i)->Update(dt);
   }
+  for(std::list<NPC*>::iterator i = _npcs.begin(); i != _npcs.end(); ++i) {
+    (*i)->Update(dt);
+  }
 }
 
 void Level::Draw(int xOffset, int yOffset) {
   for(std::list<Layer*>::iterator i = _layers.begin(); i != _layers.end(); ++i) {
     (*i)->Draw(xOffset, yOffset);
+  }
+  for(std::list<NPC*>::iterator i = _npcs.begin(); i != _npcs.end(); ++i) {
+    (*i)->Render();
   }
 }
 
