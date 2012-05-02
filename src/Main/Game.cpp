@@ -40,14 +40,8 @@ Game::~Game(void) {
 }
 
 bool Game::Init(void) {
-  glEnable(GL_DEPTH_TEST);
-  glDepthFunc(GL_LEQUAL);
-
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-  glEnable(GL_ALPHA_TEST);
-  glAlphaFunc(GL_GREATER, 0.1f);
 
   // Return success.
   return true;
@@ -58,7 +52,7 @@ void Game::Prepare(float dt) {
 }
 
 void Game::Render(void) {
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glClear(GL_COLOR_BUFFER_BIT);
   if(_inTitleScreen) {
     RenderTitle();
   } else {
@@ -165,12 +159,6 @@ void Game::RenderTitle(void) {
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
-  glDisable(GL_DEPTH_TEST);
-  glDisable(GL_ALPHA_TEST);
-
-  glEnable(GL_BLEND);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
   _titleScreen->Render();
 }
 
@@ -209,8 +197,9 @@ void Game::RenderGame(void) {
   }
 
   // Render our shit..
-  _level->Draw(xOffset, yOffset);
+  _level->DrawBackground(xOffset, yOffset, _player->GetY());
   _player->Render();
+  _level->DrawForeground(xOffset, yOffset, _player->GetY());
   _testFont->SetColor(0.0f, 1.0f, 1.0f, 1.0f);
   _testFont->RenderText(
     _player->GetX() - 5,
@@ -221,14 +210,11 @@ void Game::RenderGame(void) {
     _player->GetY() - _testFont->GetLineSkip() - 20,
     "<Misteress of Magic>");
 
-  glLoadIdentity();
-
-  glDisable(GL_DEPTH_TEST);
-  glDisable(GL_ALPHA_TEST);
   RenderHUD();
 }
 
 void Game::RenderHUD(void) {
+  glLoadIdentity();
   if(_inGameMenuShown) {
     _inGameMenu->Render();
   }

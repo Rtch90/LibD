@@ -28,47 +28,28 @@
   <image source="../Img/OpenArt/Woodland_village_x2.png" width="512" height="64"/>
  </tileset>
  <layer name="Ground" width="50" height="50">
-  <data encoding="base64" compression="zlib">
-   eJztlF1uwjAQhK1wmKJyjVLoK7SBvhYSCneAngA4Ae1VuxKJZLnZdTY/tRHz8PklJszMziYxxiQAgLvjkRhFoCNWkM/tgtkhpxgJnfeejoPFVxI+kyYc6ThZnOGjd7KBMTmxIT6JLbEbXJ9d6Pi2+AnkI/R+gfgJ0RH0EkigH8g7NMgE2dwjT8RYwXMEmqt4Jd4UpBFkXpXlLfkotVZpaOtDyqhr1kRG5BUaVozeWfEbF/cdUkZ1e9J2N6VZpML/2e/jMtL0pG2n6/pw73W1I135KLP09ce958temp/9jOu0xoe7nxNiquBFkbM027Y+3P1cEEsF7wF8fJi/u+7u53/5kLpsM/fMhOvPg9LH0PAd43zU6aTPb1540OptMhvuu1Bnlj768qDRxd3XfGP68uB2TIK736c2AABowi8gBhQk
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2ZwQ2DMBAET1AM6SAtQAWQCkBK//+YR5QfnMwZr6N5zBOzw9o6IXdm1gkzJxYHtXOesSa2xLNxD28vtfPh0abHfk6OzkjtfFGd1M6GR77Hu897f+5z9KENHlrgoQUeWpT2iJhznjXoQws8tMBDCzx+RP0LXVmHPrTAQws8tMBDi1Y8zmZkKY+oGf9vfeBhNgnki/B4NOTiuUsv6XLH/ceXl8D3jvDY99cozuDwAABQ5wMVAhDqECcAAA==
   </data>
  </layer>
- <layer name="Above" width="50" height="50">
-  <data encoding="base64" compression="zlib">
-   eJztWLluFEEQbe0Q73plYrsd8AfmDrkh5SYGc2SLJSAjMAh+CsQX8CEmdIAcUS2m5Nqiqrq6Z3uWwE8qzdVd5+uangnhBDthGRvBBxwXnePXhS1yHgfqmmWuc1iQ87nwPPbHbXbPWxMEH2/NX/Q2tpTnnB+S37XguiWUxl6CjYwPOf+myv0LXQgXQS6BXAa5AnK1+5vnbWWOhZTzRXZUHWiM1Ma5To+Dw1oHFl+8+hFvDV2a7fMsjutd+Ih2sH7v4fyDYddCSZ40Hzkkzt8AfTdBboHcBrkPcdyF4z1i5wucf+2v6XrWbNAxmKeUH28cWs+I5Jzz/QHoewjyCOQxyBOQpyDPKvPPgXlK+Ul5ugNC80RzO2NHhKeez+H6BcgeyEuQTbj3Go5v2Dieey+Hh+aplpebhu/7GZsSb3meXnVynjQQXhbFsQvS9XJG8Q3heQ9Z0PJCeUV4GSReSr5Epi/VxoqjtN6zsFzvBG1NI4bwMvZHbpNiFby1gL3ew8uoajmxifmahuX3iPDeUeOgNeVx8Hojp2iv575Q7PRzrPdwmns4CeHX5F/dwntH5C33mceh7ZUkXxIO+mM0xvK+Tdc8XfsJFm+PJ3l/sA7c5kGQIfnCxQPsB+gH5+2es5/SekyD3vOwTtHpnwWJj8kPzCHuN0v6L42j9PuLQpub63+SHznQtYXrsGS+hNx32FwZw/djGk+vKfe5nHX4SnNN88t7277gH53nrU0NEu/njWzU8NSak+ulnm/0nI4an2PFHAncf++7g/PJ6ivSPsqKOTrs57gj7f09emvt8n8GJTX15nwMWP9MvDGV/nfR1hDnFNVL58RCe17QurT8N9YaQ765/oe409oq7ZFWzLFwvOd5a9BvH44he7NW4N/pvB/HkfyoQc1/41O0xW/hXss96pj43B+PBuqRcjRkXMK6+x5C8/nnqF748Kmx/pL6rQI5Xr5boa7asWPhm/GsdB+P41v2sR8NdSccsaP2fB1ItnEtWmtm7PWU8H0NNktQ6l9rnrXGGPWwekftHE/eW8bWQnepzlbx1dTrFDb+AMmMcBk=
+ <layer name="Middle" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2YOQ7DMBADDfhNOXs7R5/D6Z04/v8DzCJdGkHggjLEAVguuNWOoKYxxtTKvv1P5FwEG3Rvkd1vjwNyTNgndy6KDt09ckLOyAW5JuyTOxfFDd135IE8kQF5JeyTOxfFiO438kEm5IvMCfvkzhljyoLhObUrGZ4rwZUMz5XgSobnSnAlw3N2pVk7rPuu9ATrvqs9wbrvak+w7rvaE6z7bk8YY1SOZPaqHMnuVTmS3atyJLtX5cga3az+02GgfquzUL/VWajf6ixqvAfGGGPWzQIWTLt4ECcAAA==
   </data>
  </layer>
- <layer name="Trees" width="50" height="50">
-  <data encoding="base64" compression="zlib">
-   eJzt1jsOwjAMBuCEcgOYmVhYmFhYee48d57XgBvADeAEvR8TrmhUFDVq08hpVP2fFEWgysZO0iAEQHPcpBB3WfevcPegGp4NqONFNbwbUEcIFtTHJUMvZxRz7nGNdpRrn5Nv4Bh3QzG3Huu4UK4rjU/r9zlO57Fj3BPFPDP0x1aHKa5rf8ro04jSMWXKMUrjtwueczlfXGtQhel8ldmXIdVhOl/JvlRn2SSkOlxUqaMXFT/DdUeZVKljqNWRt39NdxSXbs53tr1M9m+s7V91R9XJtpehnTG1DqqXZd/nHHVMKO9UZrMNfR18/1/6t6K8a5nNNvQ9bXqf+3CgvEeZzQAAAAAAAAAAAAAQpi/3hxwT
+ <layer name="Top 1" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3YMQqAMBAEwIDP8QP+/2VWooWFhNWTYwauDLk0u5AxgBnbcs4X595w3eWY9cFes+cA6C/Rc9Vdmei5Ll159w6AWaksqcykVL536QkA/qWqI5P3VnWkboaMDv8H8gAAoIcd3uX5NRAnAAA=
   </data>
  </layer>
- <layer name="Trees 2" width="50" height="50">
-  <data encoding="base64" compression="zlib">
-   eJzt17ERgCAMBVBYTTfQDXT/HaShofDO0wuo7zUp4eeSIikxqimnNOfev7hvKRnWD+TYSob9AzkAAIB/cFM+p/ayrVeMcFPWXrb1bWov29pDxJ5FvBExCxFvRMzCCLsMAAAAwLkD/HwNtA==
-  </data>
- </layer>
- <layer name="Roofs and Windows" width="50" height="50">
-  <data encoding="base64" compression="zlib">
-   eJzt1TsOwkAMRVErrILP9oEFBEio+YUaELAbXpE0iAZkmyi6R3pK55lYtsYMQzMvzBbKsvj3TX5T6t4rZa1slEqpla3z/0T3aae6e+WgHJWT0ihnp/Oy+nRRvatya+ve9X0oT6dzovv0bjqKqevVp77t7+TLfmXNZbTsuYwSvb+d7LmdOe8xc9svWXObZRz07gAAAAAAAAAAAAD47AVEdEaX
+ <layer name="Top 2" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2WywmCQQyEl9+yLMESrE8twPfZ91lF7cY5eBJ0IUx2IuaDYU9h9pQvpSS/wqgrZYxMujZzbKbonyFzZIEskRWyrvzLOufFBr1bZIfskQNyRE6V/1jnvDij94JcX/03vHfkUfmPda41/V7bOS8Gxv9Y57wYGv9jnUv+C4bnlK5keC6CKxmei+BKhuciu5LhuQiuZHgugisZnktXfoe131WeYO13tSdY+13tCdZ+j+oJ1n5Xe4K139WeYO339ETijcqRrF6VI9m9Kkeye1WObNWrciS7V+XIT73WfaBy5Huv+lZnob7VWUS91Vmob3UW6ludRd7qSZIkSeLLE+dNPmEQJwAA
   </data>
  </layer>
  <layer name="Collision" width="50" height="50">
-  <data encoding="base64" compression="zlib">
-   eJztl8ESwyAIRJP//+leemA6oIC7BhvejIemlV0QNb2upir3d2TnZeYyyHi5lYHWYsaWc5ha2TpFNFZ0Inn86jCY5SGf7exbK8bMm/xs/darZ3lA1yGSR0ZzpI/cvzvy8PiIxNR8ovaaxxsrDxSM+LP9dSnfIzQ1ndWY6L70ajLy0OqP0rHOCkadGHW3YiPvHQZe/dH6R+Iw8Xiovh5VPEiifrS9m723VkF4qNDj/5AHsi+eXgvpRT47ich6sOu9Yz13vEecmAdDI3IXN03TNE3zHqz3z9GoSOa/cUVOywPVJ5m5qJ5k9XamBitarF5YzaPK+RLVP+n8a5rmnXwA7bUBUA==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2YMRLAIAjA9P+f7tTNwSKWtCZ3TiKYQfRsjU2v3kAiuvDQg0fEpQ/GznWzuSNr9OB4ENGDhR4s9BjnWu2rKz09Cz3Wc3g+WOjB4lSPrLd39htej297UNGDhR4s9NhHpCdneOy4C/R4t242xPMRQY9YrYr/9mzHKo+Z+ae1qjxmY6o5yeOOIw8RkT9wASZ+pOYQJwAA
   </data>
  </layer>
- <objectgroup name="Events" width="50" height="50">
-  <object name="NPC!!!" type="NPC" x="544" y="320" width="32" height="32">
-   <properties>
-    <property name="image" value="Player"/>
-   </properties>
-  </object>
-  <object name="Warp to house" type="warp" x="605" y="188" width="34" height="59">
-   <properties>
-    <property name="map" value="../Data/Map/house.tmx"/>
-    <property name="x" value="7"/>
-    <property name="y" value="13"/>
-   </properties>
-  </object>
- </objectgroup>
 </map>

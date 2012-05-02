@@ -1,6 +1,7 @@
 #pragma once 
 
 #include <string>
+#include <vector>
 #include <list>
 
 class Game;
@@ -20,7 +21,8 @@ public:
   void PlayBGM(void);
 
   void Update(float dt);
-  void Draw(int xOffset, int yOffset);
+  void DrawBackground(int xOffset, int yOffset, float playerY);
+  void DrawForeground(int xOffset, int yOffset, float playerY);
 
   Game* GetGame() { return _game; }
 
@@ -38,10 +40,11 @@ private:
   int _height;
   int _tileWidth;
   int _tileHeight;
-  std::list<Layer*> _layers;
+  std::vector<Layer*> _layers;
   std::list<Tileset*> _tilesets;
-  std::list<NPC*> _npcs;
+  std::vector<NPC*> _npcs;
   std::list<Warp*> _warps;
   Music* _bgm;
   bool* _collisions;
+  int _middleLayer;
 };
