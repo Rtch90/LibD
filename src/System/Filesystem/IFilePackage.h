@@ -10,7 +10,7 @@ public:
   virtual ~IFilePackage(void) {}
 
   virtual void FindFiles(const std::string& dir, const std::string& extension, IFileList& result) = 0;
-  virtual InputStream getFile(const std::string& filename) = 0;
+  virtual InputStream GetFile(const std::string& filename) = 0;
 };
 
 } // Namespace filesystem.
