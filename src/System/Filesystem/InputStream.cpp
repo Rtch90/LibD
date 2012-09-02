@@ -3,6 +3,11 @@
 #include "../ConvertType.h"
 #include <limits.h>
 #include "InputStream.h"
+
+#ifdef __INTEL_COMPILER
+#pragma warning(disable: 444) // I think intel will complain at the base class not being virtual.
+#endif
+
 BOOST_STATIC_ASSERT(sizeof(saracraft::filesystem::uint16_t) * CHAR_BIT == 16);
 BOOST_STATIC_ASSERT(CHAR_BIT == 8);
 
