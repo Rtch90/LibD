@@ -27,6 +27,7 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Level/Level.h \
     ../src/Level/Layer.h \
     ../src/Level/Tileset.h \
+    ../src/Level/AreaMap.h \
     ../src/Main/Game.h \
     ../src/Math/Timer.h \
     ../src/Math/Rect.h \
@@ -78,6 +79,7 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/Level/Tileset.cpp \
     ../src/Level/Level.cpp \
     ../src/Level/Layer.cpp \
+    ../src/Level/AreaMap.cpp \
     ../src/Main/Game.cpp \
     ../src/Main/main.cpp \
     ../src/Math/Vec2.cpp \
