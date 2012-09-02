@@ -137,7 +137,7 @@ bool Level::Load(const std::string& filename) {
   }
 
   if(_middleLayer == -1) {
-    _middleLayer = int(std::floor(float(_layers.size()) / 2.0f)); // <-- nasty
+    _middleLayer = int(floor(float(_layers.size()) / 2.0f)); // <-- nasty
   }
 
   for(int i = 0; i < map.GetNumObjectGroups(); i++) {
