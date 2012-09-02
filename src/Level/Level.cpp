@@ -102,7 +102,7 @@ bool Level::Load(const std::string& filename) {
       for(int x = 0; x < _width; x++) {
         for(int y = 0; y < _height; y++) {
           Tmx::MapTile tile = tmxLayer->GetTile(x, y);
-          _collisions[y * _width + x] = tile.gid != 0;
+          _collisions[y * _width + x] = tile.tilesetId > -1;
         }
       }
       continue;
@@ -119,11 +119,10 @@ bool Level::Load(const std::string& filename) {
       for(int y = 0; y < layer->GetHeight(); y++) {
         Tmx::MapTile tmxTile = tmxLayer->GetTile(x, y);
 
-        const Tmx::Tileset* tmxTileset = map.FindTileset(tmxTile.gid);
-
         MapTile tile;
-        if(tmxTile.gid != 0) {
-          tile.id = tmxTile.gid - tmxTileset->GetFirstGid();
+        if(tmxTile.tilesetId != -1) {
+          const Tmx::Tileset* tmxTileset = map.GetTileset(tmxTile.tilesetId);
+          tile.id = tmxTile.id;
           tile.tileset = tilesetMap.find(tmxTileset)->second;
         } else {
           tile.id = 0;

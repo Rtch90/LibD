@@ -25,8 +25,8 @@
 //
 // Author: Tamir Atias
 //-----------------------------------------------------------------------------
-#include <cstdio>
 #include <tinyxml.h>
+#include <stdio.h>
 
 #include "TmxMap.h"
 #include "TmxTileset.h"
@@ -209,7 +209,7 @@ namespace Tmx
 		while (layerNode) 
 		{
 			// Allocate a new layer and parse it.
-			Layer *layer = new Layer();
+			Layer *layer = new Layer(this);
 			layer->Parse(layerNode);
 
 			// Add the layer to the list.
@@ -231,6 +231,23 @@ namespace Tmx
 
 			objectGroupNode = mapNode->IterateChildren("objectgroup", objectGroupNode);
 		}
+	}
+
+	int Map::FindTilesetIndex(int gid) const
+	{
+		// Clean up the flags from the gid (thanks marwes91).
+		gid &= ~(FlippedHorizontallyFlag | FlippedVerticallyFlag | FlippedDiagonallyFlag);
+
+		for (int i = tilesets.size() - 1; i > -1; --i) 
+		{
+			// If the gid beyond the tileset gid return its index.
+			if (gid >= tilesets[i]->GetFirstGid()) 
+			{
+				return i;
+			}
+		}
+		
+		return -1;
 	}
 
 	const Tileset *Map::FindTileset(int gid) const 

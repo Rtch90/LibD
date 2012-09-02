@@ -38,20 +38,6 @@ HEADERS += ../src/Actor/Player.h \
     ../src/System/ResourceManager.h \
     ../src/Texture/Texture.h \
     ../src/Sound/Music.h \
-    ../src/TMXParser/TmxUtil.h \
-    ../src/TMXParser/TmxTileset.h \
-    ../src/TMXParser/TmxTile.h \
-    ../src/TMXParser/TmxPropertySet.h \
-    ../src/TMXParser/TmxPolyline.h \
-    ../src/TMXParser/TmxPolygon.h \
-    ../src/TMXParser/TmxObjectGroup.h \
-    ../src/TMXParser/TmxObject.h \
-    ../src/TMXParser/TmxMapTile.h \
-    ../src/TMXParser/TmxImage.h \
-    ../src/TMXParser/TmxPoint.h \
-    ../src/TMXParser/TmxMap.h \
-    ../src/TMXParser/TmxLayer.h \
-    ../src/TMXParser/Tmx.h \
     ../src/TMXParser/base64.h \
     ../src/Collision/TileCollision.h \
     ../src/Actor/NPC.h \
@@ -68,7 +54,21 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Main/TitleScreen.h \
     ../src/Level/Warp.h \
     ../src/Math/Rect.h \
-    ../src/BattleSys/Slot.h
+    ../src/BattleSys/Slot.h \
+    ../src/TMXParser/TmxTile.h \
+    ../src/TMXParser/TmxPropertySet.h \
+    ../src/TMXParser/TmxPolyline.h \
+    ../src/TMXParser/TmxPolygon.h \
+    ../src/TMXParser/TmxPoint.h \
+    ../src/TMXParser/TmxObjectGroup.h \
+    ../src/TMXParser/TmxObject.h \
+    ../src/TMXParser/TmxMapTile.h \
+    ../src/TMXParser/TmxMap.h \
+    ../src/TMXParser/TmxLayer.h \
+    ../src/TMXParser/TmxImage.h \
+    ../src/TMXParser/Tmx.h \
+    ../src/TMXParser/base64/base64.h \
+    ../src/TMXParser/TmxUtil.h
 
 SOURCES += ../src/Actor/Player.cpp \
     ../src/Collision/AABB.cpp \
@@ -87,18 +87,6 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/System/Debug.cpp \
     ../src/Texture/Texture.cpp \
     ../src/Sound/Music.cpp \
-    ../src/TMXParser/TmxUtil.cpp \
-    ../src/TMXParser/TmxTileset.cpp \
-    ../src/TMXParser/TmxTile.cpp \
-    ../src/TMXParser/TmxPropertySet.cpp \
-    ../src/TMXParser/TmxPolyline.cpp \
-    ../src/TMXParser/TmxPolygon.cpp \
-    ../src/TMXParser/TmxObjectGroup.cpp \
-    ../src/TMXParser/TmxObject.cpp \
-    ../src/TMXParser/TmxMap.cpp \
-    ../src/TMXParser/TmxLayer.cpp \
-    ../src/TMXParser/TmxImage.cpp \
-    ../src/TMXParser/base64.cpp \
     ../src/Actor/NPC.cpp \
     ../src/Sound/SoundEffect.cpp \
     ../src/Actor/Actor.cpp \
@@ -111,6 +99,18 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/UI/Button.cpp \
     ../src/Main/TitleScreen.cpp \
     ../src/Level/Warp.cpp \
-    ../src/BattleSys/Slot.cpp
+    ../src/BattleSys/Slot.cpp \
+    ../src/TMXParser/TmxTileset.cpp \
+    ../src/TMXParser/TmxTile.cpp \
+    ../src/TMXParser/TmxPropertySet.cpp \
+    ../src/TMXParser/TmxPolyline.cpp \
+    ../src/TMXParser/TmxPolygon.cpp \
+    ../src/TMXParser/TmxObjectGroup.cpp \
+    ../src/TMXParser/TmxObject.cpp \
+    ../src/TMXParser/TmxMap.cpp \
+    ../src/TMXParser/TmxLayer.cpp \
+    ../src/TMXParser/TmxImage.cpp \
+    ../src/TMXParser/base64/base64.cpp \
+    ../src/TMXParser/TmxUtil.cpp
 
 QMAKE_CLEAN += LibD Debug.log

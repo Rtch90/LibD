@@ -25,17 +25,21 @@
 //
 // Author: Tamir Atias
 //-----------------------------------------------------------------------------
-#include <stdlib.h>
-#include <zlib.h>
 #include <tinyxml.h>
+#include <zlib.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 #include "TmxLayer.h"
 #include "TmxUtil.h"
+#include "TmxMap.h"
+#include "TmxTileset.h"
 
 namespace Tmx 
 {
-	Layer::Layer() 
-		: name() 
+	Layer::Layer(const Map *_map) 
+		: map(_map)
+		, name() 
 		, width(0) 
 		, height(0) 
 		, opacity(1.0f)
@@ -148,15 +152,30 @@ namespace Tmx
 		{
 			const TiXmlElement *tileElem = tileNode->ToElement();
 			
-			int gid = 0;
+			unsigned gid = 0;
 
-			// Read the Global-ID of the tile directly into the array entry.
-			tileElem->Attribute("gid", &gid);
+			// Read the Global-ID of the tile.
+			const char* gidText = tileElem->Attribute("gid");
 
-			// Convert the gid to a map tile.
-			tile_map[tileCount++] = MapTile((unsigned)gid);
+			// Convert to an unsigned.
+			sscanf(gidText, "%u", &gid);
+
+			// Find the tileset index.
+			const int tilesetIndex = map->FindTilesetIndex(gid);
+			if (tilesetIndex != -1)
+			{
+				// If valid, set up the map tile with the tileset.
+				const Tmx::Tileset* tileset = map->GetTileset(tilesetIndex);
+				tile_map[tileCount] = MapTile(gid, tileset->GetFirstGid(), tilesetIndex);
+			}
+			else
+			{
+				// Otherwise, make it null.
+				tile_map[tileCount] = MapTile(gid, 0, -1);
+			}
 
 			tileNode = dataNode->IterateChildren("tile", tileNode);
+			tileCount++;
 		}
 	}
 
@@ -199,7 +218,21 @@ namespace Tmx
 		{
 			for (int y = 0; y < height; y++)
 			{
-				tile_map[y * width + x] = MapTile(out[y * width + x]);
+				unsigned gid = out[y * width + x];
+
+				// Find the tileset index.
+				const int tilesetIndex = map->FindTilesetIndex(gid);
+				if (tilesetIndex != -1)
+				{
+					// If valid, set up the map tile with the tileset.
+					const Tmx::Tileset* tileset = map->GetTileset(tilesetIndex);
+					tile_map[y * width + x] = MapTile(gid, tileset->GetFirstGid(), tilesetIndex);
+				}
+				else
+				{
+					// Otherwise, make it null.
+					tile_map[y * width + x] = MapTile(gid, 0, -1);
+				}
 			}
 		}
 
@@ -213,15 +246,30 @@ namespace Tmx
 		char *csv = strdup(innerText.c_str());
 		
 		// Iterate through every token of ';' in the CSV string.
-		char *pch = strtok(csv, ";");
+		char *pch = strtok(csv, ",");
 		int tileCount = 0;
 		
 		while (pch) 
 		{
-			tile_map[tileCount] = MapTile((unsigned)atoi(pch));
+			unsigned gid;
+			sscanf(pch, "%u", &gid);
 
-			++tileCount;
-			pch = strtok(NULL, ";");
+			// Find the tileset index.
+			const int tilesetIndex = map->FindTilesetIndex(gid);
+			if (tilesetIndex != -1)
+			{
+				// If valid, set up the map tile with the tileset.
+				const Tmx::Tileset* tileset = map->GetTileset(tilesetIndex);
+				tile_map[tileCount] = MapTile(gid, tileset->GetFirstGid(), tilesetIndex);
+			}
+			else
+			{
+				// Otherwise, make it null.
+				tile_map[tileCount] = MapTile(gid, 0, -1);
+			}
+
+			pch = strtok(NULL, ",");
+			tileCount++;
 		}
 
 		free(csv);
