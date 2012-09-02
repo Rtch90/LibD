@@ -56,7 +56,6 @@ int main(int argc, char** argv) {
   SDL_GL_SetAttribute(SDL_GL_RED_SIZE,            5);
   SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE,          5);
   SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,           5);
-  SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,          16);
   SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER,        1);
 
   flags = SDL_OPENGL | SDL_HWSURFACE | SDL_RESIZABLE;

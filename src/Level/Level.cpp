@@ -28,11 +28,12 @@ Level::Level(Game* game) {
   _tileHeight = 0;
   _bgm = NULL;
   _collisions = NULL;
+  _middleLayer = -1;
 }
 
 Level::~Level() {
-  for(std::list<Layer*>::iterator i = _layers.begin(); i != _layers.end(); ++i) {
-    delete (*i);
+  for(int i = 0; i < _layers.size(); i++) {
+    delete _layers.at(i);
   }
   _layers.clear();
 
@@ -41,8 +42,8 @@ Level::~Level() {
   }
   _tilesets.clear();
 
-  for(std::list<NPC*>::iterator  i = _npcs.begin(); i != _npcs.end(); ++i) {
-    delete (*i);
+  for(int i = 0; i < _npcs.size(); i++) {
+    delete _npcs.at(i);
   }
   _npcs.clear();
 
@@ -52,8 +53,8 @@ Level::~Level() {
   _warps.clear();
 
   if(_collisions) {
-  delete[] _collisions;
-  _collisions = NULL;
+    delete[] _collisions;
+    _collisions = NULL;
   }
 
   if(_bgm) {
@@ -106,6 +107,9 @@ bool Level::Load(const std::string& filename) {
       }
       continue;
     }
+    else if(!strcasecmp(tmxLayer->GetName().c_str(), "middle")) {
+      _middleLayer = i;
+    }
 
     Layer* layer = new Layer(
       tmxLayer->GetWidth(), tmxLayer->GetHeight(),
@@ -130,6 +134,10 @@ bool Level::Load(const std::string& filename) {
     }
 
     _layers.push_back(layer);
+  }
+
+  if(_middleLayer == -1) {
+    _middleLayer = int(std::floor(float(_layers.size()) / 2.0f)); // <-- nasty
   }
 
   for(int i = 0; i < map.GetNumObjectGroups(); i++) {
@@ -171,20 +179,33 @@ void Level::PlayBGM() {
 }
 
 void Level::Update(float dt) {
-  for(std::list<Layer*>::iterator i = _layers.begin(); i != _layers.end(); ++i) {
-    (*i)->Update(dt);
+  for(int i = 0; i < _layers.size(); i++) {
+    _layers.at(i)->Update(dt);
   }
-  for(std::list<NPC*>::iterator i = _npcs.begin(); i != _npcs.end(); ++i) {
-    (*i)->Update(dt);
+  for(int i = 0; i < _npcs.size(); i++) {
+    _npcs.at(i)->Update(dt);
   }
 }
 
-void Level::Draw(int xOffset, int yOffset) {
-  for(std::list<Layer*>::iterator i = _layers.begin(); i != _layers.end(); ++i) {
-    (*i)->Draw(xOffset, yOffset);
+void Level::DrawBackground(int xOffset, int yOffset, float playerY) {
+  for(int i = 0; i < (_middleLayer + 1); i++) {
+    _layers.at(i)->Draw(xOffset, yOffset);
   }
-  for(std::list<NPC*>::iterator i = _npcs.begin(); i != _npcs.end(); ++i) {
-    (*i)->Render();
+  for(int i = 0; i < _npcs.size(); i++) {
+    NPC* npc = _npcs.at(i);
+    if(npc->GetY() <= playerY)
+      npc->Render();
+  }
+}
+
+void Level::DrawForeground(int xOffset, int yOffset, float playerY) {
+  for(int i = (_middleLayer + 1); i < _layers.size(); i++) {
+    _layers.at(i)->Draw(xOffset, yOffset);
+  }
+  for(int i = 0; i < _npcs.size(); i++) {
+    NPC* npc = _npcs.at(i);
+    if(npc->GetY() > playerY)
+      npc->Render();
   }
 }
 
