@@ -37,6 +37,8 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Sprite/Sprite.h \
     ../src/System/Debug.h \
     ../src/System/ResourceManager.h \
+    ../src/System/ConvertType.h \
+    ../src/System/Filesystem/InputStream.h \
     ../src/Texture/Texture.h \
     ../src/Sound/Music.h \
     ../src/TMXParser/base64.h \
@@ -87,6 +89,7 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/Math/FPS.cpp \
     ../src/Sprite/Sprite.cpp \
     ../src/System/Debug.cpp \
+    ../src/System/Filesystem/InputStream.cpp \
     ../src/Texture/Texture.cpp \
     ../src/Sound/Music.cpp \
     ../src/Actor/NPC.cpp \
