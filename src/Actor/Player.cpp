@@ -27,7 +27,7 @@ void Player::Render(void) {
   Actor::Render();
 }
 
-void Player::Move(float dt) {
+void Player::ProcessEvents(float dt) {
   if(KeyStillDown(SDLK_a) || KeyStillDown(SDLK_LEFT)) {
     x -= _velocity * 60 * dt;
     _direction = Actor::LEFT;

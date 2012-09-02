@@ -58,7 +58,7 @@ void Actor::Update(float dt) {
   float oldX = x;
   float oldY = y;
 
-  Move(dt);
+  ProcessEvents(dt);
 
   float collisionYOffset = GetMaxHeight() / 2.0f;
 

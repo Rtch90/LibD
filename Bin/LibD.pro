@@ -8,7 +8,7 @@ LIBS += -lGL \
     -ltinyxml \
     -lSDL_mixer \
     -lSDL_ttf
-win32: { 
+win32: {
     LIBS -= -lGL \
         -lGLU
     LIBS += -lkernel32 \
@@ -67,7 +67,9 @@ HEADERS += ../src/Actor/Player.h \
     ../src/UI/Button.h \
     ../src/Main/TitleScreen.h \
     ../src/Level/Warp.h \
-    ../src/Math/Rect.h
+    ../src/Math/Rect.h \
+    ../src/BattleSys/Slot.h
+
 SOURCES += ../src/Actor/Player.cpp \
     ../src/Collision/AABB.cpp \
     ../src/Global/Globals.cpp \
@@ -108,4 +110,7 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/UI/Menu.cpp \
     ../src/UI/Button.cpp \
     ../src/Main/TitleScreen.cpp \
-    ../src/Level/Warp.cpp
+    ../src/Level/Warp.cpp \
+    ../src/BattleSys/Slot.cpp
+
+QMAKE_CLEAN += LibD Debug.log

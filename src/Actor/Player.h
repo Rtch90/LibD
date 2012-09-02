@@ -16,5 +16,5 @@ public:
   void Render(void);
 
 private:
-  void Move(float dt);
+  void ProcessEvents(float dt);
 };

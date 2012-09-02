@@ -14,5 +14,5 @@ void NPC::Render(void) {
   Actor::Render();
 }
 
-void NPC::Move(float dt) {
+void NPC::ProcessEvents(float dt) {
 }

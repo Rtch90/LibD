@@ -2,6 +2,7 @@
 #include "../IO/Input.h"
 #include "../Actor/Player.h"
 #include "../Font/Font.h"
+#include "../BattleSys/Slot.h"
 
 class Sprite;
 class Level;
@@ -29,6 +30,9 @@ public:
   void SetRunning(bool running) { _running = running; }
 
 private:
+  // Battle system crap.
+  Slot* _slot;
+
   void UpdateTitle(float dt);
   void UpdateGame(float dt);
   void RenderTitle(void);

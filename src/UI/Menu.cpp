@@ -28,7 +28,7 @@ void Menu::AddButton(Button* button) {
 void Menu::AlignButtons(int how) {
   int x = 0;
   int y = 0;
-  for(std::list<Button*>::iterator i = _buttons.begin(); i != _buttons.end(); ++i) {   
+  for(std::list<Button*>::iterator i = _buttons.begin(); i != _buttons.end(); ++i) {
     Button* button = (*i);
     button->SetXY(x, y);
 
@@ -42,7 +42,7 @@ void Menu::AlignButtons(int how) {
 
 void Menu::SelectButton(int index) {
   int buttonsIndex = 0;
-  for(std::list<Button*>::iterator i = _buttons.begin(); i != _buttons.end(); ++i) {   
+  for(std::list<Button*>::iterator i = _buttons.begin(); i != _buttons.end(); ++i) {
     (*i)->SetSelected(buttonsIndex == index);
     buttonsIndex++;
   }
@@ -55,7 +55,7 @@ void Menu::Update(void) {
   int index = 0;
   for(std::list<Button*>::iterator i = _buttons.begin(); i != _buttons.end(); ++i) {
     Button* button = (*i);
-    
+
     int oldX = button->GetX();
     int oldY = button->GetY();
     button->SetXY(oldX + x, oldY + y);
@@ -92,11 +92,10 @@ void Menu::Update(void) {
 void Menu::Render(void) {
   for(std::list<Button*>::iterator i = _buttons.begin(); i != _buttons.end(); ++i) {
     Button* button = (*i);
-    
+
     int oldX = button->GetX();
     int oldY = button->GetY();
-    button->SetXY(oldX + x, oldY + y);
-    button->Render();
+    button->Render(oldX + x, oldY + y);
     button->SetXY(oldX, oldY);
   }
 }

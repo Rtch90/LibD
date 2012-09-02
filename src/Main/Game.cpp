@@ -25,6 +25,11 @@ Game::Game(void) {
   _level  = new Level(this);
   _player = new Player(_level);
 
+  //_NPC    = new NPC(_level);
+  _slot   = new Slot();
+
+  //_NPC->SetXY(30.0f, 30.0f);
+
   _testFont = new Font();
 
   _titleScreen = new TitleScreen();
@@ -54,7 +59,7 @@ bool Game::Init(void) {
 }
 
 void Game::Prepare(float dt) {
-
+  _slot->PrepareSlot();
 }
 
 void Game::Render(void) {
@@ -71,6 +76,7 @@ void Game::Shutdown(void) {
   delete _testFont;
   delete _player;
   delete _level;
+  delete _slot;
   if(_inGameMenu) {
     delete _inGameMenu;
     _inGameMenu = NULL;
@@ -83,6 +89,7 @@ void Game::ProcessEvents(float dt) {
   } else {
     UpdateGame(dt);
   }
+  _slot->ProcessEvents();
 }
 
 void Game::OnResize(int width, int height) {
@@ -214,11 +221,11 @@ void Game::RenderGame(void) {
   _testFont->SetColor(0.0f, 1.0f, 1.0f, 1.0f);
   _testFont->RenderText(
     _player->GetX() - 5,
-    _player->GetY() - _testFont->GetLineSkip() - 2,
+    _player->GetY() - _testFont->GetLineSkip() - 20,
     "Miss D");
   _testFont->RenderText(
     _player->GetX() - 50,
-    _player->GetY() - _testFont->GetLineSkip() - 20,
+    _player->GetY() - _testFont->GetLineSkip() - 2,
     "<Misteress of Magic>");
 
   glLoadIdentity();
@@ -232,6 +239,7 @@ void Game::RenderHUD(void) {
   if(_inGameMenuShown) {
     _inGameMenu->Render();
   }
+  _slot->Render(windowWidth/600, windowHeight/1.10f);
 }
 
 void Game::NewGame(void) {

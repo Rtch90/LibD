@@ -114,6 +114,7 @@ int main(int argc, char** argv) {
     }
 
     UpdateInput();
+    game.Prepare(dt);
     game.ProcessEvents(dt);
     game.Render();
     SDL_GL_SwapBuffers();

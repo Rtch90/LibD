@@ -1,5 +1,3 @@
-LibDQt/LibDQt
-LibDQt/Makefile
 LibD
 *.pro.user
 moc_*
@@ -12,6 +10,7 @@ moc_*
 *.sdf
 *.opensdf
 *.user
+Bin/Makefile
 Bin/VC10/Debug
 Bin/VC10/Release
 Bin/VC10/ipch

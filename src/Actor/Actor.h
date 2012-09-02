@@ -25,7 +25,7 @@ public:
   };
 
   Actor(Level* level);
-  ~Actor(void);
+  virtual ~Actor(void);
 
   void SetLevel(Level* level) { _level = level; }
 
@@ -48,7 +48,7 @@ public:
   void SetDirection(Facing direction)   { _direction = direction; }
 
 protected:
-  virtual void Move(float dt) = 0;
+  virtual void ProcessEvents(float dt) = 0;
 
   AnimatingSprite* GetAnimation(void);
 

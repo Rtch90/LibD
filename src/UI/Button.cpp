@@ -8,15 +8,20 @@ Button::Button(void) {
   _highlighted = false;
   _selected = false;
   _triggered = false;
+  _sprite = NULL;
   x = 0;
   y = 0;
   w = 0;
   h = 0;
 }
 
+Button::~Button(void) {
+  delete  _sprite;
+}
+
 void Button::Update(void) {
   _triggered = false;
-  
+
   int mouseX = ::GetX();
   int mouseY = ::GetY();
 
@@ -32,7 +37,7 @@ void Button::Update(void) {
   }
 }
 
-void Button::Render(void) {
+void Button::Render(float x, float y) {
   if(_font) {
     if(_highlighted || _selected) {
       _font->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -41,6 +46,9 @@ void Button::Render(void) {
     }
     _font->RenderText(x, y, _text.GetPointer());
     _font->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+  }
+  if(_sprite != NULL) {
+    _sprite->Draw(x, y);
   }
 }
 
@@ -56,4 +64,9 @@ void Button::SetText(const String& text) {
   if((_text.Length() > 0) && _font) {
     _font->TextSize(text.GetPointer(), w, h);
   }
+}
+
+void Button::LoadSprite(const char* filename) {
+  _sprite = new Sprite();
+  _sprite->LoadSprite(filename);
 }
