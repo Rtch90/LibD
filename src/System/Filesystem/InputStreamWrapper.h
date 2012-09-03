@@ -1,5 +1,5 @@
 #pragma once
-
+#include <cstring>
 namespace saracraft {
 namespace filesystem {
 

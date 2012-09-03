@@ -46,6 +46,7 @@ HEADERS += ../src/Actor/Player.h \
     ../src/System/Filesystem/InputFileStream.h \
     ../src/System/Filesystem/FilePackageManager.h \
     ../src/System/Filesystem/InputStreamWrapper.h \
+    ../src/System/Checksum.h \
     ../src/Texture/Texture.h \
     ../src/Sound/Music.h \
     ../src/TMXParser/base64.h \
@@ -101,6 +102,7 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/System/Filesystem/InputFileStream.cpp \
     ../src/System/Filesystem/FilePackageManager.cpp \
     ../src/System/Filesystem/InputStreamWrapper.cpp \
+    ../src/System/Checksum.cpp \
     ../src/Texture/Texture.cpp \
     ../src/Sound/Music.cpp \
     ../src/Actor/NPC.cpp \
