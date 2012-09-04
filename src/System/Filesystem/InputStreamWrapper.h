@@ -3,13 +3,13 @@
 namespace saracraft {
 namespace filesystem {
 
-struct FB_FILE;
+struct SC_FILE;
 
-FB_FILE* fb_fopen(const char* filename, const char*);
-size_t fb_fread(void* buffer, size_t size, size_t count, FB_FILE* stream);
-size_t fb_fsize(FB_FILE* stream);
-int fb_fclose(FB_FILE* stream);
-int fb_feof(FB_FILE* stream);
+SC_FILE* sc_fopen(const char* filename, const char*);
+size_t sc_fread(void* buffer, size_t size, size_t count, SC_FILE* stream);
+size_t sc_fsize(SC_FILE* stream);
+int sc_fclose(SC_FILE* stream);
+int sc_feof(SC_FILE* stream);
 
 } // Namespace filesystem.
 } // Namespace saracraft.

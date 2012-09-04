@@ -34,17 +34,17 @@ bool Checksum::DoesChecksumAndSizeMatchFile(unsigned int checksum, int filesize,
 bool Checksum::CountChecksumForFileImpl(unsigned int* checksum, int* filesize, const char* filename) {
   assert(filename != NULL);
 
-  filesystem::FB_FILE* f = filesystem::fb_fopen(filename, "rb");
+  filesystem::SC_FILE* f = filesystem::sc_fopen(filename, "rb");
   if(f == NULL) {
     return false;
   }
 
-  int size = filesystem::fb_fsize(f);
+  int size = filesystem::sc_fsize(f);
 
   char* buf = new char[size];
 
   bool success = true;
-  int got = filesystem::fb_fread(buf, size, 1, f);
+  int got = filesystem::sc_fread(buf, size, 1, f);
   if(got != 1) {
     success = false;
   } else {
@@ -61,7 +61,7 @@ bool Checksum::CountChecksumForFileImpl(unsigned int* checksum, int* filesize, c
       if(hashmult > 23) hashmult -= 23;
     }
     delete [] buf;
-    filesystem::fb_fclose(f);
+    filesystem::sc_fclose(f);
     return success;
   }
 }
