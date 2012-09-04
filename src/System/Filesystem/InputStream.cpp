@@ -1,6 +1,6 @@
 #include  <boost/static_assert.hpp>
 
-#include "../ConvertType.h"
+#include "../Convert/ConvertType.h"
 #include <limits.h>
 #include "InputStream.h"
 

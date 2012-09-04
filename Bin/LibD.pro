@@ -37,7 +37,7 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Sprite/Sprite.h \
     ../src/System/Debug.h \
     ../src/System/ResourceManager.h \
-    ../src/System/ConvertType.h \
+    ../src/System/Convert/ConvertType.h \
     ../src/System/Filesystem/InputStream.h \
     ../src/System/Filesystem/OutputStream.h \
     ../src/System/Filesystem/EmptyBuffer.h \
@@ -48,8 +48,8 @@ HEADERS += ../src/Actor/Player.h \
     ../src/System/Filesystem/FilePackageManager.h \
     ../src/System/Filesystem/InputStreamWrapper.h \
     ../src/System/Filesystem/MemoryStream.h \
-    ../src/System/SCCopyFile.cpp \
-    ../src/System/Checksum.h \
+    ../src/System/Filesystem/SCCopyFile.cpp \
+    ../src/System/Filesystem/Checksum.h \
     ../src/Texture/Texture.h \
     ../src/Sound/Music.h \
     ../src/TMXParser/base64.h \
@@ -107,8 +107,8 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/System/Filesystem/FilePackageManager.cpp \
     ../src/System/Filesystem/InputStreamWrapper.cpp \
     ../src/System/Filesystem/MemoryStream.cpp \
-    ../src/System/SCCopyFile.cpp \
-    ../src/System/Checksum.cpp \
+    ../src/System/Filesystem/SCCopyFile.cpp \
+    ../src/System/Filesystem/Checksum.cpp \
     ../src/Texture/Texture.cpp \
     ../src/Sound/Music.cpp \
     ../src/Actor/NPC.cpp \
