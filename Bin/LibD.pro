@@ -37,6 +37,7 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Sprite/Sprite.h \
     ../src/System/Debug.h \
     ../src/System/ResourceManager.h \
+    ../src/System/Convert/str2int.h \
     ../src/System/Convert/ConvertType.h \
     ../src/System/Filesystem/InputStream.h \
     ../src/System/Filesystem/OutputStream.h \
@@ -100,6 +101,7 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/Math/FPS.cpp \
     ../src/Sprite/Sprite.cpp \
     ../src/System/Debug.cpp \
+    ../src/System/Convert/str2int.cpp \
     ../src/System/Filesystem/InputStream.cpp \
     ../src/System/Filesystem/OutputStream.cpp \
     ../src/System/Filesystem/FileList.cpp \
