@@ -3,6 +3,8 @@
 #include "../System/String.h"
 #include "../Math/Vec2.h"
 
+using saracraft::util::String;
+
 class Warp {
 public:
   Warp(void);

@@ -1,6 +1,7 @@
 #pragma once
 
-namespace util {
+namespace saracraft {
+namespace filesystem {
 
 class SCCopyFile {
 public:
@@ -12,5 +13,5 @@ public:
   static void CopyFile(const std::string& from, const std::string& to);
 };
 
-} // Namespace util.
-
+} // Namespace filesystem.
+} // Namespace saracraft.

@@ -10,11 +10,14 @@
 
 namespace saracraft {
 namespace filesystem {
+
 namespace {
 typedef std::multimap<int, boost::shared_ptr<IFilePackage> > PackageMap;
   FilePackageManager instance;
   FilePackageManager* instancePtr = 0;
 } // Unamed namespace.
+
+using namespace util;
 
 struct FilePackageManagerData {
   PackageMap packages;

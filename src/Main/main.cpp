@@ -20,6 +20,8 @@
 #include "../Global/Constants.h"
 #include "../System/Debug.h"
 
+using saracraft::util::Debug;
+
 void Destroy(void) {
   TTF_Quit();
   Mix_CloseAudio();

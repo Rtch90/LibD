@@ -2,13 +2,16 @@
 #include <string>
 #include <assert.h>
 
-#include "../System/FileReader.h"
+#include "../System/Filesystem/FileReader.h"
 #include "../System/String.h"
 
 #define MAX_FRAMES    16
 #define BLANK         10
 #define ENDOFLINE     59
 #define SPACE         32
+
+using saracraft::util::String;
+using saracraft::filesystem::FileReader;
 
 struct Animation {
   String _animationID;

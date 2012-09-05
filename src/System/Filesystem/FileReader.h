@@ -2,7 +2,12 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "../System/String.h"
+#include "../String.h"
+
+namespace saracraft {
+namespace filesystem {
+
+using util::String;
 
 class FileReader {
 public:
@@ -28,3 +33,6 @@ private:
   String _filename;
   String _accessType;
 };
+
+} // Namespace filesystem.
+} // Namespace saracraft.

@@ -1,8 +1,11 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include "Debug.h"
+#include "../Debug.h"
 #include "FileReader.h"
+
+namespace saracraft {
+namespace filesystem {
 
 FileReader::FileReader(void) {
 
@@ -109,3 +112,6 @@ void FileReader::ReadBuffer(const char* buffer, int count) {
     }
   }
 }
+
+} // Namespace filesystem.
+} // Namespace saracraft.

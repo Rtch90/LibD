@@ -3,7 +3,8 @@
 #include <assert.h>
 #include <stdio.h>
 
-using namespace saracraft;
+namespace saracraft {
+namespace filesystem {
 
 unsigned int Checksum::CountChecksumForFile(const char* filename) {
   unsigned int chksum = 0;
@@ -66,3 +67,5 @@ bool Checksum::CountChecksumForFileImpl(unsigned int* checksum, int* filesize, c
   }
 }
 
+} // End of namespace filesystem.
+} // End of namespace saracraft.

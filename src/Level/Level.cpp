@@ -20,6 +20,8 @@
 #endif
 #endif
 
+using saracraft::util::Debug;
+
 Level::Level(Game* game) {
   _game = game;
   _width = 0;

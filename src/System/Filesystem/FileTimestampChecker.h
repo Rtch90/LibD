@@ -1,5 +1,8 @@
 #pragma once
 
+namespace saracraft {
+namespace filesystem {
+
 class FileTimestampChecker {
 public:
   // Check if the given file with given name has been modified after another
@@ -15,3 +18,5 @@ public:
   static int GetFileTimestamp(const char *file);
 };
 
+} // Namespace filesystem.
+} // Namespace saracraft.

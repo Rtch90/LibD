@@ -3,6 +3,8 @@
 #include "../System/Debug.h"
 #include "AnimationSequence.h"
 
+using saracraft::util::Debug;
+
 /*
  * Load and read a sequence file for an animating sprite then
  * stores the result so you can call the sprites animation at any time.
