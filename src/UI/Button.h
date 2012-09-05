@@ -4,6 +4,8 @@
 #include "../System/String.h"
 #include "../Font/Font.h"
 
+using saracraft::util::String;
+
 class Button {
 public:
   Button(void);

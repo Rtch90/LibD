@@ -1,5 +1,7 @@
 #include "Slot.h"
 
+using saracraft::util::Debug;
+
 Slot::Slot(void) {
   _triggered  = false;
   _selected   = false;

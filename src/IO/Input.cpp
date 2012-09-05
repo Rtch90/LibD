@@ -1,6 +1,8 @@
 #include <string.h>
 #include "Input.h"
 
+using saracraft::util::Debug;
+
 static mouse_t mouse;
 static keyboard_t keyboard;
 

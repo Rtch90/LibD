@@ -3,6 +3,8 @@
 #include "../System/Debug.h"
 #include "Font.h"
 
+using saracraft::util::Debug;
+
 Font::Font(void) {
   _texture = 0;
   _spaceWidth = 0;

@@ -1,5 +1,8 @@
 #pragma once
 
+namespace saracraft {
+namespace filesystem {
+
 class Checksum {
 public:
   static unsigned int CountChecksumForFile(const char* filename);
@@ -10,3 +13,5 @@ private:
                                       int* filesize, const char* filename);
 };
 
+} // Namespace filesystem.
+} // Namespace saracraft.

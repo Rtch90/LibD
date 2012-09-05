@@ -6,7 +6,7 @@
 #endif
 
 namespace saracraft {
-namespace filesystem {
+namespace util {
 
 template<class T>
 struct ConvertBase {
@@ -50,6 +50,5 @@ struct ConvertTo: private ConvertBase<T> {
 
 typedef unsigned short uint16_t;
 
-} // Namespaces....
-}
-
+} // Namespace util.
+} // Namespace saracraft.

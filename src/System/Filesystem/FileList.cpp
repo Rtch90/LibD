@@ -9,6 +9,7 @@ using namespace boost;
 
 namespace saracraft {
 namespace filesystem {
+
 namespace {
 
 struct Dir;
@@ -75,6 +76,7 @@ int GetDirNameImpl(const IteratorList& list, string& result, int currentIndex, i
 string empty;
 
 } // Namespace unamed.
+
 struct FileList::Data {
   bool caseSensitive;
   DirList dirs;

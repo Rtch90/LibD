@@ -8,7 +8,7 @@
 #pragma warning(disable: 444) // I think intel will complain at the base class not being virtual.
 #endif
 
-BOOST_STATIC_ASSERT(sizeof(saracraft::filesystem::uint16_t) * CHAR_BIT == 16);
+BOOST_STATIC_ASSERT(sizeof(saracraft::util::uint16_t) * CHAR_BIT == 16);
 BOOST_STATIC_ASSERT(CHAR_BIT == 8);
 
 namespace saracraft {
@@ -17,7 +17,7 @@ namespace {
 
   template<class T>
   void SendToStream(IOutputStreamBuffer& buffer, T& value) {
-    ConvertFrom<T> converter(value);
+    util::ConvertFrom<T> converter(value);
     for(int i = 0; i < converter.GetSize(); ++i)
       buffer.PutByte(converter.GetByte(i));
   }
@@ -45,7 +45,7 @@ void OutputStream::UseTextStrings(void) {
 OutputStream& OutputStream::Write(std::string& value) {
   assert(_streamBuffer);
 
-  uint16_t stringSize = 0;
+  util::uint16_t stringSize = 0;
   
   if(!_textStrings)
 		Write(stringSize);

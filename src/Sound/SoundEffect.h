@@ -4,8 +4,8 @@
 
 struct Mix_Chunk;
 
-class SoundEffect : public Resource {
-  template<class T> friend class ResourceManager;
+class SoundEffect : public saracraft::util::Resource {
+  template<class T> friend class saracraft::util::ResourceManager;
 
 public:
   SoundEffect();
@@ -22,4 +22,4 @@ private:
   Mix_Chunk* _chunk;
 };
 
-extern ResourceManager<SoundEffect> sfxManager;
+extern saracraft::util::ResourceManager<SoundEffect> sfxManager;

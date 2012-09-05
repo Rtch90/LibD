@@ -8,6 +8,9 @@
 
 using namespace std;
 
+namespace saracraft {
+namespace util {
+
 // ===================================================================
 // The Debug log allows us to display ever piece of data that
 // populates our class components, anything that is loaded, serialized,
@@ -100,3 +103,6 @@ void Debug::closeLog(void) {
   delete logger;
   logger = NULL;
 }
+
+} // End of namespace util.
+} // End of namespace saracraft.

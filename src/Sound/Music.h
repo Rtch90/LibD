@@ -4,8 +4,8 @@
 
 struct _Mix_Music;
 
-class Music : public Resource {
-  template<class T> friend class ResourceManager;
+class Music : public saracraft::util::Resource {
+  template<class T> friend class saracraft::util::ResourceManager;
 
 public:
   Music();
@@ -21,4 +21,4 @@ private:
   struct _Mix_Music* _music;
 };
 
-extern ResourceManager<Music> musicManager;
+extern saracraft::util::ResourceManager<Music> musicManager;

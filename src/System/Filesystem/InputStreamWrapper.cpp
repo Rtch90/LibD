@@ -18,6 +18,8 @@ namespace {
   Tracker tracker;
 } // Namespace Unamed.
 
+using namespace util;
+
 struct SC_FILE {
   InputStream stream;
     

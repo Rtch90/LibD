@@ -5,7 +5,8 @@
 
 #include "SCCopyFile.h"
 
-namespace util {
+namespace saracraft {
+namespace filesystem {
 
 void SCCopyFile::CopyFile(const std::string& from, const std::string& to) {
   std::fstream out(to.c_str(), std::ios::out);
@@ -19,5 +20,6 @@ void SCCopyFile::CopyFile(const std::string& from, const std::string& to) {
   out.close();
 }
 
-} // Namespace util.
+} // Namespace filesystem.
+} // Namespace saracraft.
 

@@ -5,6 +5,9 @@
 
 #include "../System/String.h"
 
+namespace saracraft {
+namespace util {
+
 class Resource {
 public:
   virtual bool Load(const std::string& filename) = 0;
@@ -96,3 +99,6 @@ public:
 private:
   ResourceMap m_resources;
 };
+
+} // Namespace util.
+} // Namespace saracraft.

@@ -51,7 +51,6 @@ HEADERS += ../src/Actor/Player.h \
     ../src/System/Filesystem/FilePackageManager.h \
     ../src/System/Filesystem/InputStreamWrapper.h \
     ../src/System/Filesystem/MemoryStream.h \
-    ../src/System/Filesystem/SCCopyFile.cpp \
     ../src/System/Filesystem/Checksum.h \
     ../src/Texture/Texture.h \
     ../src/Sound/Music.h \
@@ -61,7 +60,6 @@ HEADERS += ../src/Actor/Player.h \
     ../src/Sound/SoundEffect.h \
     ../src/Actor/Actor.h \
     ../src/Animation/AnimimationSequence.h \
-    ../src/System/FileReader.h \
     ../src/Animation/AnimationSequence.h \
     ../src/System/String.h \
     ../src/Font/Font.h \
@@ -85,7 +83,9 @@ HEADERS += ../src/Actor/Player.h \
     ../src/TMXParser/TmxImage.h \
     ../src/TMXParser/Tmx.h \
     ../src/TMXParser/base64/base64.h \
-    ../src/TMXParser/TmxUtil.h
+    ../src/TMXParser/TmxUtil.h \
+    ../src/System/Filesystem/SCCopyFile.h \
+    ../src/System/Filesystem/FileReader.h
 
 SOURCES += ../src/Actor/Player.cpp \
     ../src/Collision/AABB.cpp \
@@ -120,7 +120,6 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/Actor/NPC.cpp \
     ../src/Sound/SoundEffect.cpp \
     ../src/Actor/Actor.cpp \
-    ../src/System/FileReader.cpp \
     ../src/Animation/AnimationSequence.cpp \
     ../src/System/String.cpp \
     ../src/Font/Font.cpp \
@@ -141,6 +140,7 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/TMXParser/TmxLayer.cpp \
     ../src/TMXParser/TmxImage.cpp \
     ../src/TMXParser/base64/base64.cpp \
-    ../src/TMXParser/TmxUtil.cpp
+    ../src/TMXParser/TmxUtil.cpp \
+    ../src/System/Filesystem/FileReader.cpp
 
 QMAKE_CLEAN += LibD Debug.log

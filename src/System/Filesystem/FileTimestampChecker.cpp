@@ -10,7 +10,8 @@
 #include "InputStreamWrapper.h"
 #include "FileTimestampChecker.h"
 
-using namespace saracraft;
+namespace saracraft {
+namespace filesystem {
 
 /*bool FileTimestampChecker::IsFileNewerThanFile(const char* file, const char* secondFile) {
   assert
@@ -80,3 +81,5 @@ int FileTimestampChecker::GetFileTimestamp(const char* file) {
   return ret;
 }
 
+} // End of namespace filesystem.
+} // End of namespace saracraft.
