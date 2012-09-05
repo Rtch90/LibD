@@ -32,9 +32,8 @@ void Slot::Render(void) {
 }
 
 void Slot::Render(float x, float y) {
+  int offset = 52;
   for(int i = 0; i < _index; i++) {
-    int offset = 52;
-
     if(i != _index) {
       x += offset;
       _slotArray[_index]->Render(x, y);
