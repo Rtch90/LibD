@@ -1,4 +1,5 @@
 CONFIG -= qt
+LIBS += -L$$PWD/../Libs
 LIBS += -lGL \
     -lSDL \
     -lSDL_image \
