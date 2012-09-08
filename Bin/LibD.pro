@@ -10,6 +10,7 @@ LIBS += -lGL \
     -lSDL_mixer \
     -lSDL_ttf \
     -lminizip
+
 win32: {
     LIBS -= -lGL \
         -lGLU
@@ -41,6 +42,7 @@ HEADERS += ../src/Actor/Player.h \
     ../src/System/Debug.h \
     ../src/System/ResourceManager.h \
     ../src/System/Convert/str2int.h \
+    ../src/System/Filesystem/SCpak.h \
     ../src/System/Filesystem/IOapi.h \
     ../src/System/Filesystem/FileTimestampChecker.h \
     ../src/System/Convert/ConvertType.h \
@@ -109,6 +111,7 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/Sprite/Sprite.cpp \
     ../src/System/Debug.cpp \
     ../src/System/Convert/str2int.cpp \
+    ../src/System/Filesystem/SCpak.cpp \
     ../src/System/Filesystem/FileTimestampChecker.cpp \
     ../src/System/Filesystem/OutputCompressedFileStream.cpp \
     ../src/System/Filesystem/InputCompressedFileStream.cpp \
