@@ -41,8 +41,8 @@ SC_FILE* sc_fopen(const char* filename, const char*) {
   InputStream stream = manager.GetFile(filename);
   manager.SetInputStreamErrorReporting(true);
 
-  if(stream.IsEof())
-    return 0;
+//  if(stream.IsEof())
+//    return 0;
   return new SC_FILE(stream);
 }
 

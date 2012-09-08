@@ -1,9 +1,12 @@
 #include <stdlib.h>
+#include <string.h>
 
 #include "../System/Debug.h"
+#include "../System/Filesystem/InputStreamWrapper.h"
 #include "AnimationSequence.h"
 
 using saracraft::util::Debug;
+using namespace saracraft::filesystem;
 
 /*
  * Load and read a sequence file for an animating sprite then
@@ -39,12 +42,17 @@ void AnimationSequence::ReadFile(void) {
   // is then sorted character by character arranging the data into
   // usable animations using the scan method, each result is stored into an
   // animation array.
-  if(_file.Exists(_sequenceID)) {
+  FILE* file = fopen(_sequenceID, "rb");
+  if(file) {
+    fseek(file, 0, SEEK_END);
+    int fileSize = ftell(file);
+    rewind(file);
+    
     String name;
-    char* temp;
-    _file.OpenFile(_sequenceID, "rb");
-    _file.ReadBuffer(temp);
-    _file.CloseFile();
+    char* temp = new char[fileSize + 1];
+    temp[fileSize] = 0;
+    fread(temp, 1, fileSize, file);
+    fclose(file);
 
     int counter = 0;
 
