@@ -16,7 +16,8 @@ win32: {
         -lgdi32 \
         -lopengl32 \
         -lglu32 \
-        -lSDL_mixer
+        -lSDL_mixer \
+        -lminizip
 }
 HEADERS += ../src/Actor/Player.h \
     ../src/Collision/AABB.h \
@@ -43,6 +44,7 @@ HEADERS += ../src/Actor/Player.h \
     ../src/System/Convert/ConvertType.h \
     ../src/System/Filesystem/OutputCompressedFileStream.h \
     ../src/System/Filesystem/InputCompressedFileStream.h \
+    ../src/System/Filesystem/ZipPackage.h \
     ../src/System/Filesystem/InputStream.h \
     ../src/System/Filesystem/OutputStream.h \
     ../src/System/Filesystem/EmptyBuffer.h \
@@ -109,6 +111,7 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/System/Filesystem/FileTimestampChecker.cpp \
     ../src/System/Filesystem/OutputCompressedFileStream.cpp \
     ../src/System/Filesystem/InputCompressedFileStream.cpp \
+    ../src/System/Filesystem/ZipPackage.cpp \
     ../src/System/Filesystem/InputStream.cpp \
     ../src/System/Filesystem/OutputStream.cpp \
     ../src/System/Filesystem/FileList.cpp \
