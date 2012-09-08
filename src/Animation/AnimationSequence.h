@@ -2,7 +2,6 @@
 #include <string>
 #include <assert.h>
 
-#include "../System/Filesystem/FileReader.h"
 #include "../System/String.h"
 
 #define MAX_FRAMES    16
@@ -11,7 +10,6 @@
 #define SPACE         32
 
 using saracraft::util::String;
-using saracraft::filesystem::FileReader;
 
 struct Animation {
   String _animationID;
@@ -35,6 +33,5 @@ private:
 
   const char* _sequenceID;
   int _numberOfFrames;
-  FileReader _file;
   Animation* _animations[MAX_FRAMES];
 };

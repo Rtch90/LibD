@@ -84,8 +84,7 @@ HEADERS += ../src/Actor/Player.h \
     ../src/TMXParser/Tmx.h \
     ../src/TMXParser/base64/base64.h \
     ../src/TMXParser/TmxUtil.h \
-    ../src/System/Filesystem/SCCopyFile.h \
-    ../src/System/Filesystem/FileReader.h
+    ../src/System/Filesystem/SCCopyFile.h
 
 SOURCES += ../src/Actor/Player.cpp \
     ../src/Collision/AABB.cpp \
@@ -140,7 +139,6 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/TMXParser/TmxLayer.cpp \
     ../src/TMXParser/TmxImage.cpp \
     ../src/TMXParser/base64/base64.cpp \
-    ../src/TMXParser/TmxUtil.cpp \
-    ../src/System/Filesystem/FileReader.cpp
+    ../src/TMXParser/TmxUtil.cpp
 
 QMAKE_CLEAN += LibD Debug.log
