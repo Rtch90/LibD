@@ -19,7 +19,7 @@ public:
 
   bool IsSelected(void) const     { return _selected; }
   void SetSelected(bool selected) { _selected = selected; }
-  bool Triggered(void) const    { return _triggered; }
+  bool Triggered(void) const      { return _triggered; }
 
   int GetX(void)                  { return x; }
   int GetY(void)                  { return y; }
