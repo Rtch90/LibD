@@ -42,25 +42,7 @@ HEADERS += ../src/Actor/Player.h \
     ../src/System/Debug.h \
     ../src/System/ResourceManager.h \
     ../src/System/Convert/str2int.h \
-    ../src/System/Filesystem/SCpak.h \
-    ../src/System/Filesystem/RlePackedFileWrapper.h \
-    ../src/System/Filesystem/IOapi.h \
-    ../src/System/Filesystem/FileTimestampChecker.h \
     ../src/System/Convert/ConvertType.h \
-    ../src/System/Filesystem/OutputCompressedFileStream.h \
-    ../src/System/Filesystem/InputCompressedFileStream.h \
-    ../src/System/Filesystem/ZipPackage.h \
-    ../src/System/Filesystem/InputStream.h \
-    ../src/System/Filesystem/OutputStream.h \
-    ../src/System/Filesystem/EmptyBuffer.h \
-    ../src/System/Filesystem/IFileList.h \
-    ../src/System/Filesystem/IFilePackage.h \
-    ../src/System/Filesystem/FileList.h \
-    ../src/System/Filesystem/InputFileStream.h \
-    ../src/System/Filesystem/FilePackageManager.h \
-    ../src/System/Filesystem/InputStreamWrapper.h \
-    ../src/System/Filesystem/MemoryStream.h \
-    ../src/System/Filesystem/Checksum.h \
     ../src/Texture/Texture.h \
     ../src/Sound/Music.h \
     ../src/TMXParser/base64.h \
@@ -112,21 +94,6 @@ SOURCES += ../src/Actor/Player.cpp \
     ../src/Sprite/Sprite.cpp \
     ../src/System/Debug.cpp \
     ../src/System/Convert/str2int.cpp \
-    ../src/System/Filesystem/SCpak.cpp \
-    ../src/System/Filesystem/RlePackedFileWrapper.cpp \
-    ../src/System/Filesystem/FileTimestampChecker.cpp \
-    ../src/System/Filesystem/OutputCompressedFileStream.cpp \
-    ../src/System/Filesystem/InputCompressedFileStream.cpp \
-    ../src/System/Filesystem/ZipPackage.cpp \
-    ../src/System/Filesystem/InputStream.cpp \
-    ../src/System/Filesystem/OutputStream.cpp \
-    ../src/System/Filesystem/FileList.cpp \
-    ../src/System/Filesystem/InputFileStream.cpp \
-    ../src/System/Filesystem/FilePackageManager.cpp \
-    ../src/System/Filesystem/InputStreamWrapper.cpp \
-    ../src/System/Filesystem/MemoryStream.cpp \
-    ../src/System/Filesystem/SCCopyFile.cpp \
-    ../src/System/Filesystem/Checksum.cpp \
     ../src/Texture/Texture.cpp \
     ../src/Sound/Music.cpp \
     ../src/Actor/NPC.cpp \

@@ -5,9 +5,6 @@
 #include <cassert>
 #endif
 
-namespace saracraft {
-namespace util {
-
 template<class T>
 struct ConvertBase {
   enum { charCount = sizeof(T) };
@@ -49,6 +46,3 @@ struct ConvertTo: private ConvertBase<T> {
 };
 
 typedef unsigned short uint16_t;
-
-} // Namespace util.
-} // Namespace saracraft.

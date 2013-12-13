@@ -2,7 +2,7 @@
 
 #include "SoundEffect.h"
 
-saracraft::util::ResourceManager<SoundEffect> sfxManager;
+ResourceManager<SoundEffect> sfxManager;
 
 SoundEffect::SoundEffect() {
   _chunk = NULL;

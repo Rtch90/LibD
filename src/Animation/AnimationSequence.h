@@ -9,8 +9,6 @@
 #define ENDOFLINE     59
 #define SPACE         32
 
-using saracraft::util::String;
-
 struct Animation {
   String _animationID;
   int frameBegin;

@@ -5,9 +5,6 @@
 #include "String.h"
 #define _CRT_SECURE_NO_WARNINGS
 
-namespace saracraft {
-namespace util {
-
 String::String(void) {
   _string = new char[1];
   _string[0] = 0;
@@ -62,7 +59,7 @@ void String::Format(const char* format, ...) {
   _length = 4095;
   _string = new char[_length + 1];
   memset(_string, 0, _length + 1);
- 
+
   va_list vlist;
 
   va_start(vlist, format);
@@ -153,6 +150,3 @@ String String::operator+(const String& value) const {
 String::operator const char*() const {
   return _string;
 }
-
-} // End of namespace util.
-} // End of namespace saracraft.

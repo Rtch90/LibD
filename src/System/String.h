@@ -1,9 +1,6 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
 
-namespace saracraft {
-namespace util {
-
 class String {
 public:
   String(void);
@@ -37,6 +34,3 @@ private:
   char* _string;
   int _length;
 };
-
-} // Namespace util.
-} // Namespace saracraft.

@@ -3,9 +3,6 @@
 #include <fstream>
 #include "string"
 
-namespace saracraft {
-namespace util {
-
 class Debug {
 public:
   Debug(bool logToFile);
@@ -16,14 +13,11 @@ public:
   void message(const char *msg, ...);
   static bool openLog(bool logToFile);
   static void closeLog(void);
-  
+
   static Debug *logger;
 
-private: 
+private:
   std::ofstream _logFile;
 };
-
-} // Namespace util.
-} // Namespace saracraft.
 
 #endif // _DEBUG_H_

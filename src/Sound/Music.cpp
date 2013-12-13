@@ -2,7 +2,7 @@
 
 #include "Music.h"
 
-saracraft::util::ResourceManager<Music> musicManager;
+ResourceManager<Music> musicManager;
 
 Music::Music() : Resource() {
   _music = NULL;

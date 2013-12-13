@@ -11,9 +11,7 @@ using namespace std;
 #define GL_BGRA_EXT 0x80E1
 #endif
 
-using saracraft::util::Debug;
-
-saracraft::util::ResourceManager<Texture> textureManager;
+ResourceManager<Texture> textureManager;
 
 static GLuint boundTexture = 0;
 

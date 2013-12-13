@@ -2,11 +2,7 @@
 #include <string.h>
 
 #include "../System/Debug.h"
-#include "../System/Filesystem/InputStreamWrapper.h"
 #include "AnimationSequence.h"
-
-using saracraft::util::Debug;
-using namespace saracraft::filesystem;
 
 /*
  * Load and read a sequence file for an animating sprite then
@@ -47,7 +43,7 @@ void AnimationSequence::ReadFile(void) {
     fseek(file, 0, SEEK_END);
     int fileSize = ftell(file);
     rewind(file);
-    
+
     String name;
     char* temp = new char[fileSize + 1];
     temp[fileSize] = 0;

@@ -3,8 +3,6 @@
 #include "../System/Debug.h"
 #include "Font.h"
 
-using saracraft::util::Debug;
-
 Font::Font(void) {
   _texture = 0;
   _spaceWidth = 0;
@@ -105,13 +103,13 @@ void Font::RenderText(int xOffset, int yOffset, const char* text) {
   glBegin(GL_QUADS);
 
   const int textLength = strlen(text);
-  
+
   int x = 0;
   int y = 0;
 
   for(int i = 0; i < textLength; i++) {
     char c = text[i];
-   
+
     if(c == ' ') {
       x += _spaceWidth;
       continue;
@@ -132,14 +130,14 @@ void Font::RenderText(int xOffset, int yOffset, const char* text) {
     glVertex2i(
       charInfo.xOffset + x + xOffset,
       charInfo.yOffset + y + yOffset);
-    
+
     glTexCoord2f(
       charInfo.uvX + charInfo.uvW,
       charInfo.uvY);
     glVertex2i(
       charInfo.xOffset + x + charInfo.width + xOffset,
       charInfo.yOffset + y + yOffset);
-    
+
     glTexCoord2f(
       charInfo.uvX + charInfo.uvW,
       charInfo.uvY + charInfo.uvH);
@@ -165,7 +163,7 @@ void Font::RenderText(int xOffset, int yOffset, const char* text) {
 void Font::TextSize(const char* text, int& width, int& height) {
   width   = 0;
   height  = _lineSkip;
-  
+
   int textLength = strlen(text);
   for(int i = 0; i < textLength; i++) {
     char c = text[i];

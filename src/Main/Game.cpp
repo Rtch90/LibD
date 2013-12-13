@@ -21,8 +21,6 @@
 #include "Game.h"
 #include "TitleScreen.h"
 
-using saracraft::util::Debug;
-
 Game::Game(void) {
   _level  = new Level(this);
   _player = new Player(_level);

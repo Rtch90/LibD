@@ -27,8 +27,8 @@ void BindTexture(GLuint texID);
 
 #include "../System/ResourceManager.h"
 
-class Texture : public saracraft::util::Resource {
-  template<class T> friend class saracraft::util::ResourceManager;
+class Texture : public Resource {
+  template<class T> friend class ResourceManager;
 
 public:
   Texture();
@@ -46,4 +46,4 @@ private:
   int height;
 };
 
-extern saracraft::util::ResourceManager<Texture> textureManager;
+extern ResourceManager<Texture> textureManager;
